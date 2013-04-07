@@ -47,7 +47,7 @@ public class IBANTest {
         assertThat(IBAN.parse(VALID_IBAN).getCheckDigits(), is("91"));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void valueOfNullIsNull() {
         assertThat(IBAN.valueOf(null), is(nullValue()));
     }
