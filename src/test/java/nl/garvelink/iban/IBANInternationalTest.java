@@ -34,11 +34,8 @@ public class IBANInternationalTest {
 
     private final String plain;
     private final String pretty;
-    @SuppressWarnings("unused")
-    private final String testName;
 
-    public IBANInternationalTest(String testName, String plain, String pretty) {
-        this.testName = testName;
+    public IBANInternationalTest(@SuppressWarnings("unused") String testName, String plain, String pretty) {
         this.plain = plain;
         this.pretty = pretty;
     }
