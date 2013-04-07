@@ -23,7 +23,7 @@ public class WrongChecksumException extends IllegalArgumentException {
     private final int declaredChecksum;
     private final int calculatedChecksum;
 
-    public WrongChecksumException(String failedInput, int declaredChecksum, int calculatedChecksum) {
+    WrongChecksumException(String failedInput, int declaredChecksum, int calculatedChecksum) {
         super("Input \"" + failedInput + "\" failed checksum validation: declared " + declaredChecksum + ", but calculated " + calculatedChecksum + '.');
         this.failedInput = failedInput;
         this.declaredChecksum = declaredChecksum;

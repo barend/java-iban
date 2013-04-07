@@ -21,7 +21,7 @@ package nl.garvelink.iban;
 public class UnknownCountryCodeException extends IllegalArgumentException {
     private final String failedInput;
 
-    public UnknownCountryCodeException(String failedInput) {
+    UnknownCountryCodeException(String failedInput) {
         super("Unknown country code in " + failedInput);
         this.failedInput = failedInput;
     }
