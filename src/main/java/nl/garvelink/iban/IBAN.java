@@ -194,7 +194,7 @@ public final class IBAN {
         int i, max;
         for (max = value.length(), i = 4; i < max; i += 4) {
             sb.append(' ');
-            sb.append(value.substring(i, i + 4 < max ? i + 4 : max));
+            sb.append(value, i, i + 4 < max ? i + 4 : max);
         }
         if (i < max) {
             sb.append(max - i);
