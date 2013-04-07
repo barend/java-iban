@@ -190,7 +190,7 @@ public final class IBAN {
 
     private static final String prettyPrint(String value) {
         StringBuilder sb = new StringBuilder(value.length() + 7);
-        sb.append(value.substring(0, 4));
+        sb.append(value, 0, 4);
         int i, max;
         for (max = value.length(), i = 4; i < max; i += 4) {
             sb.append(' ');
