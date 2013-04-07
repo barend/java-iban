@@ -1,0 +1,37 @@
+# Java class files
+*.class
+
+# output directories
+bin/
+target/
+
+### Eclipse ###
+# Eclipse project files
+.metadata/
+.settings/
+.classpath
+.project
+.externalToolBuilders/
+.checkstyle
+
+### IntelliJ ###
+*.iml
+*.ipr
+*.iws
+.idea/
+
+### Mac OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+### Windows ###
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
