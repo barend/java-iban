@@ -144,7 +144,7 @@ public final class IBAN {
 
     /**
      * Returns the Basic Bank Account Number embedded in the IBAN.
-     * @return the account number (numeric, length varies per country code).
+     * @return the account number (alphanumeric, length varies per country code).
      */
     public String getBBAN() {
         throw new UnsupportedOperationException();
