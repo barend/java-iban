@@ -64,11 +64,18 @@ public final class IBAN {
 
     /**
      * Initializing constructor.
-     * @param value the IBAN value, without internal white space.
+     * @param value the IBAN value, without any white space.
+     * @throws IllegalArgumentException if the input is null, malformed or otherwise fails validation.
      */
     private IBAN(String value) {
         if (value == null) {
             throw new IllegalArgumentException("Invalid input: null");
+        }
+        if (value.charAt(0) < 'A' || value.charAt(0) > 'Z') {
+            throw new IllegalArgumentException("First character is not an uppercase letter.");
+        }
+        if (!Character.isLetterOrDigit(value.charAt(value.length() - 1))) {
+            throw new IllegalArgumentException("Last character is not a letter or digit.");
         }
         final int ccIdx = Arrays.binarySearch(COUNTRY_CODES, value.substring(0, 2));
         if (ccIdx < 0) {
