@@ -92,10 +92,14 @@ public final class IBAN {
      * Parses the given string into an IBAN object and confirms the check digits.
      * @param input the input, which can be either plain ("CC11ABCD123...") or formatted ("CC11 ABCD 123. ..").
      * @return the parsed and validated IBAN object, never null.
-     * @throws IllegalArgumentException if the input is null, malformed or fails validation.
+     * @throws IllegalArgumentException if the input is null, malformed or otherwise fails validation.
      * @see #valueOf(String)
      */
     public static IBAN parse(String input) {
+        final boolean containsSpaces = input != null && input.charAt(0) >= 'A' && input.charAt(0) <= 'Z' && input.indexOf(' ') >= 0;
+        if (containsSpaces) {
+            return new IBAN(input.replaceAll(" ", ""));
+        }
         return new IBAN(input);
     }
 
@@ -103,7 +107,7 @@ public final class IBAN {
      * Parses the given string into an IBAN object and confirms the check digits, but returns null for null.
      * @param input the input, which can be either plain ("CC11ABCD123...") or formatted ("CC11 ABCD 123. ..").
      * @return the parsed and validated IBAN object, or null.
-     * @throws IllegalArgumentException if the input is malformed or fails validation.
+     * @throws IllegalArgumentException if the input is malformed or otherwise fails validation.
      * @see #parse(String)
      */
     public static IBAN valueOf(String input) {
