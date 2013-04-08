@@ -131,7 +131,7 @@ public final class IBAN {
      * @return the two-letter country code.
      */
     public String getCountryCode() {
-        throw new UnsupportedOperationException();
+        return value.substring(0, 2);
     }
 
     /**
@@ -139,7 +139,7 @@ public final class IBAN {
      * @return the four-letter BIC.
      */
     public String getBIC() {
-        throw new UnsupportedOperationException();
+        return value.substring(4, 8);
     }
 
     /**
@@ -147,7 +147,7 @@ public final class IBAN {
      * @return the account number (alphanumeric, length varies per country code).
      */
     public String getBBAN() {
-        throw new UnsupportedOperationException();
+        return value.substring(8);
     }
 
     /**
@@ -155,7 +155,7 @@ public final class IBAN {
      * @return the two check digits.
      */
     public String getCheckDigits() {
-        throw new UnsupportedOperationException();
+        return value.substring(2, 4);
     }
 
     /**
