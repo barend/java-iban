@@ -15,12 +15,13 @@
  */
 package nl.garvelink.iban;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Comparator;
 
 /**
  * An immutable value object representing an International Bank Account Number. Instances of this class have a valid
- * base97 checksum and a valid length for their country code. Any country-specific validation is not currently performed.
+ * base97 doCalculateChecksum and a valid length for their country code. Any country-specific validation is not currently performed.
  * @author Barend Garvelink (barend@garvelink.nl) https://github.com/barend
  */
 public final class IBAN {
@@ -69,10 +70,16 @@ public final class IBAN {
      */
     private IBAN(String value) {
         if (value == null) {
-            throw new IllegalArgumentException("Invalid input: null");
+            throw new IllegalArgumentException("Input is null");
+        }
+        if (value.length() < 15) {
+            throw new IllegalArgumentException("Length is too short to be an IBAN");
         }
         if (value.charAt(0) < 'A' || value.charAt(0) > 'Z') {
             throw new IllegalArgumentException("First character is not an uppercase letter.");
+        }
+        if (value.charAt(2) < '0' || value.charAt(2) > '9' || value.charAt(3) < '0' || value.charAt(3) > '9') {
+            throw new IllegalArgumentException("Digits 3 and 4 not both numeric.");
         }
         if (!Character.isLetterOrDigit(value.charAt(value.length() - 1))) {
             throw new IllegalArgumentException("Last character is not a letter or digit.");
@@ -83,6 +90,11 @@ public final class IBAN {
         }
         if (COUNTRY_IBAN_LENGTHS[ccIdx] != value.length()) {
             throw new WrongLengthException(value, COUNTRY_IBAN_LENGTHS[ccIdx]);
+        }
+        final int declaredChecksum = Integer.parseInt(value.substring(2, 4), 10);
+        final int calculatedChecksum = doCalculateChecksum(value);
+        if (declaredChecksum != calculatedChecksum) {
+            throw new WrongChecksumException(value, declaredChecksum, calculatedChecksum);
         }
         this.value = value;
         this.valuePretty = prettyPrint(value);
@@ -96,11 +108,7 @@ public final class IBAN {
      * @see #valueOf(String)
      */
     public static IBAN parse(String input) {
-        final boolean containsSpaces = input != null && input.charAt(0) >= 'A' && input.charAt(0) <= 'Z' && input.indexOf(' ') >= 0;
-        if (containsSpaces) {
-            return new IBAN(input.replaceAll(" ", ""));
-        }
-        return new IBAN(input);
+        return new IBAN(removeInternalWhitespace(input));
     }
 
     /**
@@ -122,7 +130,7 @@ public final class IBAN {
      * @param country the country code.
      * @param bic the bank identification code.
      * @param bban the basic bank account number.
-     * @return an IBAN object composed of the given inputs, with a valid checksum.
+     * @return an IBAN object composed of the given inputs, with a valid doCalculateChecksum.
      */
     public static IBAN compose(String country, String bic, String bban) {
         throw new UnsupportedOperationException();
@@ -134,7 +142,7 @@ public final class IBAN {
      * @return the check digits calculated for the given IBAN.
      */
     public static int calculateChecksum(String input) {
-        throw new UnsupportedOperationException();
+        return doCalculateChecksum(removeInternalWhitespace(input));
     }
 
     /**
@@ -197,6 +205,75 @@ public final class IBAN {
     @Override
     public String toString() {
         return valuePretty;
+    }
+
+    /**
+     * Calculates the check digits for a given IBAN.
+     * @param normalizedInput the input, which must nog contain any white space ("CC11ABCD123..."). The existing check digits are ignored and can be any two (non whitespace) character values.
+     * @return the check digits calculated for the given IBAN.
+     */
+    private static int doCalculateChecksum(String normalizedInput) {
+        final char[] chars = normalizedInput.toCharArray();
+        int numLetters = 0;
+        for (int i = 0, max = chars.length; i < max; i++) {
+            char c = chars[i];
+            if (c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z') {
+                numLetters += 1;
+            } else if (c <= '0' && c >= '9') {
+                throw new IllegalArgumentException("Invalid character '" + c + "' in candidate IBAN.");
+            }
+        }
+        char[] buffer = new char[chars.length + numLetters];
+        int j = 0;
+        for (int i = 4, max = chars.length; i < max; i++, j++) {
+            char c = chars[i];
+            if (c >= '0' && c <= '9') {
+                buffer[j] = chars[i];
+            } else if (c >= 'A' && c <= 'Z') {
+                String tmp = Integer.toString(c - 55); // ASCII 65 - 10.
+                buffer[j] = tmp.charAt(0);
+                j += 1;
+                buffer[j] = tmp.charAt(1);
+            } else if (c >= 'a' && c <= 'z') {
+                String tmp = Integer.toString(c - 87); // ASCII 97 - 10
+                buffer[j] = tmp.charAt(0);
+                j += 1;
+                buffer[j] = tmp.charAt(1);
+            }
+        }
+        char c = chars[0];
+        if (c >= 'A' && c <= 'Z') {
+            String tmp = Integer.toString(c - 55); // ASCII 65 - 10.
+            buffer[j++] = tmp.charAt(0);
+            buffer[j++] = tmp.charAt(1);
+        } else if (c >= 'a' && c <= 'z') {
+            String tmp = Integer.toString(c - 87); // ASCII 97 - 10
+            buffer[j++] = tmp.charAt(0);
+            buffer[j++] = tmp.charAt(1);
+        }
+        c = chars[1];
+        if (c >= 'A' && c <= 'Z') {
+            String tmp = Integer.toString(c - 55); // ASCII 65 - 10.
+            buffer[j++] = tmp.charAt(0);
+            buffer[j++] = tmp.charAt(1);
+        } else if (c >= 'a' && c <= 'z') {
+            String tmp = Integer.toString(c - 87); // ASCII 97 - 10
+            buffer[j++] = tmp.charAt(0);
+            buffer[j++] = tmp.charAt(1);
+        }
+        buffer[j++] = '0';
+        buffer[j] = '0';
+        BigInteger sum = new BigInteger(new String(buffer));
+        BigInteger remainder = sum.remainder(new BigInteger("97"));
+        return 98 - remainder.intValue();
+    }
+
+    private static final String removeInternalWhitespace(String input) {
+        final boolean containsSpaces = input != null && input.charAt(0) >= 'A' && input.charAt(0) <= 'Z' && input.indexOf(' ') >= 0;
+        if (containsSpaces) {
+            return input.replaceAll(" ", "");
+        }
+        return input;
     }
 
     private static final String prettyPrint(String value) {
