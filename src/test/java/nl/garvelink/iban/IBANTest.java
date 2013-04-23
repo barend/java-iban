@@ -79,8 +79,6 @@ public class IBANTest {
             fail("Invalid input should have been rejected for checksum mismatch.");
         } catch (WrongChecksumException e) {
             assertThat(e.getFailedInput(), is(INVALID_IBAN));
-            assertThat(e.getDeclaredChecksum(), is(12));
-            assertThat(e.getCalculatedChecksum(), is(91));
         }
     }
 }

@@ -91,10 +91,9 @@ public final class IBAN {
         if (COUNTRY_IBAN_LENGTHS[ccIdx] != value.length()) {
             throw new WrongLengthException(value, COUNTRY_IBAN_LENGTHS[ccIdx]);
         }
-        final int declaredChecksum = Integer.parseInt(value.substring(2, 4), 10);
         final int calculatedChecksum = doCalculateChecksum(value);
-        if (declaredChecksum != calculatedChecksum) {
-            throw new WrongChecksumException(value, declaredChecksum, calculatedChecksum);
+        if (calculatedChecksum != 1) {
+            throw new WrongChecksumException(value);
         }
         this.value = value;
         this.valuePretty = prettyPrint(value);
@@ -212,60 +211,44 @@ public final class IBAN {
      * @param normalizedInput the input, which must nog contain any white space ("CC11ABCD123..."). The existing check digits are ignored and can be any two (non whitespace) character values.
      * @return the check digits calculated for the given IBAN.
      */
-    private static int doCalculateChecksum(String normalizedInput) {
-        final char[] chars = normalizedInput.toCharArray();
-        int numLetters = 0;
-        for (int i = 0, max = chars.length; i < max; i++) {
-            char c = chars[i];
-            if (c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z') {
-                numLetters += 1;
-            } else if (c <= '0' && c >= '9') {
-                throw new IllegalArgumentException("Invalid character '" + c + "' in candidate IBAN.");
-            }
-        }
-        char[] buffer = new char[chars.length + numLetters];
-        int j = 0;
-        for (int i = 4, max = chars.length; i < max; i++, j++) {
-            char c = chars[i];
+    private static int doCalculateChecksum(CharSequence normalizedInput) {
+        char[] buffer = new char[normalizedInput.length() * 2];
+        int offset = 0;
+        for (int i = 4, max = normalizedInput.length(); i < max; i++) {
+            char c = normalizedInput.charAt(i);
             if (c >= '0' && c <= '9') {
-                buffer[j] = chars[i];
+                buffer[offset++] = c;
             } else if (c >= 'A' && c <= 'Z') {
-                String tmp = Integer.toString(c - 55); // ASCII 65 - 10.
-                buffer[j] = tmp.charAt(0);
-                j += 1;
-                buffer[j] = tmp.charAt(1);
+                int tmp = 10 + (c - 'A');
+                buffer[offset++] = Character.forDigit(tmp / 10, 10);
+                buffer[offset++] = Character.forDigit(tmp % 10, 10);
             } else if (c >= 'a' && c <= 'z') {
-                String tmp = Integer.toString(c - 87); // ASCII 97 - 10
-                buffer[j] = tmp.charAt(0);
-                j += 1;
-                buffer[j] = tmp.charAt(1);
+                int tmp = 10 + (c - 'a');
+                buffer[offset++] = Character.forDigit(tmp / 10, 10);
+                buffer[offset++] = Character.forDigit(tmp % 10, 10);
+            } else {
+                throw new IllegalArgumentException("Invalid character '" + c + "'.");
             }
         }
-        char c = chars[0];
-        if (c >= 'A' && c <= 'Z') {
-            String tmp = Integer.toString(c - 55); // ASCII 65 - 10.
-            buffer[j++] = tmp.charAt(0);
-            buffer[j++] = tmp.charAt(1);
-        } else if (c >= 'a' && c <= 'z') {
-            String tmp = Integer.toString(c - 87); // ASCII 97 - 10
-            buffer[j++] = tmp.charAt(0);
-            buffer[j++] = tmp.charAt(1);
+        for (int i = 0, max = 4; i < max; i++) {
+            char c = normalizedInput.charAt(i);
+            if (c >= '0' && c <= '9') {
+                buffer[offset++] = c;
+            } else if (c >= 'A' && c <= 'Z') {
+                int tmp = 10 + (c - 'A');
+                buffer[offset++] = Character.forDigit(tmp / 10, 10);
+                buffer[offset++] = Character.forDigit(tmp % 10, 10);
+            } else if (c >= 'a' && c <= 'z') {
+                int tmp = 10 + (c - 'a');
+                buffer[offset++] = Character.forDigit(tmp / 10, 10);
+                buffer[offset++] = Character.forDigit(tmp % 10, 10);
+            } else {
+                throw new IllegalArgumentException("Invalid character '" + c + "'.");
+            }
         }
-        c = chars[1];
-        if (c >= 'A' && c <= 'Z') {
-            String tmp = Integer.toString(c - 55); // ASCII 65 - 10.
-            buffer[j++] = tmp.charAt(0);
-            buffer[j++] = tmp.charAt(1);
-        } else if (c >= 'a' && c <= 'z') {
-            String tmp = Integer.toString(c - 87); // ASCII 97 - 10
-            buffer[j++] = tmp.charAt(0);
-            buffer[j++] = tmp.charAt(1);
-        }
-        buffer[j++] = '0';
-        buffer[j] = '0';
-        BigInteger sum = new BigInteger(new String(buffer));
+        BigInteger sum = new BigInteger(new String(buffer, 0, offset));
         BigInteger remainder = sum.remainder(new BigInteger("97"));
-        return 98 - remainder.intValue();
+        return remainder.intValue();
     }
 
     private static final String removeInternalWhitespace(String input) {

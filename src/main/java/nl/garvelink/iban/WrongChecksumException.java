@@ -20,25 +20,13 @@ package nl.garvelink.iban;
  */
 public class WrongChecksumException extends IllegalArgumentException {
     private final String failedInput;
-    private final int declaredChecksum;
-    private final int calculatedChecksum;
 
-    WrongChecksumException(String failedInput, int declaredChecksum, int calculatedChecksum) {
-        super("Input \"" + failedInput + "\" failed checksum validation: declared " + declaredChecksum + ", but calculated " + calculatedChecksum + '.');
+    WrongChecksumException(String failedInput) {
+        super("Input \"" + failedInput + "\" failed checksum validation.");
         this.failedInput = failedInput;
-        this.declaredChecksum = declaredChecksum;
-        this.calculatedChecksum = calculatedChecksum;
     }
 
     public String getFailedInput() {
         return failedInput;
-    }
-
-    public int getCalculatedChecksum() {
-        return calculatedChecksum;
-    }
-
-    public int getDeclaredChecksum() {
-        return declaredChecksum;
     }
 }
