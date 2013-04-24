@@ -159,7 +159,7 @@ public final class IBAN {
 
     /**
      * Returns the Bank Identifier Code embedded in the IBAN.
-     * @return the four-letter BIC.
+     * @return the four-character BIC.
      */
     public String getBIC() {
         return value.substring(4, 8);
