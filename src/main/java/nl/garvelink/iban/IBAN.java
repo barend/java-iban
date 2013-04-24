@@ -21,7 +21,7 @@ import java.util.Comparator;
 
 /**
  * An immutable value object representing an International Bank Account Number. Instances of this class have a valid
- * base97 doCalculateChecksum and a valid length for their country code. Any country-specific validation is not currently performed.
+ * base97 checksum and a valid length for their country code. Any country-specific validation is not currently performed.
  * @author Barend Garvelink (barend@garvelink.nl) https://github.com/barend
  */
 public final class IBAN {
