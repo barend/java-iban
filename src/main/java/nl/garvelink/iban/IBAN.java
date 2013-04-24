@@ -142,7 +142,9 @@ public final class IBAN {
 
     /**
      * Calculates the check digits for a given IBAN.
-     * @param input the input, which can be either plain ("CC11ABCD123...") or formatted ("CC11 ABCD 123. .."). The existing check digits are ignored and can be any two character values.
+     * @param input the input, which can be either plain ("CC11ABCD123...") or formatted ("CC11 ABCD 123. .."). If the existing check digits are {@code 00} then this
+     *              method will return the value that, after subtracting it from 98, gives you the check digits for the candidate IBAN. If the existing check digits are
+     *              any other value, this method will return {@code 1} if the IBAN is checksums correctly.
      * @return the check digits calculated for the given IBAN.
      */
     public static int calculateChecksum(String input) {
