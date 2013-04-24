@@ -133,11 +133,35 @@ public final class IBAN {
      * Composes an IBAN for the given country code, BIC and BBAN, calculating the check digits.
      * @param country the country code.
      * @param bic the bank identification code.
-     * @param bban the basic bank account number.
+     * @param bban the basic bank account number. If this number is less digits than the required number for the country code, it is left-padded with zeroes.
      * @return an IBAN object composed of the given inputs, with a valid doCalculateChecksum.
+     * @throws IllegalArgumentException if the country code is null or unknown.
+     * @throws IllegalArgumentException if the BIC code is null or a wrong length.
+     * @throws IllegalArgumentException if the BBAN is null or too long.
      */
     public static IBAN compose(String country, String bic, String bban) {
-        throw new UnsupportedOperationException();
+        int ccIdx = -1;
+        if (country == null || (ccIdx = Arrays.binarySearch(COUNTRY_CODES, country)) < 0) {
+            throw new IllegalArgumentException("Invalid country code");
+        }
+        if (bic == null || bic.length() != 4) {
+            throw new IllegalArgumentException("Invalid BIC code");
+        }
+        final int expectedLengthofBban = COUNTRY_IBAN_LENGTHS[ccIdx] - 8;
+        if (bban == null || bban.length() > expectedLengthofBban) {
+            throw new IllegalArgumentException("Invalid BBAN number");
+        }
+        StringBuilder builder = new StringBuilder();
+        builder.append(country).append("00").append(bic);
+        final int zeroPad = expectedLengthofBban - bban.length();
+        for (int i = 0; i < zeroPad; i++) {
+            builder.append('0');
+        }
+        builder.append(bban);
+        int checksum = 98 - doCalculateChecksum(builder);
+        builder.setCharAt(2, (char)('0' + checksum / 10));
+        builder.setCharAt(3, (char)('0' + checksum % 10));
+        return new IBAN(builder.toString());
     }
 
     /**
