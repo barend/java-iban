@@ -1,4 +1,4 @@
-A value type for IBAN numbers. Currently a work in progres.
+An immutable value type for IBAN numbers.
 
 References:
 
