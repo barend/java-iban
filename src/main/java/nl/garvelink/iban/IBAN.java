@@ -20,8 +20,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * An immutable value object representing an International Bank Account Number. Instances of this class have a valid
- * base97 checksum and a valid length for their country code. Any country-specific validation is not currently performed.
+ * An immutable value object representing an International Bank Account Number. Instances of this class have correct
+ * check digits and a valid length for their country code. No country-specific validation is performed.
  * @author Barend Garvelink (barend@garvelink.nl) https://github.com/barend
  */
 public final class IBAN {
@@ -134,7 +134,7 @@ public final class IBAN {
      * @param country the country code.
      * @param bic the bank identification code.
      * @param bban the basic bank account number. If this number is less digits than the required number for the country code, it is left-padded with zeroes.
-     * @return an IBAN object composed of the given inputs, with a valid doCalculateChecksum.
+     * @return an IBAN object composed of the given inputs, with valid check digits.
      * @throws IllegalArgumentException if the country code is null or unknown.
      * @throws IllegalArgumentException if the BIC code is null or a wrong length.
      * @throws IllegalArgumentException if the BBAN is null or too long.
@@ -142,14 +142,14 @@ public final class IBAN {
     public static IBAN compose(String country, String bic, String bban) {
         int ccIdx = -1;
         if (country == null || (ccIdx = Arrays.binarySearch(COUNTRY_CODES, country)) < 0) {
-            throw new IllegalArgumentException("Invalid country code");
+            throw new IllegalArgumentException("Missing or invalid country code");
         }
         if (bic == null || bic.length() != 4) {
-            throw new IllegalArgumentException("Invalid BIC code");
+            throw new IllegalArgumentException("Missing or invalid BIC code");
         }
         final int expectedLengthofBban = COUNTRY_IBAN_LENGTHS[ccIdx] - 8;
         if (bban == null || bban.length() > expectedLengthofBban) {
-            throw new IllegalArgumentException("Invalid BBAN number");
+            throw new IllegalArgumentException("Missing or invalid BBAN number");
         }
         StringBuilder builder = new StringBuilder();
         builder.append(country).append("00").append(bic);
@@ -165,10 +165,10 @@ public final class IBAN {
     }
 
     /**
-     * Calculates the check digits for a given IBAN.
+     * Calculates the MOD97 checksum for a given input.
      * @param input the input, which can be either plain ("CC11ABCD123...") or formatted ("CC11 ABCD 123. .."). If the existing check digits are {@code 00} then this
      *              method will return the value that, after subtracting it from 98, gives you the check digits for the candidate IBAN. If the existing check digits are
-     *              any other value, this method will return {@code 1} if the IBAN is checksums correctly.
+     *              any other value, this method will return {@code 1} if the IBAN checksums correctly.
      * @return the check digits calculated for the given IBAN.
      */
     public static int calculateChecksum(String input) {
@@ -238,9 +238,9 @@ public final class IBAN {
     }
 
     /**
-     * Calculates the check digits for a given IBAN.
-     * @param normalizedInput the input, which must nog contain any white space ("CC11ABCD123..."). The existing check digits are ignored and can be any two (non whitespace) character values.
-     * @return the check digits calculated for the given IBAN.
+     * Calculates the MOD97 checksum for a given string.
+     * @param normalizedInput the input, which must not contain any white space ("CC11ABCD123...").
+     * @return the MOD97 checksum calculated for the given string.
      */
     private static int doCalculateChecksum(CharSequence normalizedInput) {
         final char[] buffer = new char[normalizedInput.length() * 2];
