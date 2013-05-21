@@ -80,13 +80,13 @@ public final class IBAN {
         if (value.length() < 15) {
             throw new IllegalArgumentException("Length is too short to be an IBAN");
         }
-        if (value.charAt(0) < 'A' || value.charAt(0) > 'Z') {
-            throw new IllegalArgumentException("First character is not an uppercase letter.");
+        if (value.charAt(0) < 'A' || value.charAt(0) > 'Z' || value.charAt(1) < 'A' || value.charAt(1) > 'Z') {
+            throw new IllegalArgumentException("Characters at index 0 and 1 not both uppercase letters.");
         }
         if (value.charAt(2) < '0' || value.charAt(2) > '9' || value.charAt(3) < '0' || value.charAt(3) > '9') {
-            throw new IllegalArgumentException("Digits 3 and 4 not both numeric.");
+            throw new IllegalArgumentException("Characters at index 2 and 3 not both numeric.");
         }
-        if (!Character.isLetterOrDigit(value.charAt(value.length() - 1))) {
+        if (!isLetterOrDigit(value.charAt(value.length() - 1))) {
             throw new IllegalArgumentException("Last character is not a letter or digit.");
         }
         final int ccIdx = Arrays.binarySearch(COUNTRY_CODES, value.substring(0, 2));
@@ -238,6 +238,16 @@ public final class IBAN {
             }
         }
         return offset;
+    }
+
+    /**
+     * Returns whether the given character is in the {@code A-Za-z0-9} range.
+     * This differs from {@link Character.isLetterOrDigit(char)} because it doesn't understand non-Western characters.
+     */
+    private static final boolean isLetterOrDigit(char c) {
+        return (c >= '0' && c <= '9')
+            || (c >= 'A' && c <= 'Z')
+            || (c >= 'a' && c <= 'z');
     }
 
     private static final String prettyPrint(String value) {
