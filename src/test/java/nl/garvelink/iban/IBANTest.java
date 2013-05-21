@@ -33,16 +33,6 @@ public class IBANTest {
     }
 
     @Test
-    public void getBICShouldReturnTheBIC() {
-        assertThat(IBAN.parse(VALID_IBAN).getBIC(), is("ABNA"));
-    }
-
-    @Test
-    public void getBBANShouldReturnTheBBAN() {
-        assertThat(IBAN.parse(VALID_IBAN).getBBAN(), is("0417164300"));
-    }
-
-    @Test
     public void getCheckDigitsShouldReturnTheCheckDigits() {
         assertThat(IBAN.parse(VALID_IBAN).getCheckDigits(), is("91"));
     }
@@ -80,47 +70,5 @@ public class IBANTest {
         } catch (WrongChecksumException e) {
             assertThat(e.getFailedInput(), is(INVALID_IBAN));
         }
-    }
-
-    @Test
-    public void composeAcceptsValidInput() {
-        IBAN composed = IBAN.compose("NL", "ABNA", "0417164300");
-        assertThat(composed, is(equalTo(IBAN.parse(VALID_IBAN))));
-    }
-
-    @Test
-    public void composeZeroPadsShortBBAN() {
-        IBAN composed = IBAN.compose("NL", "ABNA", "417164300");
-        assertThat(composed, is(equalTo(IBAN.parse(VALID_IBAN))));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void composeRejectsNullCountry() {
-        IBAN.compose(null, "ABNA", "417164300");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void composeRejectsUnknownCountry() {
-        IBAN.compose("XX", "ABNA", "417164300");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void composeRejectsNullBIC() {
-        IBAN.compose("NL", null, "417164300");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void composeRejectsNullBBAN() {
-        IBAN.compose("NL", "ABNA", null);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void composeRejectsImpossiblyLongBBAN() {
-        IBAN.compose("NL", "ABNA", "12345678901");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void composeRejectsUnmappableCharacters() {
-        IBAN.compose("NL", "ABNA", "123±56");
     }
 }

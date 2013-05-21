@@ -130,41 +130,6 @@ public final class IBAN {
     }
 
     /**
-     * Composes an IBAN for the given country code, BIC and BBAN, calculating the check digits.
-     * @param country the country code.
-     * @param bic the bank identification code.
-     * @param bban the basic bank account number. If this number is less digits than the required number for the country code, it is left-padded with zeroes.
-     * @return an IBAN object composed of the given inputs, with valid check digits.
-     * @throws IllegalArgumentException if the country code is null or unknown.
-     * @throws IllegalArgumentException if the BIC code is null or a wrong length.
-     * @throws IllegalArgumentException if the BBAN is null or too long.
-     */
-    public static IBAN compose(String country, String bic, String bban) {
-        int ccIdx = -1;
-        if (country == null || (ccIdx = Arrays.binarySearch(COUNTRY_CODES, country)) < 0) {
-            throw new IllegalArgumentException("Missing or invalid country code");
-        }
-        if (bic == null || bic.length() != 4) {
-            throw new IllegalArgumentException("Missing or invalid BIC code");
-        }
-        final int expectedLengthofBban = COUNTRY_IBAN_LENGTHS[ccIdx] - 8;
-        if (bban == null || bban.length() > expectedLengthofBban) {
-            throw new IllegalArgumentException("Missing or invalid BBAN number");
-        }
-        StringBuilder builder = new StringBuilder();
-        builder.append(country).append("00").append(bic);
-        final int zeroPad = expectedLengthofBban - bban.length();
-        for (int i = 0; i < zeroPad; i++) {
-            builder.append('0');
-        }
-        builder.append(bban);
-        int checksum = 98 - doCalculateChecksum(builder);
-        builder.setCharAt(2, (char)('0' + checksum / 10));
-        builder.setCharAt(3, (char)('0' + checksum % 10));
-        return new IBAN(builder.toString());
-    }
-
-    /**
      * Calculates the MOD97 checksum for a given input.
      * @param input the input, which can be either plain ("CC11ABCD123...") or formatted ("CC11 ABCD 123. .."). If the existing check digits are {@code 00} then this
      *              method will return the value that, after subtracting it from 98, gives you the check digits for the candidate IBAN. If the existing check digits are
@@ -181,22 +146,6 @@ public final class IBAN {
      */
     public String getCountryCode() {
         return value.substring(0, 2);
-    }
-
-    /**
-     * Returns the Bank Identifier Code embedded in the IBAN.
-     * @return the four-character BIC.
-     */
-    public String getBIC() {
-        return value.substring(4, 8);
-    }
-
-    /**
-     * Returns the Basic Bank Account Number embedded in the IBAN.
-     * @return the account number (alphanumeric, length varies per country code).
-     */
-    public String getBBAN() {
-        return value.substring(8);
     }
 
     /**
