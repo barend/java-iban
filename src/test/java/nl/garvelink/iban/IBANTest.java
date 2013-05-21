@@ -54,12 +54,12 @@ public class IBANTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void parseShouldRejectLeadingWhitespace() {
-        IBAN.parse("  " + VALID_IBAN);
+        IBAN.parse(" " + VALID_IBAN);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void parseShouldRejectTrailingWhitespace() {
-        IBAN.parse(VALID_IBAN + '\n');
+        IBAN.parse(VALID_IBAN + ' ');
     }
 
     @Test

@@ -106,13 +106,23 @@ public final class IBAN {
 
     /**
      * Parses the given string into an IBAN object and confirms the check digits.
-     * @param input the input, which can be either plain ("CC11ABCD123...") or formatted ("CC11 ABCD 123. ..").
+     * @param input the input, which can be either plain ("CC11ABCD123...") or formatted with (ASCII 0x20) space characters ("CC11 ABCD 123. ..").
      * @return the parsed and validated IBAN object, never null.
      * @throws IllegalArgumentException if the input is null, malformed or otherwise fails validation.
      * @see #valueOf(String)
      */
     public static IBAN parse(String input) {
-        return new IBAN(removeInternalWhitespace(input));
+        if (input == null || input.length() == 0) {
+            throw new IllegalArgumentException("Input is null or empty string.");
+        }
+        if (!isLetterOrDigit(input.charAt(0)) || !isLetterOrDigit(input.charAt(input.length() - 1))) {
+            throw new IllegalArgumentException("Input begins or ends in an invalid character.");
+        }
+        final boolean containsInternalSpaces = input.indexOf(' ') >= 0;
+        if (containsInternalSpaces) {
+            return new IBAN(input.replaceAll(" ", ""));
+        }
+        return new IBAN(input);
     }
 
     /**
@@ -137,7 +147,7 @@ public final class IBAN {
      * @return the check digits calculated for the given IBAN.
      */
     public static int calculateChecksum(String input) {
-        return doCalculateChecksum(removeInternalWhitespace(input));
+        return doCalculateChecksum(input);
     }
 
     /**
@@ -200,16 +210,8 @@ public final class IBAN {
         return remainder.intValue();
     }
 
-    private static final String removeInternalWhitespace(String input) {
-        final boolean containsSpaces = input != null && input.charAt(0) >= 'A' && input.charAt(0) <= 'Z' && input.indexOf(' ') >= 0;
-        if (containsSpaces) {
-            return input.replaceAll(" ", "");
-        }
-        return input;
-    }
-
     /**
-     * Copies {@code src[srcPos...srcLen)} into {@code dest[destPos)} while applying character to numeric transformation.
+     * Copies {@code src[srcPos...srcLen)} into {@code dest[destPos)} while applying character to numeric transformation and skipping over space (ASCII 0x20) characters.
      * @param src the data to begin copying, must contain only characters {@code [A-Za-z0-9]}.
      * @param srcPos the index in {@code src} to begin transforming.
      * @param srcLen the number of characters after {@code srcPos} to transform.
@@ -233,7 +235,7 @@ public final class IBAN {
                 int tmp = 10 + (c - 'a');
                 dest[offset++] = (char)('0' + tmp / 10);
                 dest[offset++] = (char)('0' + tmp % 10);
-            } else {
+            } else if (c != ' ') {
                 throw new IllegalArgumentException("Invalid character '" + c + "'.");
             }
         }
