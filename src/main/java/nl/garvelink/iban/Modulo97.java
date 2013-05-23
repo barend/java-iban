@@ -61,8 +61,8 @@ public abstract class Modulo97 {
 
     /**
      * Calculates the check digits to be used in a MOD97 checked string.
-     * @param input the input; the characters at indices 2 and 3 {strong must} be {@code '0'}. The input must also
-     *              satisfy the criteria defined in {@link #checksum(CharSequence)}.
+     * @param input the input; the characters at indices 2 and 3 <strong>must</strong> be {@code '0'}. The input must
+     *              also satisfy the criteria defined in {@link #checksum(CharSequence)}.
      * @return the check digits to be used at indices 2 and 3 to make the input MOD97 verifiable.
      */
     public static int calculateCheckDigits(CharSequence input) {

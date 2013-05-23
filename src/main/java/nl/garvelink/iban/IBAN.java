@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * An immutable value object representing an International Bank Account Number. Instances of this class have correct
+ * An immutable value type representing an International Bank Account Number. Instances of this class have correct
  * check digits and a valid length for their country code. No country-specific validation is performed, other than
  * matching the length of the IBAN to its country code. Unknown country codes are not supported.
  * @author Barend Garvelink (barend@garvelink.nl) https://github.com/barend
@@ -27,7 +27,7 @@ import java.util.Comparator;
 public final class IBAN {
 
     /**
-     * A comparator that puts IBAN's into lexical order, per {@link String#compareTo(String)}.
+     * A comparator that puts IBAN's into lexicographic ordering, per {@link String#compareTo(String)}.
      */
     public static final Comparator<IBAN> LEXICAL_ORDER = new Comparator<IBAN>() {
         @Override public int compare(IBAN iban, IBAN iban2) {
