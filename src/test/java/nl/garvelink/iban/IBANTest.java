@@ -62,6 +62,11 @@ public class IBANTest {
         IBAN.parse(VALID_IBAN + ' ');
     }
 
+    @Test(expected = UnknownCountryCodeException.class)
+    public void parseShouldRejectUnknownCountryCode() {
+        IBAN.parse("UU345678345543234");
+    }
+
     @Test
     public void parseShouldRejectChecksumFailure() {
         try {
@@ -70,5 +75,18 @@ public class IBANTest {
         } catch (WrongChecksumException e) {
             assertThat(e.getFailedInput(), is(INVALID_IBAN));
         }
+    }
+
+    @Test
+    public void testEqualsContract() {
+        IBAN x = IBAN.parse(VALID_IBAN);
+        IBAN y = IBAN.parse(VALID_IBAN);
+        IBAN z = IBAN.parse(VALID_IBAN);
+
+        assertFalse("No object equals null", x.equals(null));
+        assertTrue("An object equals itself", x.equals(x));
+        assertTrue("Equality is symmetric", x.equals(y) && y.equals(x));
+        assertTrue("Equality is transitive", x.equals(y) && y.equals(z) && x.equals(z));
+        assertEquals("Equal objects have the same hash code", x.hashCode(), y.hashCode());
     }
 }
