@@ -135,6 +135,20 @@ public final class IBAN {
     }
 
     /**
+     * Returns the IBAN length for a given country code.
+     * @param countryCode a non-null, uppercase, two-character country code.
+     * @return the IBAN length for the given country, or -1 if the input is not a known, two-character country code.
+     * @throws NullPointerException if the input is null.
+     */
+    public static int getLengthForCountryCode(String countryCode) {
+        int index = Arrays.binarySearch(COUNTRY_CODES, countryCode);
+        if (index > -1) {
+            return COUNTRY_IBAN_LENGTHS[index];
+        }
+        return -1;
+    }
+
+    /**
      * Returns the Country Code embedded in the IBAN.
      * @return the two-letter country code.
      */

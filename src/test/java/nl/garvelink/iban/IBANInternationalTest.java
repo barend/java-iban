@@ -120,6 +120,11 @@ public class IBANInternationalTest {
         }
     }
 
+    @Test
+    public void getLengthForCountryCodeShouldReturnCorrectValue() {
+        assertEquals(plain.length(), IBAN.getLengthForCountryCode(plain.substring(0, 2)));
+    }
+
     /**
      * Helps put the parameter data into readable formatting.
      */
