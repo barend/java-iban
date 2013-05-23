@@ -28,19 +28,23 @@
  * // Input may be formatted.
  * iban = IBAN.valueOf( "NL91 ABNA 0417 1643 00" );
  *
+ * // The valueOf() method returns null if its argument is null.
+ * iban.valueOf( null );
+ *
+ * // The parse() method throws an exception if its argument is null.
+ * iban.parse( null ); // Kaboom.
+ *
  * // IBAN does not implement Comparable&lt;T&gt;, but a simple Comparator is provided.
  * List&lt;IBAN&gt; ibans = getListOfIBANs();
  * Collections.sort( ibans, IBAN.LEXICAL_ORDER );
  *
- * // You can use the Modulo97 class directly to compute the check digits for composing an IBAN number.
- * String candidate = "NL00ABNA0417164300";
- * int checkDigits = Modulo97.calculateCheckDigits( candidate );
- * iban = IBAN.valueOf( String.format( "NL%02dABNA0417164300", checkDigits ) );
+ * // You can use the Modulo97 class directly to compute or verify the check digits.
+ * String candidate = "NL91ABNA0417164300";
+ * Modulo97.verifyCheckDigits( candidate );
  *
- * // API methods are defined against CharSequence rather than String
- * StringBuilder builder = new StringBuilder();
- * builder.append( "NL91ABNA0417164300" );
- * Modulo97.verifyCheckDigits( builder );
+ * // API methods take CharSequence, not just String.
+ * StringBuilder builder = new StringBuilder( "NL00ABNA0417164300" );
+ * int checkDigits = Modulo97.calculateCheckDigits( builder );
  * </pre>
  *
  * <p>Copyright 2013 Barend Garvelink. This code can be used under the terms of the Apache License, Version 2.0.
