@@ -15,8 +15,8 @@ An immutable value type for IBAN numbers.
     // The parse() method throws an exception if its argument is null.
     iban.parse( null ); // Kaboom.
 
-    // IBAN does not implement Comparable&lt;T&gt;, but a simple Comparator is provided.
-    List&lt;IBAN&gt; ibans = getListOfIBANs();
+    // IBAN does not implement Comparable<T>, but a simple Comparator is provided.
+    List<IBAN> ibans = getListOfIBANs();
     Collections.sort( ibans, IBAN.LEXICAL_ORDER );
 
     // You can use the Modulo97 class directly to compute or verify the check digits.
