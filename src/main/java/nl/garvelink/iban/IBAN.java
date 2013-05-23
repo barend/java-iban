@@ -21,7 +21,8 @@ import java.util.Comparator;
 
 /**
  * An immutable value object representing an International Bank Account Number. Instances of this class have correct
- * check digits and a valid length for their country code. No country-specific validation is performed.
+ * check digits and a valid length for their country code. No country-specific validation is performed, other than
+ * matching the length of the IBAN to its country code. Unknown country codes are not supported.
  * @author Barend Garvelink (barend@garvelink.nl) https://github.com/barend
  */
 public final class IBAN {
