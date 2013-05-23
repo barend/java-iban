@@ -15,7 +15,6 @@
  */
 package nl.garvelink.iban;
 
-import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -55,11 +54,6 @@ public final class IBAN {
             24 /* SK */, 27 /* SM */, 26 /* TR */ };
 
     /**
-     * The BigInteger '97', used in the MOD97 division.
-     */
-    private static final BigInteger NINETY_SEVEN = new BigInteger("97");
-
-    /**
      * IBAN value, normalized form (no whitespace).
      */
     private final String value;
@@ -97,7 +91,7 @@ public final class IBAN {
         if (COUNTRY_IBAN_LENGTHS[ccIdx] != value.length()) {
             throw new WrongLengthException(value, COUNTRY_IBAN_LENGTHS[ccIdx]);
         }
-        final int calculatedChecksum = doCalculateChecksum(value);
+        final int calculatedChecksum = Modulo97.checksum(value);
         if (calculatedChecksum != 1) {
             throw new WrongChecksumException(value);
         }
@@ -138,17 +132,6 @@ public final class IBAN {
             return null;
         }
         return parse(input);
-    }
-
-    /**
-     * Calculates the MOD97 checksum for a given input.
-     * @param input the input, which can be either plain ("CC11ABCD123...") or formatted ("CC11 ABCD 123. .."). If the existing check digits are {@code 00} then this
-     *              method will return the value that, after subtracting it from 98, gives you the check digits for the candidate IBAN. If the existing check digits are
-     *              any other value, this method will return {@code 1} if the IBAN checksums correctly.
-     * @return the check digits calculated for the given IBAN.
-     */
-    public static int calculateChecksum(String input) {
-        return doCalculateChecksum(input);
     }
 
     /**
@@ -195,52 +178,6 @@ public final class IBAN {
     @Override
     public String toString() {
         return valuePretty;
-    }
-
-    /**
-     * Calculates the MOD97 checksum for a given string.
-     * @param normalizedInput the input, which must not contain any white space ("CC11ABCD123...").
-     * @return the MOD97 checksum calculated for the given string.
-     */
-    private static int doCalculateChecksum(CharSequence normalizedInput) {
-        final char[] buffer = new char[normalizedInput.length() * 2];
-        int offset = transform(normalizedInput, 4, normalizedInput.length(), buffer, 0);
-        offset = transform(normalizedInput, 0, 4, buffer, offset);
-        final BigInteger sum = new BigInteger(new String(buffer, 0, offset));
-        final BigInteger remainder = sum.remainder(NINETY_SEVEN);
-        return remainder.intValue();
-    }
-
-    /**
-     * Copies {@code src[srcPos...srcLen)} into {@code dest[destPos)} while applying character to numeric transformation and skipping over space (ASCII 0x20) characters.
-     * @param src the data to begin copying, must contain only characters {@code [A-Za-z0-9]}.
-     * @param srcPos the index in {@code src} to begin transforming.
-     * @param srcLen the number of characters after {@code srcPos} to transform.
-     * @param dest the buffer to write transform into.
-     * @param destPos the index in {@code dest} to begin writing.
-     * @return the value of {@destPos} incremented by the number of characters that were added, i.e. the next unused index in {@code dest}.
-     * @throws IllegalArgumentException if {@code src} contains an unsupported character.
-     * @throws ArrayIndexOutOfBoundsException if {@code dest} does not have enough capacity to store the transformed result (keep in mind that a single character from {@code src} can expand to two characters in {@code dest}).
-     */
-    private static int transform(final CharSequence src, final int srcPos, final int srcLen, final char[] dest, final int destPos) {
-        int offset = destPos;
-        for (int i = srcPos; i < srcLen; i++) {
-            char c = src.charAt(i);
-            if (c >= '0' && c <= '9') {
-                dest[offset++] = c;
-            } else if (c >= 'A' && c <= 'Z') {
-                int tmp = 10 + (c - 'A');
-                dest[offset++] = (char)('0' + tmp / 10);
-                dest[offset++] = (char)('0' + tmp % 10);
-            } else if (c >= 'a' && c <= 'z') {
-                int tmp = 10 + (c - 'a');
-                dest[offset++] = (char)('0' + tmp / 10);
-                dest[offset++] = (char)('0' + tmp % 10);
-            } else if (c != ' ') {
-                throw new IllegalArgumentException("Invalid character '" + c + "'.");
-            }
-        }
-        return offset;
     }
 
     /**
