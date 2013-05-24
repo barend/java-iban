@@ -31,11 +31,12 @@ public abstract class Modulo97 {
      * Calculates the raw MOD97 checksum for a given input.
      * <p>
      * The input is allowed to contain space characters. Any character outside the range {@code [A-Za-z0-9 ]} will cause
-     * an IllegalArgumentException to be thrown.</p>
+     * an IllegalArgumentException to be thrown. This method allocates a temporary buffer of twice the input length, so
+     * it will fail for unreasonably large inputs.</p>
      * <p>
      * It is expected, but not enforced, that the characters at index 2 and 3 are numeric. If the existing check digits
      * are {@code 00} then this method will return the value that, after subtracting it from 98, gives you the check
-     * digits for a MOD-97 verifiable number. If the existing check digits are any other value, this method will return
+     * digits for a MOD-97 verifiable string. If the existing check digits are any other value, this method will return
      * {@code 1} if the input checksums correctly.</p>
      * <p>
      * You may want to use {@link #calculateCheckDigits(CharSequence)} or {@link #verifyCheckDigits(CharSequence)}
@@ -73,7 +74,7 @@ public abstract class Modulo97 {
     }
 
     /**
-     * Checks that the given input has a valid MOD97 checksum.
+     * Determines whether the given input has a valid MOD97 checksum.
      * @param input the input to verify, it must meet the criteria defined in {@link #checksum(CharSequence)}.
      * @return {@code true} if the input passes checksum verification, {@code false} otherwise.
      */
@@ -83,10 +84,10 @@ public abstract class Modulo97 {
 
     /**
      * Copies {@code src[srcPos...srcLen)} into {@code dest[destPos)} while applying character to numeric transformation and skipping over space (ASCII 0x20) characters.
-     * @param src the data to begin copying, must contain only characters {@code [A-Za-z0-9]}.
-     * @param srcPos the index in {@code src} to begin transforming.
-     * @param srcLen the number of characters after {@code srcPos} to transform.
-     * @param dest the buffer to write transform into.
+     * @param src the data to begin copying, must contain only characters {@code [A-Za-z0-9 ]}.
+     * @param srcPos the index in {@code src} to begin transforming (inclusive).
+     * @param srcLen the number of characters starting from {@code srcPos} to transform.
+     * @param dest the buffer to write transformed characters into.
      * @param destPos the index in {@code dest} to begin writing.
      * @return the value of {@destPos} incremented by the number of characters that were added, i.e. the next unused index in {@code dest}.
      * @throws IllegalArgumentException if {@code src} contains an unsupported character.
