@@ -17,7 +17,7 @@
 /**
  * This package defines utilities for dealing with IBAN numbers. Its main entity is {@link nl.garvelink.iban.IBAN}, an
  * immutable value type representing an IBAN number. The Modulo-97 checksum is implemented in
- * {@link nl.garvelink.iban.Modulo97dulo97}, which can be used directly if needed. The code in this package
+ * {@link nl.garvelink.iban.Modulo97}, which can be used directly if needed. The code in this package
  * throws {@code IllegalArgumentException} on invalid input. Methods don't take {@code null} arguments unless otherwise
  * noted.
  * <p>Usage sample</p>
