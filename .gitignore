@@ -35,3 +35,9 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
+
+# Maven release plugin
+pom.xml.next
+pom.xml.releaseBackup
+pom.xml.tag
+release.properties
