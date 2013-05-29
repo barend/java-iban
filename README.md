@@ -7,7 +7,7 @@ An immutable value type for IBAN numbers.
     IBAN iban = IBAN.valueOf( "NL91ABNA0417164300" );
 
     // Input may be formatted.
-    iban = IBAN.valueOf( ""BE68 5390 0754 7034"" );
+    iban = IBAN.valueOf( "BE68 5390 0754 7034" );
 
     // The valueOf() method returns null if its argument is null.
     iban.valueOf( null );
