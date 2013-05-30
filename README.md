@@ -23,10 +23,40 @@ An immutable value type for IBAN numbers.
     String candidate = "GB29 NWBK 6016 1331 9268 19";
     Modulo97.verifyCheckDigits( candidate );
 
-    // API methods take CharSequence, not just String.
+    // Modulo97 API methods take CharSequence, not just String.
     StringBuilder builder = new StringBuilder( "LU280019400644750000" );
     int checkDigits = Modulo97.calculateCheckDigits( builder );
+
+    // Get the expected IBAN length for a country code:
+    int length = IBAN.getLengthForCountryCode( "DK" );
 ```
+
+## Installation
+
+Grab a package from Github or get it from Maven Central:
+
+### Maven
+
+```xml
+    <dependency>
+        <groupId>nl.garvelink.oss</groupId>
+        <artifactId>iban</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+```
+
+### Gradle
+
+```javascript
+    dependencies {
+        compile 'nl.garvelink.oss:iban:1.0.0'
+    }
+```
+
+## Notes
+
+* The length of an IBAN is checked against the required length for its country code. Other country-specific validation (e.g. national check digits) are absent.
+* The `IBAN` class does not implement `Serializable`, because the string representation is a superior serialized form. More compact, more portable.
 
 ## References
 
