@@ -1,6 +1,32 @@
-An immutable value type for IBAN numbers.
+A small Java library for dealing with International Bank Account Numbers (IBANs).
 
-## Usage
+The `IBAN` class is intended for use in your domain types. `IBAN` objects enforce that their value is the correct length
+for its country code and that it passes checksum validation. The `Modulo97` class exposes the checksum validation code
+for other purposes, such as live input validation.
+
+### Install
+
+Grab a package from Github or get it from Maven Central:
+
+#### Maven
+
+```xml
+    <dependency>
+        <groupId>nl.garvelink.oss</groupId>
+        <artifactId>iban</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+```
+
+#### Gradle
+
+```javascript
+    dependencies {
+        compile 'nl.garvelink.oss:iban:1.0.0'
+    }
+```
+
+### Use
 
 ```java
     // Obtain an instance of IBAN.
@@ -31,39 +57,18 @@ An immutable value type for IBAN numbers.
     int length = IBAN.getLengthForCountryCode( "DK" );
 ```
 
-## Installation
+### Notes
 
-Grab a package from Github or get it from Maven Central:
+* The length of an IBAN is checked against the required length for its country code. Other country-specific
+  validation (e.g. national check digits) is absent.
+* The `IBAN` class does not implement `Serializable`, because the string representation is a superior serialized form.
 
-### Maven
-
-```xml
-    <dependency>
-        <groupId>nl.garvelink.oss</groupId>
-        <artifactId>iban</artifactId>
-        <version>1.0.0</version>
-    </dependency>
-```
-
-### Gradle
-
-```javascript
-    dependencies {
-        compile 'nl.garvelink.oss:iban:1.0.0'
-    }
-```
-
-## Notes
-
-* The length of an IBAN is checked against the required length for its country code. Other country-specific validation (e.g. national check digits) are absent.
-* The `IBAN` class does not implement `Serializable`, because the string representation is a superior serialized form. More compact, more portable.
-
-## References
+### References
 
  * http://en.wikipedia.org/wiki/IBAN
  * http://www.ecbs.org/iban.htm
 
-## Copyright and License
+### Copyright and License
 
 Copyright 2013 Barend Garvelink
 
