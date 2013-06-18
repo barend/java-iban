@@ -21,9 +21,13 @@ import java.util.Comparator;
  * An immutable value type representing an International Bank Account Number. Instances of this class have correct
  * check digits and a valid length for their country code. No country-specific validation is performed, other than
  * matching the length of the IBAN to its country code. Unknown country codes are not supported.
+ * <p>
+ * {@code IBAN} is assignment compatible with {@link LenientIBAN}, but not the other way around. In other words,
+ * every valid {@code IBAN} is also a valid {@code LenientIBAN}.
+ * </p>
  * @author Barend Garvelink (barend@garvelink.nl) https://github.com/barend
  */
-public final class IBAN {
+public final class IBAN extends LenientIBAN {
 
     /**
      * A comparator that puts IBAN's into lexicographic ordering, per {@link String#compareTo(String)}.
@@ -35,35 +39,14 @@ public final class IBAN {
     };
 
     /**
-     * IBAN value, normalized form (no whitespace).
-     */
-    private final String value;
-
-    /**
-     * Pretty-printed value, lazily initialized.
-     */
-    private transient String valuePretty;
-
-    /**
      * Initializing constructor.
      * @param value the IBAN value, without any white space.
      * @throws IllegalArgumentException if the input is null, malformed or otherwise fails validation.
      */
     private IBAN(String value) {
-        if (value == null) {
-            throw new IllegalArgumentException("Input is null");
-        }
+        super(value);
         if (value.length() < 15) {
             throw new IllegalArgumentException("Length is too short to be an IBAN");
-        }
-        if (value.charAt(0) < 'A' || value.charAt(0) > 'Z' || value.charAt(1) < 'A' || value.charAt(1) > 'Z') {
-            throw new IllegalArgumentException("Characters at index 0 and 1 not both uppercase letters.");
-        }
-        if (value.charAt(2) < '0' || value.charAt(2) > '9' || value.charAt(3) < '0' || value.charAt(3) > '9') {
-            throw new IllegalArgumentException("Characters at index 2 and 3 not both numeric.");
-        }
-        if (!isLetterOrDigit(value.charAt(value.length() - 1))) {
-            throw new IllegalArgumentException("Last character is not a letter or digit.");
         }
         final int expectedLength = CountryCodes.getLengthForCountryCode(value.substring(0, 2));
         if (expectedLength < 0) {
@@ -76,7 +59,6 @@ public final class IBAN {
         if (calculatedChecksum != 1) {
             throw new WrongChecksumException(value);
         }
-        this.value = value;
     }
 
     /**
@@ -114,36 +96,32 @@ public final class IBAN {
         return parse(input);
     }
 
+    @Override
+    public boolean isValid() {
+        return true;
+    }
+
+    @Override
+    public boolean isCountryCodeKnown() {
+        return true;
+    }
+
+    @Override
+    public boolean isCorrectLength() {
+        return true;
+    }
+
+    @Override
+    public boolean isChecksumValid() {
+        return true;
+    }
+
     /**
      * @deprecated invoke {@link CountryCodes#getLengthForCountryCode(String)} instead.
      */
     @Deprecated
     public static int getLengthForCountryCode(String countryCode) {
         return CountryCodes.getLengthForCountryCode(countryCode);
-    }
-
-    /**
-     * Returns the Country Code embedded in the IBAN.
-     * @return the two-letter country code.
-     */
-    public String getCountryCode() {
-        return value.substring(0, 2);
-    }
-
-    /**
-     * Returns the check digits of the IBAN.
-     * @return the two check digits.
-     */
-    public String getCheckDigits() {
-        return value.substring(2, 4);
-    }
-
-    /**
-     * Returns the IBAN without formatting.
-     * @return the unformatted IBAN number.
-     */
-    public String toPlainString() {
-        return value;
     }
 
     @Override
@@ -156,45 +134,5 @@ public final class IBAN {
     @Override
     public int hashCode() {
         return value.hashCode();
-    }
-
-    /**
-     * Returns the IBAN in standard formatting, with a space every four characters.
-     * @return the formatted IBAN number.
-     * @see #toPlainString()
-     */
-    @Override
-    public String toString() {
-        // This code is using a non-threadsafe (but still nullsafe) assignment. The prettyPrint() operation is
-        // idempotent, so no harm done if it happens to run more than once. I expect concurrent use to be rare.
-        String vp = valuePretty;
-        if (vp == null) {
-            vp = valuePretty = prettyPrint(value);
-        }
-        return vp;
-    }
-
-    /**
-     * Returns whether the given character is in the {@code A-Za-z0-9} range.
-     * This differs from {@link Character.isLetterOrDigit(char)} because it doesn't understand non-Western characters.
-     */
-    private static final boolean isLetterOrDigit(char c) {
-        return (c >= '0' && c <= '9')
-            || (c >= 'A' && c <= 'Z')
-            || (c >= 'a' && c <= 'z');
-    }
-
-    private static final String prettyPrint(String value) {
-        StringBuilder sb = new StringBuilder(value.length() + 7);
-        sb.append(value, 0, 4);
-        int i, max;
-        for (max = value.length(), i = 4; i < max; i += 4) {
-            sb.append(' ');
-            sb.append(value, i, i + 4 < max ? i + 4 : max);
-        }
-        if (i < max) {
-            sb.append(max - i);
-        }
-        return sb.toString();
     }
 }
