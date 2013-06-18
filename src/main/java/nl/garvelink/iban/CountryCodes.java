@@ -16,6 +16,8 @@
 package nl.garvelink.iban;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Contains information about IBAN country codes.
@@ -52,6 +54,14 @@ public abstract class CountryCodes {
             return CountryCodes.COUNTRY_IBAN_LENGTHS[index];
         }
         return -1;
+    }
+
+    /**
+     * Returns the known country codes.
+     * @return the collection of known country codes, upper case, in alphabetical order.
+     */
+    public static Collection<String> getKnownCountryCodes() {
+        return Collections.unmodifiableList(Arrays.asList(COUNTRY_CODES));
     }
 
     /** Prevent instantiation of static utility class. */
