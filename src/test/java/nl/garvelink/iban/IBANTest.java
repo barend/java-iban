@@ -89,10 +89,4 @@ public class IBANTest {
         assertTrue("Equality is transitive", x.equals(y) && y.equals(z) && x.equals(z));
         assertEquals("Equal objects have the same hash code", x.hashCode(), y.hashCode());
     }
-
-    @Test
-    public void testInvalidInputToGetLengthForCountry() {
-        assertThat(IBAN.getLengthForCountryCode("nl"), is(-1));
-        assertThat(IBAN.getLengthForCountryCode("Bogus"), is(-1));
-    }
 }

@@ -15,7 +15,6 @@
  */
 package nl.garvelink.iban;
 
-import java.util.Arrays;
 import java.util.Comparator;
 
 /**
@@ -34,24 +33,6 @@ public final class IBAN {
             return iban.value.compareTo(iban2.value);
         }
     };
-
-    /**
-     * Known country codes, this list must be sorted to allow binary search.
-     */
-    private static final String[] COUNTRY_CODES = {
-            "AD", "AT", "BA", "BE", "BG", "CH", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GB", "GI", "GR",
-            "HR", "HU", "IE", "IL", "IS", "IT", "LI", "LT", "LU", "LV", "MC", "ME", "MK", "MT", "MU", "NL", "NO",
-            "PL", "PT", "RO", "RS", "SE", "SI", "SK", "SM", "TR"};
-    /**
-     * Lengths for each country's IBAN. The indices match the indices of {@link #COUNTRY_CODES}, the values are the expected length.
-     */
-    private static final int[] COUNTRY_IBAN_LENGTHS = {
-            24 /* AD */, 20 /* AT */, 20 /* BA */, 16 /* BE */, 22 /* BG */, 21 /* CH */, 28 /* CY */, 24 /* CZ */,
-            22 /* DE */, 18 /* DK */, 20 /* EE */, 24 /* ES */, 18 /* FI */, 27 /* FR */, 22 /* GB */, 23 /* GI */,
-            27 /* GR */, 21 /* HR */, 28 /* HU */, 22 /* IE */, 23 /* IL */, 26 /* IS */, 27 /* IT */, 21 /* LI */,
-            20 /* LT */, 20 /* LU */, 21 /* LV */, 27 /* MC */, 22 /* ME */, 19 /* MK */, 31 /* MT */, 30 /* MU */,
-            18 /* NL */, 15 /* NO */, 28 /* PL */, 25 /* PT */, 24 /* RO */, 22 /* RS */, 24 /* SE */, 19 /* SI */,
-            24 /* SK */, 27 /* SM */, 26 /* TR */ };
 
     /**
      * IBAN value, normalized form (no whitespace).
@@ -84,12 +65,12 @@ public final class IBAN {
         if (!isLetterOrDigit(value.charAt(value.length() - 1))) {
             throw new IllegalArgumentException("Last character is not a letter or digit.");
         }
-        final int ccIdx = Arrays.binarySearch(COUNTRY_CODES, value.substring(0, 2));
-        if (ccIdx < 0) {
+        final int expectedLength = CountryCodes.getLengthForCountryCode(value.substring(0, 2));
+        if (expectedLength < 0) {
             throw new UnknownCountryCodeException(value);
         }
-        if (COUNTRY_IBAN_LENGTHS[ccIdx] != value.length()) {
-            throw new WrongLengthException(value, COUNTRY_IBAN_LENGTHS[ccIdx]);
+        if (expectedLength != value.length()) {
+            throw new WrongLengthException(value, expectedLength);
         }
         final int calculatedChecksum = Modulo97.checksum(value);
         if (calculatedChecksum != 1) {
@@ -134,17 +115,11 @@ public final class IBAN {
     }
 
     /**
-     * Returns the IBAN length for a given country code.
-     * @param countryCode a non-null, uppercase, two-character country code.
-     * @return the IBAN length for the given country, or -1 if the input is not a known, two-character country code.
-     * @throws NullPointerException if the input is null.
+     * @deprecated invoke {@link CountryCodes#getLengthForCountryCode(String)} instead.
      */
+    @Deprecated
     public static int getLengthForCountryCode(String countryCode) {
-        int index = Arrays.binarySearch(COUNTRY_CODES, countryCode);
-        if (index > -1) {
-            return COUNTRY_IBAN_LENGTHS[index];
-        }
-        return -1;
+        return CountryCodes.getLengthForCountryCode(countryCode);
     }
 
     /**
