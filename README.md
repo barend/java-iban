@@ -84,8 +84,8 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
   * Albania, Algeria, Angola, Azerbaijan, Bahrein, Benin, Brazil, British Virgin Islands, Burkina Faso,
     Burundi, Cameroon, Cape Verde, Congo, Costa Rica, Dominican Republic, Egypt, Faroe Islands, Gabon,
     Georgia, Greenland, Guatemala, Iran, Ivory Coast, Kazakhstan, Kuwait, Lebanon, Madagascar, Mali,
-    Mauritania, Moldova, Mozambique, Pakistan, Palestinian Territories, Saudi Arabia, Senegal, Tunisia,
-    Ukraine, United Arab Emirates
+    Mauritania, Moldova, Mozambique, Pakistan, State of Palestine / Palestinian Territories, Saudi Arabia,
+    Senegal, Tunisia, Ukraine, United Arab Emirates
 
 #### 1.0: May 30, 2013
 
@@ -101,6 +101,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### References
 
+ * http://www.swift.com/dsp/resources/documents/IBAN_Registry.pdf
  * http://en.wikipedia.org/wiki/IBAN
  * http://www.ecbs.org/iban.htm
  * http://www.tbg5-finance.org/ibanabout.shtml
