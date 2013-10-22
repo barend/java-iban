@@ -15,12 +15,17 @@
  */
 package nl.garvelink.iban;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -152,6 +157,32 @@ public class CountryCodesParameterizedTest {
     @Test
     public void isKnownCountryCodeShouldReturnTrue() {
         assertTrue(CountryCodes.isKnownCountryCode(plain.substring(0, 2)));
+    }
+
+    /**
+     * Used by the {@code xxxTestShouldBeExhaustive()} methods to ensure that there are no untested country codes
+     * defined in the {@code CountryCodes} class. The inverse, a country code that exists in the test but not in
+     * the application code does not have to be separately verified.
+     * @see #prepareTestShouldBeExhaustive()
+     * @see #updateTestShouldBeExhaustive()
+     * @see #finishTestShouldBeExhaustive()
+     */
+    private static final Set<String> allCountryCodes = Collections.synchronizedSet(new HashSet<String>(PARAMETERS.size()));
+
+    @BeforeClass
+    public static void prepareTestShouldBeExhaustive() {
+        allCountryCodes.addAll(CountryCodes.getKnownCountryCodes());
+    }
+
+    @Test
+    public void updateTestShouldBeExhaustive() {
+        allCountryCodes.remove(plain.substring(0, 2));
+    }
+
+    @AfterClass
+    public static void finishTestShouldBeExhaustive() {
+        assertTrue("There are entries in CountryCodes.java that are not covered in test: " + allCountryCodes,
+                allCountryCodes.isEmpty());
     }
 
     /**
