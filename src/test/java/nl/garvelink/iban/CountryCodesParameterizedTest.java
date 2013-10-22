@@ -149,6 +149,11 @@ public class CountryCodesParameterizedTest {
         assertEquals(plain.length(), CountryCodes.getLengthForCountryCode(plain.substring(0, 2)));
     }
 
+    @Test
+    public void isKnownCountryCodeShouldReturnTrue() {
+        assertTrue(CountryCodes.isKnownCountryCode(plain.substring(0, 2)));
+    }
+
     /**
      * Helps put the parameter data into readable formatting.
      */

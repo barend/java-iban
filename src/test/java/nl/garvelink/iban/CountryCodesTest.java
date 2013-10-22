@@ -47,6 +47,16 @@ public class CountryCodesTest {
     }
 
     @Test
+    public void isKnownCountryCodeShouldReturnFalseForNull() {
+        assertFalse(CountryCodes.isKnownCountryCode(null));
+    }
+
+    @Test
+    public void isKnownCountryCodeShouldReturnFalseForLowercase() {
+        assertFalse(CountryCodes.isKnownCountryCode("nl"));
+    }
+
+    @Test
     public void getLengthForUnknownCountryCodeReturnsMinusOne() {
         assertThat(CountryCodes.getLengthForCountryCode("XX"), is(-1));
     }

@@ -71,6 +71,18 @@ public abstract class CountryCodes {
         return Collections.unmodifiableList(Arrays.asList(COUNTRY_CODES));
     }
 
+    /**
+     * Returns whether the given string is a known country code.
+     * @param aCountryCode the string to evaluate.
+     * @return {@code true} if {@code aCountryCode} is a two-letter, uppercase String present in {@link #getKnownCountryCodes()}.
+     */
+    public static boolean isKnownCountryCode(String aCountryCode) {
+        if (aCountryCode == null || aCountryCode.length() != 2) {
+            return false;
+        }
+        return Arrays.binarySearch(COUNTRY_CODES, aCountryCode) >= 0;
+    }
+
     /** Prevent instantiation of static utility class. */
     private CountryCodes() { }
 }
