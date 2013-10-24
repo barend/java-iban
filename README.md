@@ -6,7 +6,7 @@ for other purposes, such as live input validation.
 
 ### Install
 
-Grab a package from Github or get it from Maven Central:
+Grab a package [from Github][download] or get it from Maven Central:
 
 #### Maven
 
@@ -25,6 +25,8 @@ Grab a package from Github or get it from Maven Central:
         compile 'nl.garvelink.oss:iban:1.0.0'
     }
 ```
+
+[download]: https://github.com/barend/java-iban/releases
 
 ### Use
 
@@ -65,7 +67,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
     int checkDigits = Modulo97.calculateCheckDigits( builder ); // 28
 
     // Get the expected IBAN length for a country code:
-    int length = IBAN.getLengthForCountryCode( "DK" );
+    int length = CountryCodes.getLengthForCountryCode( "DK" );
 ```
 
 ### Notes
@@ -79,13 +81,16 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 #### 1.1: (not yet released)
 
 * Moves country information from `IBAN` into separate class `CountryCodes`
+* The known country codes can be obtained from `CountryCodes.getKnownCountryCodes()`.
 * The method `getLengthForCountryCode()` in `IBAN` is now deprecated, having moved into `CountryCodes`.
-* Adds length validation rules (based on [Nordea's list][nor]) for:
+* Adds length validation rules for:
   * Albania, Algeria, Angola, Azerbaijan, Bahrein, Benin, Brazil, British Virgin Islands, Burkina Faso,
     Burundi, Cameroon, Cape Verde, Congo, Costa Rica, Dominican Republic, Egypt, Faroe Islands, Gabon,
     Georgia, Greenland, Guatemala, Iran, Ivory Coast, Kazakhstan, Kuwait, Lebanon, Madagascar, Mali,
     Mauritania, Moldova, Mozambique, Pakistan, State of Palestine / Palestinian Territories, Saudi Arabia,
     Senegal, Tunisia, Ukraine, United Arab Emirates
+  * *Note* this list is not limited to SEPA countries or even the IBAN registry maintained by SWIFT. The
+    `CountryCodesParameterizedTest` class documents the origin for each of these IBAN specs.
 
 #### 1.0: May 30, 2013
 
@@ -96,8 +101,6 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
     Israel, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Macedonia, Malta, Mauritius, Monaco,
     Montenegro, Netherlands, Norway, Poland, Portugal, Romania, San Marino, Serbia, Slovakia, Slovenia,
     Spain, Sweden, Switzerland, Turkey, United Kingdom
-
-[nor]: http://www.nordea.com/Our+services/International+products+and+services/Cash+Management/IBAN+countries/908462.html
 
 ### References
 
