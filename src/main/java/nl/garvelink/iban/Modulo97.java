@@ -89,7 +89,7 @@ public abstract class Modulo97 {
      * @param srcLen the number of characters starting from {@code srcPos} to transform.
      * @param dest the buffer to write transformed characters into.
      * @param destPos the index in {@code dest} to begin writing.
-     * @return the value of {@destPos} incremented by the number of characters that were added, i.e. the next unused index in {@code dest}.
+     * @return the value of {@code destPos} incremented by the number of characters that were added, i.e. the next unused index in {@code dest}.
      * @throws IllegalArgumentException if {@code src} contains an unsupported character.
      * @throws ArrayIndexOutOfBoundsException if {@code dest} does not have enough capacity to store the transformed result (keep in mind that a single character from {@code src} can expand to two characters in {@code dest}).
      */
