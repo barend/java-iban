@@ -65,6 +65,7 @@ public abstract class Modulo97 {
      * @param input the input; the characters at indices 2 and 3 <strong>must</strong> be {@code '0'}. The input must
      *              also satisfy the criteria defined in {@link #checksum(CharSequence)}.
      * @return the check digits to be used at indices 2 and 3 to make the input MOD97 verifiable.
+     * @throws IllegalArgumentException if the input is in some way invalid.
      */
     public static int calculateCheckDigits(CharSequence input) {
         if (input == null || input.length() < 5 || input.charAt(2) != '0' || input.charAt(3) != '0') {
@@ -77,6 +78,7 @@ public abstract class Modulo97 {
      * Determines whether the given input has a valid MOD97 checksum.
      * @param input the input to verify, it must meet the criteria defined in {@link #checksum(CharSequence)}.
      * @return {@code true} if the input passes checksum verification, {@code false} otherwise.
+     * @throws IllegalArgumentException if the input is in some way invalid.
      */
     public static boolean verifyCheckDigits(CharSequence input) {
         return checksum(input) == 1;

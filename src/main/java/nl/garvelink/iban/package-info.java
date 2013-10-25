@@ -55,7 +55,7 @@
  * int checkDigits = Modulo97.calculateCheckDigits( builder ); // 28
  *
  * // Get the expected IBAN length for a country code:
- *  int length = IBAN.getLengthForCountryCode( "DK" );
+ * int length = CountryCodes.getLengthForCountryCode( "DK" );
  * </pre>
  *
  * <p>Copyright 2013 Barend Garvelink. This code can be used under the terms of the Apache License, Version 2.0.

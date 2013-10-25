@@ -4,6 +4,8 @@ The `IBAN` class is intended for use in your domain types. `IBAN` objects enforc
 for its country code and that it passes checksum validation. The `Modulo97` class exposes the checksum validation code
 for other purposes, such as live input validation.
 
+The library is compatible for use in Android apps.
+
 ### Install
 
 Grab a package [from Github][download] or get it from Maven Central:
@@ -22,7 +24,7 @@ Grab a package [from Github][download] or get it from Maven Central:
 
 ```javascript
     dependencies {
-        compile 'nl.garvelink.oss:iban:1.0.0'
+        compile 'nl.garvelink.oss:iban:1.1.0'
     }
 ```
 
@@ -78,7 +80,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version history
 
-#### 1.1: (not yet released)
+#### 1.1: October 25th, 2013
 
 * Moves country information from `IBAN` into separate class `CountryCodes`
 * The known country codes can be obtained from `CountryCodes.getKnownCountryCodes()`.
@@ -89,8 +91,8 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
     Georgia, Greenland, Guatemala, Iran, Ivory Coast, Kazakhstan, Kuwait, Lebanon, Madagascar, Mali,
     Mauritania, Moldova, Mozambique, Pakistan, State of Palestine / Palestinian Territories, Saudi Arabia,
     Senegal, Tunisia, Ukraine, United Arab Emirates
-  * *Note* this list is not limited to SEPA countries or even the IBAN registry maintained by SWIFT. The
-    `CountryCodesParameterizedTest` class documents the origin for each of these IBAN specs.
+  * **Note:** this list is not limited to SEPA countries or even the IBAN registry maintained by SWIFT. The
+    `CountryCodesParameterizedTest.java` file documents the origin for each of these IBAN specs.
 
 #### 1.0: May 30, 2013
 
