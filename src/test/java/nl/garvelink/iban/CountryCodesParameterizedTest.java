@@ -126,6 +126,7 @@ public class CountryCodesParameterizedTest {
             str( "Palestine, State of",      "PS92PALS000000000400123456702",   "PS92 PALS 0000 0000 0400 1234 5670 2"),    //SWIFT, Nordea
             str( "Poland",                   "PL61109010140000071219812874",    "PL61 1090 1014 0000 0712 1981 2874" ),     //SWIFT, ECBS, Nordea
             str( "Portugal",                 "PT50000201231234567890154",       "PT50 0002 0123 1234 5678 9015 4" ),        //SWIFT, ECBS, Nordea
+            str( "Quatar",                   "QA58DOHB00001234567890ABCDEFG",   "QA58 DOHB 0000 1234 5678 90AB CDEF G"),    //SWIFT
             str( "Romania",                  "RO49AAAA1B31007593840000",        "RO49 AAAA 1B31 0075 9384 0000" ),          //SWIFT, ECBS, Nordea
             str( "San Marino",               "SM86U0322509800000000270100",     "SM86 U032 2509 8000 0000 0270 100" ),      //SWIFT, ECBS, Nordea
             str( "Saudi Arabia",             "SA0380000000608010167519",        "SA03 8000 0000 6080 1016 7519"),           //SWIFT, Nordea

@@ -16,7 +16,7 @@ Grab a package [from Github][download] or get it from Maven Central:
     <dependency>
         <groupId>nl.garvelink.oss</groupId>
         <artifactId>iban</artifactId>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
     </dependency>
 ```
 
@@ -79,6 +79,10 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 * The `IBAN` class does not implement `Serializable`, because the string representation is a superior serialized form.
 
 ### Version history
+
+#### 1.2: unreleased
+
+* Adds length validation rule for Quatar.
 
 #### 1.1: October 25th, 2013
 

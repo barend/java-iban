@@ -32,7 +32,7 @@ public abstract class CountryCodes {
             "CM", "CR", "CV", "CY", "CZ", "DE", "DK", "DO", "DZ", "EE", "EG", "ES", "FI", "FO", "FR", "GA", "GB",
             "GE", "GI", "GL", "GR", "GT", "HR", "HU", "IE", "IL", "IR", "IS", "IT", "KW", "KZ", "LB", "LI", "LT",
             "LU", "LV", "MC", "MD", "ME", "MG", "MK", "ML", "MR", "MT", "MU", "MZ", "NL", "NO", "PK", "PL", "PS",
-            "PT", "RO", "RS", "SA", "SE", "SI", "SK", "SM", "SN", "TN", "TR", "UA", "VG" };
+            "PT", "QA", "RO", "RS", "SA", "SE", "SI", "SK", "SM", "SN", "TN", "TR", "UA", "VG" };
     /**
      * Lengths for each country's IBAN. The indices match the indices of {@link #COUNTRY_CODES}, the values are the expected length.
      */
@@ -45,9 +45,9 @@ public abstract class CountryCodes {
             28 /* HU */, 22 /* IE */, 23 /* IL */, 26 /* IR */, 26 /* IS */, 27 /* IT */, 30 /* KW */, 20 /* KZ */,
             28 /* LB */, 21 /* LI */, 20 /* LT */, 20 /* LU */, 21 /* LV */, 27 /* MC */, 24 /* MD */, 22 /* ME */,
             27 /* MG */, 19 /* MK */, 28 /* ML */, 27 /* MR */, 31 /* MT */, 30 /* MU */, 25 /* MZ */, 18 /* NL */,
-            15 /* NO */, 24 /* PK */, 28 /* PL */, 29 /* PS */, 25 /* PT */, 24 /* RO */, 22 /* RS */, 24 /* SA */,
-            24 /* SE */, 19 /* SI */, 24 /* SK */, 27 /* SM */, 28 /* SN */, 24 /* TN */, 26 /* TR */, 29 /* UA */,
-            24 /* VG */ };
+            15 /* NO */, 24 /* PK */, 28 /* PL */, 29 /* PS */, 25 /* PT */, 29 /* QA */, 24 /* RO */, 22 /* RS */,
+            24 /* SA */, 24 /* SE */, 19 /* SI */, 24 /* SK */, 27 /* SM */, 28 /* SN */, 24 /* TN */, 26 /* TR */,
+            29 /* UA */, 24 /* VG */ };
 
     /**
      * Returns the IBAN length for a given country code.
