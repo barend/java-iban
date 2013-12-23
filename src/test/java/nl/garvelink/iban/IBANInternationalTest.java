@@ -34,10 +34,12 @@ public class IBANInternationalTest {
 
     private final String plain;
     private final String pretty;
+    private final boolean sepa;
 
-    public IBANInternationalTest(@SuppressWarnings("unused") String testName, String plain, String pretty) {
+    public IBANInternationalTest(@SuppressWarnings("unused") String testName, String sepa, String plain, String pretty) {
         this.plain = plain;
         this.pretty = pretty;
+        this.sepa = Boolean.parseBoolean(sepa);
     }
 
     @Parameterized.Parameters(name = " {0} ")
@@ -71,6 +73,11 @@ public class IBANInternationalTest {
             assertThat(e.getExpectedLength(), is(plain.length()));
             assertThat(e.getActualLength(), is(1 + plain.length()));
         }
+    }
+
+    @Test
+    public void isSEPACountry() {
+        assertEquals(sepa, IBAN.parse(plain).isSEPA());
     }
 
     @Test

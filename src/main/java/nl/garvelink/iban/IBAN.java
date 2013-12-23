@@ -40,6 +40,11 @@ public final class IBAN {
     private final String value;
 
     /**
+     * Whether or not this IBAN is of a SEPA participating country.
+     */
+    private final boolean sepa;
+
+    /**
      * Pretty-printed value, lazily initialized.
      */
     private transient String valuePretty;
@@ -65,7 +70,8 @@ public final class IBAN {
         if (!isLetterOrDigit(value.charAt(value.length() - 1))) {
             throw new IllegalArgumentException("Last character is not a letter or digit.");
         }
-        final int expectedLength = CountryCodes.getLengthForCountryCode(value.substring(0, 2));
+        final String countryCode = value.substring(0, 2);
+        final int expectedLength = CountryCodes.getLengthForCountryCode(countryCode);
         if (expectedLength < 0) {
             throw new UnknownCountryCodeException(value);
         }
@@ -77,6 +83,7 @@ public final class IBAN {
             throw new WrongChecksumException(value);
         }
         this.value = value;
+        this.sepa = CountryCodes.isSEPACountry(countryCode);
     }
 
     /**
@@ -136,6 +143,14 @@ public final class IBAN {
      */
     public String getCheckDigits() {
         return value.substring(2, 4);
+    }
+
+    /**
+     * Returns whether the IBAN's country participates in SEPA.
+     * @return true if SEPA, false if non-SEPA.
+     */
+    public boolean isSEPA() {
+        return this.sepa;
     }
 
     /**

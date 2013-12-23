@@ -64,6 +64,9 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
     String candidate = "GB29 NWBK 6016 1331 9268 19";
     boolean valid = Modulo97.verifyCheckDigits( candidate ); // true
 
+    // You can query whether an IBAN is of a SEPA-participating country
+    boolean isSepa = candidate.isSEPA(); // true
+
     // Modulo97 API methods take CharSequence, not just String.
     StringBuilder builder = new StringBuilder( "LU000019400644750000" );
     int checkDigits = Modulo97.calculateCheckDigits( builder ); // 28
@@ -83,6 +86,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 #### 1.2: unreleased
 
 * Adds length validation rule for Quatar.
+* Adds query method `IBAN.isSEPA()`.
 
 #### 1.1: October 25th, 2013
 
@@ -115,6 +119,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
  * http://www.ecbs.org/iban.htm
  * http://www.tbg5-finance.org/ibanabout.shtml
  * http://www.nordea.com/Our+services/International+products+and+services/Cash+Management/IBAN+countries/908462.html
+ * http://www.europeanpaymentscouncil.eu/knowledge_bank_detail.cfm?documents_id=328
 
 ### Copyright and License
 

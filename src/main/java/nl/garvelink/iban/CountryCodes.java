@@ -24,6 +24,8 @@ import java.util.Collections;
  */
 public abstract class CountryCodes {
 
+    private static final int SEPA = 1 << 8;
+
     /**
      * Known country codes, this list must be sorted to allow binary search.
      */
@@ -37,17 +39,23 @@ public abstract class CountryCodes {
      * Lengths for each country's IBAN. The indices match the indices of {@link #COUNTRY_CODES}, the values are the expected length.
      */
     private static final int[] COUNTRY_IBAN_LENGTHS = {
-            24 /* AD */, 23 /* AE */, 28 /* AL */, 25 /* AO */, 20 /* AT */, 28 /* AZ */, 20 /* BA */, 16 /* BE */,
-            27 /* BF */, 22 /* BG */, 22 /* BH */, 16 /* BI */, 28 /* BJ */, 29 /* BR */, 27 /* CG */, 21 /* CH */,
-            28 /* CI */, 27 /* CM */, 21 /* CR */, 25 /* CV */, 28 /* CY */, 24 /* CZ */, 22 /* DE */, 18 /* DK */,
-            28 /* DO */, 24 /* DZ */, 20 /* EE */, 27 /* EG */, 24 /* ES */, 18 /* FI */, 18 /* FO */, 27 /* FR */,
-            27 /* GA */, 22 /* GB */, 22 /* GE */, 23 /* GI */, 18 /* GL */, 27 /* GR */, 28 /* GT */, 21 /* HR */,
-            28 /* HU */, 22 /* IE */, 23 /* IL */, 26 /* IR */, 26 /* IS */, 27 /* IT */, 30 /* KW */, 20 /* KZ */,
-            28 /* LB */, 21 /* LI */, 20 /* LT */, 20 /* LU */, 21 /* LV */, 27 /* MC */, 24 /* MD */, 22 /* ME */,
-            27 /* MG */, 19 /* MK */, 28 /* ML */, 27 /* MR */, 31 /* MT */, 30 /* MU */, 25 /* MZ */, 18 /* NL */,
-            15 /* NO */, 24 /* PK */, 28 /* PL */, 29 /* PS */, 25 /* PT */, 29 /* QA */, 24 /* RO */, 22 /* RS */,
-            24 /* SA */, 24 /* SE */, 19 /* SI */, 24 /* SK */, 27 /* SM */, 28 /* SN */, 24 /* TN */, 26 /* TR */,
-            29 /* UA */, 24 /* VG */ };
+            24        /* AD */, 23        /* AE */, 28        /* AL */, 25        /* AO */, 20 | SEPA /* AT */,
+            28        /* AZ */, 20        /* BA */, 16 | SEPA /* BE */, 27        /* BF */, 22 | SEPA /* BG */,
+            22        /* BH */, 16        /* BI */, 28        /* BJ */, 29        /* BR */, 27        /* CG */,
+            21 | SEPA /* CH */, 28        /* CI */, 27        /* CM */, 21        /* CR */, 25        /* CV */,
+            28 | SEPA /* CY */, 24 | SEPA /* CZ */, 22 | SEPA /* DE */, 18 | SEPA /* DK */, 28        /* DO */,
+            24        /* DZ */, 20 | SEPA /* EE */, 27        /* EG */, 24 | SEPA /* ES */, 18 | SEPA /* FI */,
+            18        /* FO */, 27 | SEPA /* FR */, 27        /* GA */, 22 | SEPA /* GB */, 22        /* GE */,
+            23 | SEPA /* GI */, 18        /* GL */, 27 | SEPA /* GR */, 28        /* GT */, 21 | SEPA /* HR */,
+            28 | SEPA /* HU */, 22 | SEPA /* IE */, 23        /* IL */, 26        /* IR */, 26 | SEPA /* IS */,
+            27 | SEPA /* IT */, 30        /* KW */, 20        /* KZ */, 28        /* LB */, 21 | SEPA /* LI */,
+            20 | SEPA /* LT */, 20 | SEPA /* LU */, 21 | SEPA /* LV */, 27 | SEPA /* MC */, 24        /* MD */,
+            22        /* ME */, 27        /* MG */, 19        /* MK */, 28        /* ML */, 27        /* MR */,
+            31 | SEPA /* MT */, 30        /* MU */, 25        /* MZ */, 18 | SEPA /* NL */, 15 | SEPA /* NO */,
+            24        /* PK */, 28 | SEPA /* PL */, 29        /* PS */, 25 | SEPA /* PT */, 29        /* QA */,
+            24 | SEPA /* RO */, 22        /* RS */, 24        /* SA */, 24 | SEPA /* SE */, 19 | SEPA /* SI */,
+            24 | SEPA /* SK */, 27        /* SM */, 28        /* SN */, 24        /* TN */, 26        /* TR */,
+            29        /* UA */, 24        /* VG */ };
 
     /**
      * Returns the IBAN length for a given country code.
@@ -58,9 +66,23 @@ public abstract class CountryCodes {
     public static int getLengthForCountryCode(String countryCode) {
         int index = Arrays.binarySearch(CountryCodes.COUNTRY_CODES, countryCode);
         if (index > -1) {
-            return CountryCodes.COUNTRY_IBAN_LENGTHS[index];
+            return CountryCodes.COUNTRY_IBAN_LENGTHS[index] & 0xFF;
         }
         return -1;
+    }
+
+    /**
+     * Returns whether the given country code is in SEPA.
+     * @param countryCode a non-null, uppercase, two-character country code.
+     * @return true if SEPA, false if not.
+     * @throws NullPointerException if the input is null.
+     */
+    public static boolean isSEPACountry(String countryCode) {
+        int index = Arrays.binarySearch(CountryCodes.COUNTRY_CODES, countryCode);
+        if (index > -1) {
+            return (CountryCodes.COUNTRY_IBAN_LENGTHS[index] & SEPA) == SEPA;
+        }
+        return false;
     }
 
     /**
