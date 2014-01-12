@@ -32,7 +32,7 @@ public abstract class CountryCodes {
     private static final String[] COUNTRY_CODES = {
             "AD", "AE", "AL", "AO", "AT", "AZ", "BA", "BE", "BF", "BG", "BH", "BI", "BJ", "BR", "CG", "CH", "CI",
             "CM", "CR", "CV", "CY", "CZ", "DE", "DK", "DO", "DZ", "EE", "EG", "ES", "FI", "FO", "FR", "GA", "GB",
-            "GE", "GI", "GL", "GR", "GT", "HR", "HU", "IE", "IL", "IR", "IS", "IT", "KW", "KZ", "LB", "LI", "LT",
+            "GE", "GI", "GL", "GR", "GT", "HR", "HU", "IE", "IL", "IR", "IS", "IT", "JO", "KW", "KZ", "LB", "LI", "LT",
             "LU", "LV", "MC", "MD", "ME", "MG", "MK", "ML", "MR", "MT", "MU", "MZ", "NL", "NO", "PK", "PL", "PS",
             "PT", "QA", "RO", "RS", "SA", "SE", "SI", "SK", "SM", "SN", "TN", "TR", "UA", "VG" };
     /**
@@ -48,7 +48,7 @@ public abstract class CountryCodes {
             18        /* FO */, 27 | SEPA /* FR */, 27        /* GA */, 22 | SEPA /* GB */, 22        /* GE */,
             23 | SEPA /* GI */, 18        /* GL */, 27 | SEPA /* GR */, 28        /* GT */, 21 | SEPA /* HR */,
             28 | SEPA /* HU */, 22 | SEPA /* IE */, 23        /* IL */, 26        /* IR */, 26 | SEPA /* IS */,
-            27 | SEPA /* IT */, 30        /* KW */, 20        /* KZ */, 28        /* LB */, 21 | SEPA /* LI */,
+            27 | SEPA /* IT */, 30        /* JO */, 30        /* KW */, 20        /* KZ */, 28        /* LB */, 21 | SEPA /* LI */,
             20 | SEPA /* LT */, 20 | SEPA /* LU */, 21 | SEPA /* LV */, 27 | SEPA /* MC */, 24        /* MD */,
             22        /* ME */, 27        /* MG */, 19        /* MK */, 28        /* ML */, 27        /* MR */,
             31 | SEPA /* MT */, 30        /* MU */, 25        /* MZ */, 18 | SEPA /* NL */, 15 | SEPA /* NO */,

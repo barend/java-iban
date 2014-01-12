@@ -103,6 +103,7 @@ public class CountryCodesParameterizedTest {
             str( "Israel",                   "false", "IL620108000000099999999",         "IL62 0108 0000 0009 9999 999" ),           //SWIFT, ECBS, Nordea
             str( "Italy",                    "true" , "IT60X0542811101000000123456",     "IT60 X054 2811 1010 0000 0123 456" ),      //SWIFT, ECBS, Nordea
             str( "Ivory Coast",              "false", "CI05A00060174100178530011852",    "CI05 A000 6017 4100 1785 3001 1852"),      //Nordea
+            str( "Jordan",                   "false", "JO94CBJO0010000000000131000302",  "JO94 CBJO 0010 0000 0000 0131 0003 02"),   //SWIFT
             str( "Kazakhstan",               "false", "KZ176010251000042993",            "KZ17 6010 2510 0004 2993"),                //SWIFT, Nordea
             str( "Kuwait",                   "false", "KW74NBOK0000000000001000372151",  "KW74 NBOK 0000 0000 0000 1000 3721 51"),   //SWIFT, Nordea
             str( "Latvia",                   "true" , "LV80BANK0000435195001",           "LV80 BANK 0000 4351 9500 1" ),             //SWIFT, ECBS, Nordea
