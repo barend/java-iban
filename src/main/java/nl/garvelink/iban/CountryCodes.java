@@ -25,6 +25,7 @@ import java.util.Collections;
 public abstract class CountryCodes {
 
     private static final int SEPA = 1 << 8;
+    private static final int REMOVE_SEPA_MASK = ~SEPA;
 
     /**
      * Known country codes, this list must be sorted to allow binary search.
@@ -58,6 +59,32 @@ public abstract class CountryCodes {
             29        /* UA */, 24        /* VG */ };
 
     /**
+     * The shortest valid IBAN according to {@link #COUNTRY_IBAN_LENGTHS}
+     */
+    public static final int SHORTEST_IBAN_LENGTH;
+
+    /**
+     * The longest valid IBAN according to {@link #COUNTRY_IBAN_LENGTHS}
+     */
+    public static final int LONGEST_IBAN_LENGTH;
+
+    static {
+        int min = Integer.MAX_VALUE;
+        int max = 0;
+        for (int countryIbanLength : COUNTRY_IBAN_LENGTHS) {
+            final int length = REMOVE_SEPA_MASK & countryIbanLength;
+            if (length > max) {
+                max = length;
+            }
+            if (length < min) {
+                min = length;
+            }
+        }
+        SHORTEST_IBAN_LENGTH = min;
+        LONGEST_IBAN_LENGTH = max;
+    }
+
+    /**
      * Returns the IBAN length for a given country code.
      * @param countryCode a non-null, uppercase, two-character country code.
      * @return the IBAN length for the given country, or -1 if the input is not a known, two-character country code.
@@ -66,7 +93,7 @@ public abstract class CountryCodes {
     public static int getLengthForCountryCode(String countryCode) {
         int index = Arrays.binarySearch(CountryCodes.COUNTRY_CODES, countryCode);
         if (index > -1) {
-            return CountryCodes.COUNTRY_IBAN_LENGTHS[index] & 0xFF;
+            return CountryCodes.COUNTRY_IBAN_LENGTHS[index] & REMOVE_SEPA_MASK;
         }
         return -1;
     }
