@@ -110,10 +110,12 @@ public abstract class CountryCodes {
             "SK",
             "SM",
             "SN",
+            "TL",
             "TN",
             "TR",
             "UA",
-            "VG"
+            "VG",
+            "XK",
         };
     /**
      * Lengths for each country's IBAN. The indices match the indices of {@link #COUNTRY_CODES}, the values are the expected length.
@@ -198,10 +200,12 @@ public abstract class CountryCodes {
             24 | SEPA /* SK */,
             27        /* SM */,
             28        /* SN */,
+            23        /* TL */,
             24        /* TN */,
             26        /* TR */,
             29        /* UA */,
-            24        /* VG */
+            24        /* VG */,
+            20        /* XK */,
         };
 
     /**

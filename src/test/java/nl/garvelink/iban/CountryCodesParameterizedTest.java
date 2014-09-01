@@ -128,6 +128,7 @@ public class CountryCodesParameterizedTest {
             str( "Poland",                   "true" , "PL61109010140000071219812874",    "PL61 1090 1014 0000 0712 1981 2874" ),     //SWIFT, ECBS, Nordea
             str( "Portugal",                 "true" , "PT50000201231234567890154",       "PT50 0002 0123 1234 5678 9015 4" ),        //SWIFT, ECBS, Nordea
             str( "Quatar",                   "false", "QA58DOHB00001234567890ABCDEFG",   "QA58 DOHB 0000 1234 5678 90AB CDEF G"),    //SWIFT
+            str( "Republic of Kosovo",       "false", "XK051000000000000053",            "XK05 1000 0000 0000 0053"),                //SWIFT
             str( "Romania",                  "true" , "RO49AAAA1B31007593840000",        "RO49 AAAA 1B31 0075 9384 0000" ),          //SWIFT, ECBS, Nordea
             str( "San Marino",               "false", "SM86U0322509800000000270100",     "SM86 U032 2509 8000 0000 0270 100" ),      //SWIFT, ECBS, Nordea
             str( "Saudi Arabia",             "false", "SA0380000000608010167519",        "SA03 8000 0000 6080 1016 7519"),           //SWIFT, Nordea
@@ -138,6 +139,7 @@ public class CountryCodesParameterizedTest {
             str( "Spain",                    "true" , "ES9121000418450200051332",        "ES91 2100 0418 4502 0005 1332" ),          //SWIFT, ECBS, Nordea
             str( "Sweden",                   "true" , "SE4550000000058398257466",        "SE45 5000 0000 0583 9825 7466" ),          //SWIFT, ECBS, Nordea
             str( "Switzerland",              "true" , "CH9300762011623852957",           "CH93 0076 2011 6238 5295 7" ),             //SWIFT, ECBS, Nordea
+            str( "Timor-Leste",              "false", "TL380080012345678910157",         "TL38 0080 0123 4567 8910 157"),            //SWIFT
             str( "Tunisia",                  "false", "TN5914207207100707129648",        "TN59 1420 7207 1007 0712 9648"),           //SWIFT, Nordea
             str( "Turkey",                   "false", "TR330006100519786457841326",      "TR33 0006 1005 1978 6457 8413 26" ),       //SWIFT, ECBS, Nordea
             str( "Ukraine",                  "false", "UA573543470006762462054925026",   "UA57 3543 4700 0676 2462 0549 2502 6"),    //Nordea
