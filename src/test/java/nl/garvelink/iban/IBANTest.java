@@ -89,4 +89,34 @@ public class IBANTest {
         assertTrue("Equality is transitive", x.equals(y) && y.equals(z) && x.equals(z));
         assertEquals("Equal objects have the same hash code", x.hashCode(), y.hashCode());
     }
+
+    @Test
+    public void testToPretty() throws Exception {
+        assertEquals("", IBAN.toPretty(""));
+        assertEquals("12", IBAN.toPretty("12"));
+        assertEquals("12", IBAN.toPretty("1 2"));
+        assertEquals("1234", IBAN.toPretty("1234"));
+        assertEquals("1234", IBAN.toPretty("1 2 3 4"));
+        assertEquals("1234 5", IBAN.toPretty("12345"));
+        assertEquals("1234 5", IBAN.toPretty("1234 5"));
+        assertEquals("1234 5678", IBAN.toPretty("12345678"));
+        assertEquals("1234 5678", IBAN.toPretty("1234 5678"));
+        assertEquals("1234 5678 9", IBAN.toPretty("123456789"));
+        assertEquals("1234 5678 9", IBAN.toPretty("1234 5678 9"));
+    }
+
+    @Test
+    public void testToPlain() throws Exception {
+        assertEquals("", IBAN.toPlain(""));
+        assertEquals("12", IBAN.toPlain("12"));
+        assertEquals("12", IBAN.toPlain("1 2"));
+        assertEquals("1234", IBAN.toPlain("1234"));
+        assertEquals("1234", IBAN.toPlain("1 2 3 4"));
+        assertEquals("12345", IBAN.toPlain("12345"));
+        assertEquals("12345", IBAN.toPlain("1234 5"));
+        assertEquals("12345678", IBAN.toPlain("12345678"));
+        assertEquals("12345678", IBAN.toPlain("1234 5678"));
+        assertEquals("123456789", IBAN.toPlain("123456789"));
+        assertEquals("123456789", IBAN.toPlain("1234 5678 9"));
+    }
 }

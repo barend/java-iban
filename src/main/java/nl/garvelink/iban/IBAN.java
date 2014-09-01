@@ -16,6 +16,8 @@
 package nl.garvelink.iban;
 
 import java.util.Comparator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * An immutable value type representing an International Bank Account Number. Instances of this class have correct
@@ -29,10 +31,21 @@ public final class IBAN {
      * A comparator that puts IBAN's into lexicographic ordering, per {@link String#compareTo(String)}.
      */
     public static final Comparator<IBAN> LEXICAL_ORDER = new Comparator<IBAN>() {
-        @Override public int compare(IBAN iban, IBAN iban2) {
+        @Override
+        public int compare(IBAN iban, IBAN iban2) {
             return iban.value.compareTo(iban2.value);
         }
     };
+
+    /**
+     * The technically shortest possible IBAN. See {@link CountryCodes#SHORTEST_IBAN_LENGTH} for shortest valid length.
+     */
+    public static final int SHORTEST_POSSIBLE_IBAN = 5;
+
+    /**
+     * Used to remove spaces
+     */
+    private static final Pattern SPACE_PATTERN = Pattern.compile(" ");
 
     /**
      * IBAN value, normalized form (no whitespace).
@@ -58,17 +71,11 @@ public final class IBAN {
         if (value == null) {
             throw new IllegalArgumentException("Input is null");
         }
-        if (value.length() < 15) {
+        if (value.length() < SHORTEST_POSSIBLE_IBAN) {
             throw new IllegalArgumentException("Length is too short to be an IBAN");
-        }
-        if (value.charAt(0) < 'A' || value.charAt(0) > 'Z' || value.charAt(1) < 'A' || value.charAt(1) > 'Z') {
-            throw new IllegalArgumentException("Characters at index 0 and 1 not both uppercase letters.");
         }
         if (value.charAt(2) < '0' || value.charAt(2) > '9' || value.charAt(3) < '0' || value.charAt(3) > '9') {
             throw new IllegalArgumentException("Characters at index 2 and 3 not both numeric.");
-        }
-        if (!isLetterOrDigit(value.charAt(value.length() - 1))) {
-            throw new IllegalArgumentException("Last character is not a letter or digit.");
         }
         final String countryCode = value.substring(0, 2);
         final int expectedLength = CountryCodes.getLengthForCountryCode(countryCode);
@@ -100,11 +107,7 @@ public final class IBAN {
         if (!isLetterOrDigit(input.charAt(0)) || !isLetterOrDigit(input.charAt(input.length() - 1))) {
             throw new IllegalArgumentException("Input begins or ends in an invalid character.");
         }
-        final boolean containsInternalSpaces = input.indexOf(' ') >= 0;
-        if (containsInternalSpaces) {
-            return new IBAN(input.replaceAll(" ", ""));
-        }
-        return new IBAN(input);
+        return new IBAN(toPlain(input));
     }
 
     /**
@@ -180,36 +183,70 @@ public final class IBAN {
      */
     @Override
     public String toString() {
-        // This code is using a non-threadsafe (but still nullsafe) assignment. The prettyPrint() operation is
+        // This code is using a non-threadsafe (but still nullsafe) assignment. The addSpaces() operation is
         // idempotent, so no harm done if it happens to run more than once. I expect concurrent use to be rare.
         String vp = valuePretty;
         if (vp == null) {
-            vp = valuePretty = prettyPrint(value);
+            vp = valuePretty = addSpaces(value);
         }
         return vp;
     }
 
     /**
      * Returns whether the given character is in the {@code A-Za-z0-9} range.
-     * This differs from {@link Character.isLetterOrDigit(char)} because it doesn't understand non-Western characters.
+     * This differs from {@link Character#isLetterOrDigit(char)} because it doesn't understand non-Western characters.
      */
-    private static final boolean isLetterOrDigit(char c) {
+    private static boolean isLetterOrDigit(char c) {
         return (c >= '0' && c <= '9')
             || (c >= 'A' && c <= 'Z')
             || (c >= 'a' && c <= 'z');
     }
 
-    private static final String prettyPrint(String value) {
-        StringBuilder sb = new StringBuilder(value.length() + 7);
-        sb.append(value, 0, 4);
-        int i, max;
-        for (max = value.length(), i = 4; i < max; i += 4) {
+    /**
+     * Removes any spaces contained in the String thereby converting the input into a plain IBAN
+     *
+     * @param input
+     *         possibly pretty printed IBAN
+     * @return plain IBAN
+     */
+    public static String toPlain(String input) {
+        Matcher matcher = SPACE_PATTERN.matcher(input);
+        if (matcher.find()) {
+            return matcher.replaceAll("");
+        } else {
+            return input;
+        }
+    }
+
+    /**
+     * Ensures that the input is pretty printed by first removing any spaces the String might contain and then adding spaces in the right places.
+     * <p>This can be useful when prompting a user to correct wrong input</p>
+     *
+     * @param input
+     *         plain or pretty printed IBAN
+     * @return pretty printed IBAN
+     */
+    public static String toPretty(String input) {
+        return addSpaces(toPlain(input));
+    }
+
+    /**
+     * Converts a plain to a pretty printed IBAN
+     *
+     * @param value
+     *         plain iban
+     * @return pretty printed IBAN
+     */
+    private static String addSpaces(String value) {
+        final int length = value.length();
+        final int lastPossibleBlock = length - 4;
+        final StringBuilder sb = new StringBuilder(length + (length - 1) / 4);
+        int i;
+        for (i = 0; i < lastPossibleBlock; i += 4) {
+            sb.append(value, i, i + 4);
             sb.append(' ');
-            sb.append(value, i, i + 4 < max ? i + 4 : max);
         }
-        if (i < max) {
-            sb.append(max - i);
-        }
+        sb.append(value, i, length);
         return sb.toString();
     }
 }
