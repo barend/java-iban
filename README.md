@@ -87,6 +87,9 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 * Adds length validation rule for Quatar and Jordan.
 * Adds query method `IBAN.isSEPA()`.
+* Merges [pull request #4][pr4] by Matthias Vill, adding some hooks to aid interactive input validation & formatting.
+
+[pr4]: https://github.com/barend/java-iban/pull/4
 
 #### 1.1: October 25th, 2013
 
