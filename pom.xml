@@ -51,8 +51,16 @@
         <developer>
             <name>Barend Garvelink</name>
             <email>barend@garvelink.nl</email>
+            <url>https://github.com/barend</url>
         </developer>
     </developers>
+
+    <contributors>
+        <contributor>
+            <name>Matthias Vill</name>
+            <url>https://github.com/TheConstructor</url>
+        </contributor>
+    </contributors>
 
     <dependencies>
         <dependency>
@@ -78,7 +86,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5</version>
+                <version>3.1</version>
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
@@ -88,7 +96,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>2.5</version>
                 <configuration>
                     <tagNameFormat>release-@{project.version}</tagNameFormat>
                     <pushChanges>false</pushChanges>

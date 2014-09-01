@@ -83,7 +83,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version history
 
-#### 1.2: unreleased
+#### 1.2: September 1st, 2014
 
 * Adds length validation rule for Quatar and Jordan.
 * Adds query method `IBAN.isSEPA()`.
