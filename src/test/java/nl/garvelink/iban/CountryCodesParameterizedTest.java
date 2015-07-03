@@ -130,7 +130,10 @@ public class CountryCodesParameterizedTest {
             str( "Quatar",                   "false", "QA58DOHB00001234567890ABCDEFG",   "QA58 DOHB 0000 1234 5678 90AB CDEF G"),    //SWIFT
             str( "Republic of Kosovo",       "false", "XK051000000000000053",            "XK05 1000 0000 0000 0053"),                //SWIFT
             str( "Romania",                  "true" , "RO49AAAA1B31007593840000",        "RO49 AAAA 1B31 0075 9384 0000" ),          //SWIFT, ECBS, Nordea
-            str( "San Marino",               "false", "SM86U0322509800000000270100",     "SM86 U032 2509 8000 0000 0270 100" ),      //SWIFT, ECBS, Nordea
+// NOTE: The IBAN Registry, v58 contains the "LC62" sample IBAN. This fails checksum verification. Corrected to "LC55" below.
+//            str( "Saint Lucia",              "false", "LC62HEMM000100010012001200023015","LC62 HEMM 0001 0001 0012 0012 0002 3015" ),//SWIFT
+            str( "Saint Lucia",              "false", "LC55HEMM000100010012001200023015","LC55 HEMM 0001 0001 0012 0012 0002 3015" ),//SWIFT
+            str( "San Marino",               "true" , "SM86U0322509800000000270100",     "SM86 U032 2509 8000 0000 0270 100" ),      //SWIFT, ECBS, Nordea
             str( "Saudi Arabia",             "false", "SA0380000000608010167519",        "SA03 8000 0000 6080 1016 7519"),           //SWIFT, Nordea
             str( "Senegal",                  "false", "SN12K00100152000025690007542",    "SN12 K001 0015 2000 0256 9000 7542"),      //Nordea
             str( "Serbia",                   "false", "RS35260005601001611379",          "RS35 2600 0560 1001 6113 79" ),            //SWIFT, ECBS, Nordea

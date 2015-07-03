@@ -83,13 +83,18 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version history
 
+#### 1.3: unreleased
+
+* Update to version 58 of the IBAN registry
+  * Sets SEPA flag for San Marino
+  * Adds length validation for Saint Lucia
+
 #### 1.2: September 1st, 2014
 
-* Adds length validation rule for Quatar and Jordan.
 * Adds query method `IBAN.isSEPA()`.
 * Merges [pull request #4][pr4] by Matthias Vill, adding some hooks to aid interactive input validation & formatting.
-* Adds length validation rules for:
-  * Republic of Kosovo, Timor-Leste
+* Update to version 50 of the IBAN registry
+  * Adds length validation rules for: Jordan, Quatar, Republic of Kosovo, Timor-Leste
 
 [pr4]: https://github.com/barend/java-iban/pull/4
 
