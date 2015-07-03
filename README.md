@@ -133,7 +133,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Copyright and License
 
-Copyright 2013 Barend Garvelink
+Copyright 2015 Barend Garvelink
 
 ```none
    Licensed under the Apache License, Version 2.0 (the "License");
