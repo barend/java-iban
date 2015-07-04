@@ -126,6 +126,8 @@ public final class IBAN {
 
     /**
      * @deprecated invoke {@link CountryCodes#getLengthForCountryCode(String)} instead.
+     * @param countryCode the country code for which to return the length.
+     * @return the length of the IBAN for the given country code, or -1 if unknown.
      */
     @Deprecated
     public static int getLengthForCountryCode(String countryCode) {
