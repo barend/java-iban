@@ -111,7 +111,7 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 
 ### Version history
 
-#### 1.3: unreleased
+#### 1.3: July 5th, 2015
 
 * Update to version 58 of the IBAN registry
   * Sets SEPA flag for San Marino
