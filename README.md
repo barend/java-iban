@@ -172,6 +172,12 @@ rules out some modern Java language constructs. I'm trying to keep the library a
  * http://www.nordea.com/Our+services/International+products+and+services/Cash+Management/IBAN+countries/908462.html
  * http://www.europeanpaymentscouncil.eu/knowledge_bank_detail.cfm?documents_id=328
 
+### Alternatives
+
+If you're looking for a more comprehensive IBAN library, you may prefer [iban4j][iban4j].
+
+[iban4j]:https://github.com/arturmkrtchyan/iban4j
+
 ### Copyright and License
 
 Copyright 2015 Barend Garvelink
