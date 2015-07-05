@@ -237,13 +237,22 @@ public abstract class CountryCodes {
     }
 
     /**
+     * Returns the index of the given country code in {@link #COUNTRY_CODES} by binary search.
+     * @param countryCode a country code.
+     * @return the array index, or -1.
+     */
+    static int indexOf(String countryCode) {
+        return Arrays.binarySearch(CountryCodes.COUNTRY_CODES, countryCode);
+    }
+
+    /**
      * Returns the IBAN length for a given country code.
      * @param countryCode a non-null, uppercase, two-character country code.
      * @return the IBAN length for the given country, or -1 if the input is not a known, two-character country code.
      * @throws NullPointerException if the input is null.
      */
     public static int getLengthForCountryCode(String countryCode) {
-        int index = Arrays.binarySearch(CountryCodes.COUNTRY_CODES, countryCode);
+        int index = indexOf(countryCode);
         if (index > -1) {
             return CountryCodes.COUNTRY_IBAN_LENGTHS[index] & REMOVE_SEPA_MASK;
         }
@@ -257,7 +266,7 @@ public abstract class CountryCodes {
      * @throws NullPointerException if the input is null.
      */
     public static boolean isSEPACountry(String countryCode) {
-        int index = Arrays.binarySearch(CountryCodes.COUNTRY_CODES, countryCode);
+        int index = indexOf(countryCode);
         if (index > -1) {
             return (CountryCodes.COUNTRY_IBAN_LENGTHS[index] & SEPA) == SEPA;
         }
@@ -281,7 +290,7 @@ public abstract class CountryCodes {
         if (aCountryCode == null || aCountryCode.length() != 2) {
             return false;
         }
-        return Arrays.binarySearch(COUNTRY_CODES, aCountryCode) >= 0;
+        return indexOf(aCountryCode) >= 0;
     }
 
     /** Prevent instantiation of static utility class. */

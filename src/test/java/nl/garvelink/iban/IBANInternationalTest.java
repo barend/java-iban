@@ -36,7 +36,8 @@ public class IBANInternationalTest {
     private final String pretty;
     private final boolean sepa;
 
-    public IBANInternationalTest(@SuppressWarnings("unused") String testName, String sepa, String plain, String pretty) {
+    @SuppressWarnings("unused")
+    public IBANInternationalTest(String testName, String sepa, String plain, String bankIdentifier, String branchIdentfier, String pretty) {
         this.plain = plain;
         this.pretty = pretty;
         this.sepa = Boolean.parseBoolean(sepa);
@@ -84,12 +85,5 @@ public class IBANInternationalTest {
     @SuppressWarnings("deprecation")
     public void getLengthForCountryCodeShouldReturnCorrectValue() {
         assertEquals(plain.length(), IBAN.getLengthForCountryCode(plain.substring(0, 2)));
-    }
-
-    /**
-     * Helps put the parameter data into readable formatting.
-     */
-    private static final String[] str(String... strs) {
-        return strs;
     }
 }

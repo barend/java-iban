@@ -16,7 +16,7 @@ Grab a package [from Github][download] or get it from Maven Central:
     <dependency>
         <groupId>nl.garvelink.oss</groupId>
         <artifactId>iban</artifactId>
-        <version>1.2.0</version>
+        <version>1.3.0</version>
     </dependency>
 ```
 
@@ -24,7 +24,7 @@ Grab a package [from Github][download] or get it from Maven Central:
 
 ```javascript
     dependencies {
-        compile 'nl.garvelink.oss:iban:1.2.0'
+        compile 'nl.garvelink.oss:iban:1.3.0'
     }
 ```
 
@@ -73,13 +73,41 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
     // Get the expected IBAN length for a country code:
     int length = CountryCodes.getLengthForCountryCode( "DK" );
+
+    // Get the Bank Identifier and Branch Identifier (JDK 8):
+    Optional<String> bankId = IBANFields.getBankIdentifier( iban );
+    Optional<String> branchId = IBANFields.getBranchIdentifier( iban );
+
+    // Get the Bank Identifier and Branch Identifier (pre-JDK 8):
+    String bankId = IBANFieldsCompat.getBankIdentifier( iban );
+    String branchId = IBANFieldsCompat.getBranchIdentifier( iban );
 ```
 
-### Notes
+### Design Choices
 
-* The length of an IBAN is checked against the required length for its country code. Other country-specific
-  validation (e.g. national check digits) is absent.
-* The `IBAN` class does not implement `Serializable`, because the string representation is a superior serialized form.
+I like the Joda-Time library and I try to follow the same design principles. I'm explicitly targetting Android, which
+rules out some modern Java language constructs. I'm trying to keep the library as simple as I can.
+
+* The `IBAN` objects are immutable and the IBAN therein is non-empty and valid. There is no support for partial or
+  invalid IBANs. Note that "valid" isn't as strict as it could be:
+  * It checks that the length is correct (varies per country) and that the check digits are correct.
+  * The national format mask (such as `QA2!n4!a21!c`) is not enforced. This seems to me like more work than necessary.
+    The modulo-97 checksum catches most input errors anyway, and I don't want to force a memory-hungry regex check onto
+    Android users. Speaking of Android, this mask could be used for keyboard switching on an `IBANEditText`, but that's
+    for a different open-source project.
+  * Any national check digits are not enforced. Doing this right is more work than I want to put into this. I lack the
+    country-specific knowledge of all the gotchas and intricacies. If other countries' check digits are anything like
+    those in the Netherlands, they're going to differ by Bank Identifier.
+* There is no way to configure extra restrictions such as "only SEPA countries" on the `IBAN.valueOf()` method. This, to
+  me, would look too much like Joda-Time's pluggable `Chronology` system, which leads to <acronym title="Principle of
+  Least Surprise">PoLS</acronym> violations (background: [Why JSR-310 isn't Joda-Time][wjij]).
+* There is no class to represent a partially entered IBAN or a potentially-invalid IBAN. I'm sure there are use cases
+  where you want to shift this sort of data around. As far as this library is concerned, if it's not an IBAN it's just a
+  string, and there already exist data types for dealing with those.
+* Any feature that's not present in _all_ IBAN's is kept outside the `IBAN` class. Currently, that's the support for
+  extracting Bank and Branch identifiers, which lives in the `IBANFields` and `IBANFieldsCompat` classes.
+
+[wjij]: http://blog.joda.org/2009/11/why-jsr-310-isn-joda-time_4941.html
 
 ### Version history
 
@@ -88,6 +116,19 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 * Update to version 58 of the IBAN registry
   * Sets SEPA flag for San Marino
   * Adds length validation for Saint Lucia
+* Adds ability to extract Bank Identifier and Branch Identifier from an IBAN (issue [#5][i5]), if available. You can do
+  so using the static methods in `IBANFields` (returns JDK8 `Optional`s) and `IBANFieldsCompat` (returns nulls). There
+  are three countries where I had to interpret the spec in some way:
+  * Finland (FI) – The spec mentions both "Not in use" and "Position 1-3 indicate the bank or banking group." I have
+    taken "bank or banking group" to be more or less synonymous with Bank Identifier and return it as such.
+  * Slovenia (SI) – The five digits following the checksum encode the financial institution and sub-encode the branch
+    identifier if applicable, depending on the type of financial institution. The library returns all five digits as the
+    bank identifier and never returns a branch identifier.
+  * Republic of Kosovo (XK) – The four digits following the checksum encode the Bank ID, and the last two of these four
+    sub-encode the branch ID. The library returns all four digits as the bank identifier. For example: if the IBAN has
+    "1234" in these positions, then the bank identifier is returned as "1234" and the branch identifier as "34".
+
+[i5]: https://github.com/barend/java-iban/issues/5
 
 #### 1.2: September 1st, 2014
 
