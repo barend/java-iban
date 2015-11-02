@@ -6,6 +6,8 @@ for other purposes, such as live input validation.
 
 The library is compatible for use in Android apps.
 
+![Travis CI](https://travis-ci.org/barend/java-iban.svg?branch=master "Travis CI build status")
+
 ### Install
 
 Grab a package [from Github][download] or get it from Maven Central:
