@@ -162,15 +162,17 @@ public class IBANFieldsCompat {
             4 |  8 << 8                       /* RO */,
             4 |  7 << 8                       /* RS */,
             4 |  6 << 8                       /* SA */,
+            4 | 12 << 8                       /* SC */,
             4 |  7 << 8                       /* SE */,
             4 |  9 << 8                       /* SI */, // Interpretation is contextual, not all bank ID's encode a branch ID, but some do. Not attempting to model that.
             4 |  8 << 8                       /* SK */,
             5 | 10 << 8 | 10 << 16 | 15 << 24 /* SM */,
             0                                 /* SN */,
+            4 |  8 << 8 |  8 << 16 | 12 << 24 /* ST */,
             4 |  7 << 8                       /* TL */,
             4 |  6 << 8 |  6 << 16 |  9 << 24 /* TN */,
             4 |  9 << 8                       /* TR */,
-            0                                 /* UA */,
+            4 | 10 << 8                       /* UA */,
             4 |  8 << 8                       /* VG */,
             4 |  8 << 8 |  6 << 16 |  8 << 24 /* XK */, // The SWIFT spec mentions "1-4" as the bank ID and then "1-2" as the bank ID and "3-4" as the branch ID.
     };

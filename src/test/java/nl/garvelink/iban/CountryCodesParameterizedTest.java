@@ -135,9 +135,13 @@ public class CountryCodesParameterizedTest {
 //            str( "Saint Lucia",              "false", "LC62HEMM000100010012001200023015",null      , null      , "LC62 HEMM 0001 0001 0012 0012 0002 3015" ),//SWIFT
             str( "Saint Lucia",              "false", "LC55HEMM000100010012001200023015","HEMM"    , null      , "LC55 HEMM 0001 0001 0012 0012 0002 3015" ),//SWIFT
             str( "San Marino",               "true" , "SM86U0322509800000000270100",     "03225"   , "09800"   , "SM86 U032 2509 8000 0000 0270 100" ),      //SWIFT, ECBS, Nordea
+            str( "Sao Tome e Principe",      "false", "ST68000100010051845310112",       "0001"    , "0001"    , "ST68 0001 0001 0051 8453 1011 2" ),        //SWIFT
             str( "Saudi Arabia",             "false", "SA0380000000608010167519",        "80"      , null      , "SA03 8000 0000 6080 1016 7519"),           //SWIFT, Nordea
             str( "Senegal",                  "false", "SN12K00100152000025690007542",    null      , null      , "SN12 K001 0015 2000 0256 9000 7542"),      //Nordea
             str( "Serbia",                   "false", "RS35260005601001611379",          "260"     , null      , "RS35 2600 0560 1001 6113 79" ),            //SWIFT, ECBS, Nordea
+// NOTE: The IBAN Registry, v65, contains the "SC25" sample IBAN, which fails checksum verification.
+//            str( "Seychelles",               "false", "SC25SSCB11010000000000001497USD", "SSCB1101", null      , "SC25 SSCB 1101 0000 0000 0000 1497 USD" ), //SWIFT
+            str( "Seychelles",               "false", "SC18SSCB11010000000000001497USD", "SSCB1101", null      , "SC18 SSCB 1101 0000 0000 0000 1497 USD" ), //SWIFT
             str( "Slovak Republic",          "true" , "SK3112000000198742637541",        "1200"    , null      , "SK31 1200 0000 1987 4263 7541" ),          //SWIFT, ECBS, Nordea
             str( "Slovenia",                 "true" , "SI56263300012039086",             "26330"   , null      , "SI56 2633 0001 2039 086" ),                //SWIFT, ECBS, Nordea
             str( "Spain",                    "true" , "ES9121000418450200051332",        "2100"    , "0418"    , "ES91 2100 0418 4502 0005 1332" ),          //SWIFT, ECBS, Nordea
@@ -146,7 +150,7 @@ public class CountryCodesParameterizedTest {
             str( "Timor-Leste",              "false", "TL380080012345678910157",         "008"     , null      , "TL38 0080 0123 4567 8910 157"),            //SWIFT
             str( "Tunisia",                  "false", "TN5910006035183598478831",        "10"      , "006"     , "TN59 1000 6035 1835 9847 8831"),           //SWIFT, Nordea
             str( "Turkey",                   "false", "TR330006100519786457841326",      "00061"   , null      , "TR33 0006 1005 1978 6457 8413 26" ),       //SWIFT, ECBS, Nordea
-            str( "Ukraine",                  "false", "UA573543470006762462054925026",   null      , null      , "UA57 3543 4700 0676 2462 0549 2502 6"),    //Nordea
+            str( "Ukraine",                  "false", "UA213996220000026007233566001",   "399622"  , null      , "UA21 3996 2200 0002 6007 2335 6600 1"),    //SWIFT
             str( "United Arab Emirates",     "false", "AE070331234567890123456",         "033"     , null      , "AE07 0331 2345 6789 0123 456"),            //SWIFT, Nordea
             str( "United Kingdom",           "true" , "GB29NWBK60161331926819",          "NWBK"    , "601613"  , "GB29 NWBK 6016 1331 9268 19" ),            //SWIFT, ECBS, Nordea
             str( "Virgin Islands, British",  "false", "VG96VPVG0000012345678901",        "VPVG"    , null      , "VG96 VPVG 0000 0123 4567 8901")            //SWIFT, Nordea

@@ -113,6 +113,13 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 
 ### Version history
 
+#### 1.4: Unreleased
+
+* Update to version 65 of the IBAN registry
+  * Adds Sao Tome e Principe (ST)
+  * Adds bank identifier format for Ukraine (UA)
+  * Adds Seychelles (SC)
+
 #### 1.3: July 5th, 2015
 
 * Update to version 58 of the IBAN registry
@@ -167,7 +174,7 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 
 ### References
 
- * http://www.swift.com/dsp/resources/documents/IBAN_Registry.pdf
+ * https://www.swift.com/sites/default/files/resources/swift_standards_ibanregistry.pdf
  * http://en.wikipedia.org/wiki/IBAN
  * http://www.ecbs.org/iban.htm
  * http://www.tbg5-finance.org/ibanabout.shtml
