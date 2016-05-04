@@ -115,7 +115,7 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 
 #### 1.4: Unreleased
 
-* Update to version 65 of the IBAN registry
+* Update to version 66 of the IBAN registry
   * Adds Sao Tome e Principe (ST)
   * Adds bank identifier format for Ukraine (UA)
   * Adds Seychelles (SC)
