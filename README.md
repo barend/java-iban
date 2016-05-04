@@ -4,7 +4,8 @@ The `IBAN` class is intended for use in your domain types. `IBAN` objects enforc
 for its country code and that it passes checksum validation. The `Modulo97` class exposes the checksum validation code
 for other purposes, such as live input validation.
 
-The library is compatible for use in Android apps.
+The library is compatible for use in Android apps. It is in maintenance mode; I'll occasionally update it to the latest
+version of the IBAN registry, but I don't plan on developing any new features.
 
 ![Travis CI](https://travis-ci.org/barend/java-iban.svg?branch=master "Travis CI build status")
 
@@ -113,7 +114,7 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 
 ### Version history
 
-#### 1.4: Unreleased
+#### 1.4: May 4th, 2016
 
 * Update to version 66 of the IBAN registry
   * Adds Sao Tome e Principe (ST)
