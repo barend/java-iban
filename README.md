@@ -19,15 +19,15 @@ Grab a package [from Github][download] or get it from Maven Central:
     <dependency>
         <groupId>nl.garvelink.oss</groupId>
         <artifactId>iban</artifactId>
-        <version>1.4.0</version>
+        <version>1.5.0</version>
     </dependency>
 ```
 
 #### Gradle
 
-```javascript
+```groovy
     dependencies {
-        compile 'nl.garvelink.oss:iban:1.4.0'
+        compile 'nl.garvelink.oss:iban:1.5.0'
     }
 ```
 
@@ -114,6 +114,20 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 
 ### Version history
 
+#### 1.5: Feb 26th, 2016
+
+* Update to version 75 of the IBAN registry
+  * Decodes Bank and Branch ID for Bulgaria (BG)
+  * Decodes Bank and Branch ID for Brazil (BR)
+  * Adds Republic of Belarus (BY)
+  * Increments IBAN length for Costa Rica (CR) from 21 to 22
+  * Adds Iraq (IQ)
+  * Adds El Salvador (SV)
+  * Decodes Bank ID for Kosovo (XK) as 2 characters instead of 4
+* Version Notes:
+  * CR and IQ contributed in PR#8 by firehooper.
+  * Several country names `CountryCodesParameterizedTest` were updated to reflect the IBAN registry. 
+
 #### 1.4: May 4th, 2016
 
 * Update to version 66 of the IBAN registry
@@ -175,7 +189,7 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 
 ### References
 
- * https://www.swift.com/sites/default/files/resources/swift_standards_ibanregistry.pdf
+ * https://www.swift.com/sites/default/files/resources/iban_registry.pdf
  * http://en.wikipedia.org/wiki/IBAN
  * http://www.ecbs.org/iban.htm
  * http://www.tbg5-finance.org/ibanabout.shtml
