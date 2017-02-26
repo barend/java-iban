@@ -114,7 +114,7 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 
 ### Version history
 
-#### 1.5: Feb 26th, 2016
+#### 1.5: Feb 26th, 2017
 
 * Update to version 75 of the IBAN registry
   * Decodes Bank and Branch ID for Bulgaria (BG)
