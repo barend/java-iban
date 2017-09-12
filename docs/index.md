@@ -19,7 +19,7 @@ Grab a package [from Github][download] or get it from Maven Central:
     <dependency>
         <groupId>nl.garvelink.oss</groupId>
         <artifactId>iban</artifactId>
-        <version>1.5.0</version>
+        <version>1.5.1</version>
     </dependency>
 ```
 
@@ -27,7 +27,7 @@ Grab a package [from Github][download] or get it from Maven Central:
 
 ```groovy
     dependencies {
-        compile 'nl.garvelink.oss:iban:1.5.0'
+        compile 'nl.garvelink.oss:iban:1.5.1'
     }
 ```
 
