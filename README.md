@@ -114,6 +114,12 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 
 ### Version history
 
+#### 1.5.1: Sep 12th, 2017
+
+* Change project URL to github.io, because I can't offer HTTPS with the CNAME.
+* Update to version 78 of the IBAN registry
+  * No changes to IBAN formats
+
 #### 1.5: Feb 26th, 2017
 
 * Update to version 75 of the IBAN registry
