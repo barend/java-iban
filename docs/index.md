@@ -7,8 +7,6 @@ for other purposes, such as live input validation.
 The library is compatible for use in Android apps. It is in maintenance mode; I'll occasionally update it to the latest
 version of the IBAN registry, but I don't plan on developing any new features.
 
-![Travis CI](https://travis-ci.org/barend/java-iban.svg?branch=master "Travis CI build status")
-
 ### Install
 
 Grab a package [from Github][download] or get it from Maven Central:
