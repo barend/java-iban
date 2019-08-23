@@ -115,7 +115,7 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 
 ### Version history
 
-#### 1.6.0: xxx, 2019
+#### 1.6.0: 23 August 2019
 * Update to version 83 of the IBAN registry
   * Adds Vatican City State (VA)
   * (Ignores updated example IBAN for Sao Tome e Principe, because it fails checksum validation)
@@ -126,17 +126,17 @@ rules out some modern Java language constructs. I'm trying to keep the library a
     Guinea-Bissau (GW), Honduras (HN), Morocco (MA), Niger (NE), Nicaragua (NI), Togo (TG)
 * New method `IBAN.isInSwiftRegistry()` indicates whether the IBAN country is listed in the SWIFT IBAN Registry
 * Factory methods in `IBAN` accept `CharSequence` instead of `String`
-* Upgrades to Java bytecode level 1.8. The 1.6 target was there to offer legacy Android support in 2015. This is no
+* Upgrades to Java bytecode level 1.8. The 1.6 target was there to offer legacy Android support in 2013. This is no
   longer required in 2019.
 * Drops the Sonatype OSS-parent POM (Closes issue #6)
 
-#### 1.5.1: Sep 12th, 2017
+#### 1.5.1: 12 September 2017
 
 * Change project URL to github.io, because I can't offer HTTPS with the CNAME.
 * Update to version 78 of the IBAN registry
   * No changes to IBAN formats
 
-#### 1.5: Feb 26th, 2017
+#### 1.5: 26 February 2017
 
 * Update to version 75 of the IBAN registry
   * Decodes Bank and Branch ID for Bulgaria (BG)
@@ -150,14 +150,14 @@ rules out some modern Java language constructs. I'm trying to keep the library a
   * CR and IQ contributed in PR#8 by firehooper.
   * Several country names `CountryCodesParameterizedTest` were updated to reflect the IBAN registry. 
 
-#### 1.4: May 4th, 2016
+#### 1.4: 4 May 2016
 
 * Update to version 66 of the IBAN registry
   * Adds Sao Tome e Principe (ST)
   * Adds bank identifier format for Ukraine (UA)
   * Adds Seychelles (SC)
 
-#### 1.3: July 5th, 2015
+#### 1.3: 5 July 2015
 
 * Update to version 58 of the IBAN registry
   * Sets SEPA flag for San Marino
@@ -176,7 +176,7 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 
 [i5]: https://github.com/barend/java-iban/issues/5
 
-#### 1.2: September 1st, 2014
+#### 1.2: 1 September 2014
 
 * Adds query method `IBAN.isSEPA()`.
 * Merges [pull request #4][pr4] by Matthias Vill, adding some hooks to aid interactive input validation & formatting.
@@ -185,7 +185,7 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 
 [pr4]: https://github.com/barend/java-iban/pull/4
 
-#### 1.1: October 25th, 2013
+#### 1.1: 25 October 2013
 
 * Moves country information from `IBAN` into separate class `CountryCodes`
 * The known country codes can be obtained from `CountryCodes.getKnownCountryCodes()`.
@@ -199,7 +199,7 @@ rules out some modern Java language constructs. I'm trying to keep the library a
   * **Note:** this list is not limited to SEPA countries or even the IBAN registry maintained by SWIFT. The
     `CountryCodesParameterizedTest.java` file documents the origin for each of these IBAN specs.
 
-#### 1.0: May 30, 2013
+#### 1.0: 30 May 2013
 
 * Initial release, IBAN value type.
 * Supported countries:
