@@ -30,58 +30,59 @@ import static org.junit.Assert.*;
 @RunWith(Parameterized.class)
 public class IBANInternationalTest {
 
-    private final String plain;
-    private final String pretty;
-    private final boolean sepa;
+    private final TestData td;
 
     @SuppressWarnings("unused")
-    public IBANInternationalTest(String testName, String sepa, String plain, String bankIdentifier, String branchIdentfier, String pretty) {
-        this.plain = plain;
-        this.pretty = pretty;
-        this.sepa = Boolean.parseBoolean(sepa);
+    public IBANInternationalTest(TestData td) {
+        this.td = td;
     }
 
     @Parameterized.Parameters(name = " {0} ")
-    public static List<String[]> parameters() {
+    public static List<TestData> parameters() {
         return CountryCodesParameterizedTest.PARAMETERS;
     }
 
     @Test
     public void parseShouldAcceptPlainForm() {
-        IBAN iban = IBAN.parse(plain);
+        IBAN iban = IBAN.parse(td.plain);
         assertNotNull(iban);
-        assertThat(iban.toPlainString(), is(equalTo(plain)));
-        assertThat(iban.toString(), is(equalTo(pretty)));
+        assertThat(iban.toPlainString(), is(equalTo(td.plain)));
+        assertThat(iban.toString(), is(equalTo(td.pretty)));
     }
 
     @Test
     public void parseShouldAcceptPrettyPrintedForm() {
-        IBAN iban = IBAN.parse(pretty);
+        IBAN iban = IBAN.parse(td.pretty);
         assertNotNull(iban);
-        assertThat(iban.toPlainString(), is(equalTo(plain)));
-        assertThat(iban.toString(), is(equalTo(pretty)));
+        assertThat(iban.toPlainString(), is(equalTo(td.plain)));
+        assertThat(iban.toString(), is(equalTo(td.pretty)));
     }
 
     @Test
     public void parseShouldRejectInvalidIBANLength() {
         try {
-            IBAN.parse(plain + '9');
+            IBAN.parse(td.plain + '9');
             fail("Invalid input should have been rejected for incorrect length.");
         } catch (WrongLengthException e) {
-            assertThat(e.getFailedInput(), is(plain + '9'));
-            assertThat(e.getExpectedLength(), is(plain.length()));
-            assertThat(e.getActualLength(), is(1 + plain.length()));
+            assertThat(e.getFailedInput(), is(td.plain + '9'));
+            assertThat(e.getExpectedLength(), is(td.plain.length()));
+            assertThat(e.getActualLength(), is(1 + td.plain.length()));
         }
     }
 
     @Test
+    public void isRegisteredIBAN() {
+        assertEquals(td.swift, IBAN.parse(td.plain).isInSwiftRegistry());
+    }
+
+    @Test
     public void isSEPACountry() {
-        assertEquals(sepa, IBAN.parse(plain).isSEPA());
+        assertEquals(td.sepa, IBAN.parse(td.plain).isSEPA());
     }
 
     @Test
     @SuppressWarnings("deprecation")
     public void getLengthForCountryCodeShouldReturnCorrectValue() {
-        assertEquals(plain.length(), IBAN.getLengthForCountryCode(plain.substring(0, 2)));
+        assertEquals(td.plain.length(), IBAN.getLengthForCountryCode(td.plain.substring(0, 2)));
     }
 }

@@ -52,6 +52,11 @@ public final class IBAN {
     private final String value;
 
     /**
+     * Whether or not this IBAN data is from the SWIFT IBAN Registry.
+     */
+    private final boolean inSwiftRegistry;
+
+    /**
      * Whether or not this IBAN is of a SEPA participating country.
      */
     private final boolean sepa;
@@ -89,6 +94,7 @@ public final class IBAN {
             throw new WrongChecksumException(value);
         }
         this.value = value;
+        this.inSwiftRegistry = CountryCodes.isInSwiftRegistry(countryCode);
         this.sepa = CountryCodes.isSEPACountry(countryCode);
     }
 
@@ -155,6 +161,14 @@ public final class IBAN {
      */
     public boolean isSEPA() {
         return this.sepa;
+    }
+
+    /**
+     * Returns whether the source for this IBAN's format and data is the SWIFT IBAN Registry.
+     * @return true if from SWIFT IBAN Registry, false if from Experimental IBANs list.
+     */
+    public boolean isInSwiftRegistry() {
+        return this.inSwiftRegistry;
     }
 
     /**

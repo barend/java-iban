@@ -34,29 +34,25 @@ import static org.junit.Assert.*;
 @RunWith(Parameterized.class)
 public class IBANFieldsTest {
 
-    private final String plain;
-    private final String bankIdentifier;
-    private final String branchIdentifier;
+    private final TestData td;
 
     @SuppressWarnings("unused")
-    public IBANFieldsTest(String testName, String sepa, String plain, String bankIdentifier, String branchIdentfier, String pretty) {
-        this.plain = plain;
-        this.bankIdentifier = bankIdentifier;
-        this.branchIdentifier = branchIdentfier;
+    public IBANFieldsTest(TestData td) {
+        this.td = td;
     }
 
     @Parameterized.Parameters(name = " {0} ")
-    public static List<String[]> parameters() {
+    public static List<TestData> parameters() {
         return CountryCodesParameterizedTest.PARAMETERS;
     }
 
     @Test
     public void shouldExtractBankIdentifier() {
-        IBAN iban = IBAN.parse(plain);
+        IBAN iban = IBAN.parse(td.plain);
         assertNotNull(iban);
-        if (bankIdentifier != null) {
-            assertThat(IBANFields.getBankIdentifier(iban).get(), is(equalTo(bankIdentifier)));
-            assertThat(IBANFieldsCompat.getBankIdentifier(iban), is(equalTo(bankIdentifier)));
+        if (td.bank != null) {
+            assertThat(IBANFields.getBankIdentifier(iban).get(), is(equalTo(td.bank)));
+            assertThat(IBANFieldsCompat.getBankIdentifier(iban), is(equalTo(td.bank)));
         } else {
             assertThat(IBANFields.getBankIdentifier(iban).isPresent(), is(false));
             assertThat(IBANFieldsCompat.getBankIdentifier(iban), is(nullValue()));
@@ -65,11 +61,11 @@ public class IBANFieldsTest {
 
     @Test
     public void shouldExtractBranchIdentifier() {
-        IBAN iban = IBAN.parse(plain);
+        IBAN iban = IBAN.parse(td.plain);
         assertNotNull(iban);
-        if (branchIdentifier != null) {
-            assertThat(IBANFields.getBranchIdentifier(iban).get(), is(equalTo(branchIdentifier)));
-            assertThat(IBANFieldsCompat.getBranchIdentifier(iban), is(equalTo(branchIdentifier)));
+        if (td.branch != null) {
+            assertThat(IBANFields.getBranchIdentifier(iban).get(), is(equalTo(td.branch)));
+            assertThat(IBANFieldsCompat.getBranchIdentifier(iban), is(equalTo(td.branch)));
         } else {
             assertThat(IBANFields.getBranchIdentifier(iban).isPresent(), is(false));
             assertThat(IBANFieldsCompat.getBranchIdentifier(iban), is(nullValue()));

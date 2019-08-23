@@ -68,6 +68,9 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
     // You can query whether an IBAN is of a SEPA-participating country
     boolean isSepa = candidate.isSEPA(); // true
 
+    // You can query whether an IBAN is in the SWIFT Registry
+    boolean isRegistered = candidate.isInSwiftRegistry(); // true
+
     // Modulo97 API methods take CharSequence, not just String.
     StringBuilder builder = new StringBuilder( "LU000019400644750000" );
     int checkDigits = Modulo97.calculateCheckDigits( builder ); // 28
@@ -121,6 +124,7 @@ rules out some modern Java language constructs. I'm trying to keep the library a
   * IBAN length for Burkina Faso (BF) changed to 26
   * Adds Central African Republic (CF), Chad (TD), Comoros (KM), Djibouti (DJ), Equatorial Guinea (GQ),
     Guinea-Bissau (GW), Honduras (HN), Morocco (MA), Niger (NE), Nicaragua (NI), Togo (TG)
+* New method `IBAN.isInSwiftRegistry()` indicates whether the IBAN country is listed in the SWIFT IBAN Registry
 * Factory methods in `IBAN` accept `CharSequence` instead of `String`
 * Upgrades to Java bytecode level 1.8. The 1.6 target was there to offer legacy Android support in 2015. This is no
   longer required in 2019.

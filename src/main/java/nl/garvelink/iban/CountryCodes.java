@@ -25,7 +25,8 @@ import java.util.Collections;
 public abstract class CountryCodes {
 
     private static final int SEPA = 1 << 8;
-    private static final int REMOVE_SEPA_MASK = ~SEPA;
+    private static final int SWIFT = 1 << 9;
+    private static final int REMOVE_METADATA_MASK = 0xFF;
 
     /**
      * Known country codes, this list must be sorted to allow binary search.
@@ -139,109 +140,109 @@ public abstract class CountryCodes {
      * Lengths for each country's IBAN. The indices match the indices of {@link #COUNTRY_CODES}, the values are the expected length.
      */
     private static final int[] COUNTRY_IBAN_LENGTHS = {
-            24        /* AD */,
-            23        /* AE */,
-            28        /* AL */,
-            25        /* AO */,
-            20 | SEPA /* AT */,
-            28        /* AZ */,
-            20        /* BA */,
-            16 | SEPA /* BE */,
-            28        /* BF */,
-            22 | SEPA /* BG */,
-            22        /* BH */,
-            16        /* BI */,
-            28        /* BJ */,
-            29        /* BR */,
-            28        /* BY */,
-            27        /* CF */,
-            27        /* CG */,
-            21 | SEPA /* CH */,
-            28        /* CI */,
-            27        /* CM */,
-            22        /* CR */,
-            25        /* CV */,
-            28 | SEPA /* CY */,
-            24 | SEPA /* CZ */,
-            22 | SEPA /* DE */,
-            27        /* DJ */,
-            18 | SEPA /* DK */,
-            28        /* DO */,
-            26        /* DZ */,
-            20 | SEPA /* EE */,
-            27        /* EG */,
-            24 | SEPA /* ES */,
-            18 | SEPA /* FI */,
-            18        /* FO */,
-            27 | SEPA /* FR */,
-            27        /* GA */,
-            22 | SEPA /* GB */,
-            22        /* GE */,
-            23 | SEPA /* GI */,
-            18        /* GL */,
-            27        /* GQ */,
-            27 | SEPA /* GR */,
-            28        /* GT */,
-            25        /* GW */,
-            28        /* HN */,
-            21 | SEPA /* HR */,
-            28 | SEPA /* HU */,
-            22 | SEPA /* IE */,
-            23        /* IL */,
-            23        /* IQ */,
-            26        /* IR */,
-            26 | SEPA /* IS */,
-            27 | SEPA /* IT */,
-            30        /* JO */,
-            27        /* KM */,
-            30        /* KW */,
-            20        /* KZ */,
-            28        /* LB */,
-            32        /* LC */,
-            21 | SEPA /* LI */,
-            20 | SEPA /* LT */,
-            20 | SEPA /* LU */,
-            21 | SEPA /* LV */,
-            28        /* MA */,
-            27 | SEPA /* MC */,
-            24        /* MD */,
-            22        /* ME */,
-            27        /* MG */,
-            19        /* MK */,
-            28        /* ML */,
-            27        /* MR */,
-            31 | SEPA /* MT */,
-            30        /* MU */,
-            25        /* MZ */,
-            28        /* NE */,
-            32        /* NI */,
-            18 | SEPA /* NL */,
-            15 | SEPA /* NO */,
-            24        /* PK */,
-            28 | SEPA /* PL */,
-            29        /* PS */,
-            25 | SEPA /* PT */,
-            29        /* QA */,
-            24 | SEPA /* RO */,
-            22        /* RS */,
-            24        /* SA */,
-            31        /* SC */,
-            24 | SEPA /* SE */,
-            19 | SEPA /* SI */,
-            24 | SEPA /* SK */,
-            27 | SEPA /* SM */,
-            28        /* SN */,
-            25        /* ST */,
-            28        /* SV */,
-            27        /* TD */,
-            28        /* TG */,
-            23        /* TL */,
-            24        /* TN */,
-            26        /* TR */,
-            29        /* UA */,
-            22 | SEPA /* VA */,
-            24        /* VG */,
-            20        /* XK */,
+            24        | SWIFT /* AD */,
+            23        | SWIFT /* AE */,
+            28        | SWIFT /* AL */,
+            25                /* AO */,
+            20 | SEPA | SWIFT /* AT */,
+            28        | SWIFT /* AZ */,
+            20        | SWIFT /* BA */,
+            16 | SEPA | SWIFT /* BE */,
+            28                /* BF */,
+            22 | SEPA | SWIFT /* BG */,
+            22        | SWIFT /* BH */,
+            16                /* BI */,
+            28                /* BJ */,
+            29        | SWIFT /* BR */,
+            28        | SWIFT /* BY */,
+            27                /* CF */,
+            27                /* CG */,
+            21 | SEPA | SWIFT /* CH */,
+            28                /* CI */,
+            27                /* CM */,
+            22        | SWIFT /* CR */,
+            25                /* CV */,
+            28 | SEPA | SWIFT /* CY */,
+            24 | SEPA | SWIFT /* CZ */,
+            22 | SEPA | SWIFT /* DE */,
+            27                /* DJ */,
+            18 | SEPA | SWIFT /* DK */,
+            28        | SWIFT /* DO */,
+            26                /* DZ */,
+            20 | SEPA | SWIFT /* EE */,
+            27                /* EG */,
+            24 | SEPA | SWIFT /* ES */,
+            18 | SEPA | SWIFT /* FI */,
+            18        | SWIFT /* FO */,
+            27 | SEPA | SWIFT /* FR */,
+            27                /* GA */,
+            22 | SEPA | SWIFT /* GB */,
+            22        | SWIFT /* GE */,
+            23 | SEPA | SWIFT /* GI */,
+            18        | SWIFT /* GL */,
+            27                /* GQ */,
+            27 | SEPA | SWIFT /* GR */,
+            28        | SWIFT /* GT */,
+            25                /* GW */,
+            28                /* HN */,
+            21 | SEPA | SWIFT /* HR */,
+            28 | SEPA | SWIFT /* HU */,
+            22 | SEPA | SWIFT /* IE */,
+            23        | SWIFT /* IL */,
+            23        | SWIFT /* IQ */,
+            26                /* IR */,
+            26 | SEPA | SWIFT /* IS */,
+            27 | SEPA | SWIFT /* IT */,
+            30        | SWIFT /* JO */,
+            27                /* KM */,
+            30        | SWIFT /* KW */,
+            20        | SWIFT /* KZ */,
+            28        | SWIFT /* LB */,
+            32        | SWIFT /* LC */,
+            21 | SEPA | SWIFT /* LI */,
+            20 | SEPA | SWIFT /* LT */,
+            20 | SEPA | SWIFT /* LU */,
+            21 | SEPA | SWIFT /* LV */,
+            28                /* MA */,
+            27 | SEPA | SWIFT /* MC */,
+            24        | SWIFT /* MD */,
+            22        | SWIFT /* ME */,
+            27                /* MG */,
+            19        | SWIFT /* MK */,
+            28                /* ML */,
+            27        | SWIFT /* MR */,
+            31 | SEPA | SWIFT /* MT */,
+            30        | SWIFT /* MU */,
+            25                /* MZ */,
+            28                /* NE */,
+            32                /* NI */,
+            18 | SEPA | SWIFT /* NL */,
+            15 | SEPA | SWIFT /* NO */,
+            24        | SWIFT /* PK */,
+            28 | SEPA | SWIFT /* PL */,
+            29        | SWIFT /* PS */,
+            25 | SEPA | SWIFT /* PT */,
+            29        | SWIFT /* QA */,
+            24 | SEPA | SWIFT /* RO */,
+            22        | SWIFT /* RS */,
+            24        | SWIFT /* SA */,
+            31        | SWIFT /* SC */,
+            24 | SEPA | SWIFT /* SE */,
+            19 | SEPA | SWIFT /* SI */,
+            24 | SEPA | SWIFT /* SK */,
+            27 | SEPA | SWIFT /* SM */,
+            28                /* SN */,
+            25        | SWIFT /* ST */,
+            28        | SWIFT /* SV */,
+            27                /* TD */,
+            28                /* TG */,
+            23        | SWIFT /* TL */,
+            24        | SWIFT /* TN */,
+            26        | SWIFT /* TR */,
+            29        | SWIFT /* UA */,
+            22 | SEPA | SWIFT /* VA */,
+            24        | SWIFT /* VG */,
+            20        | SWIFT /* XK */,
         };
 
     /**
@@ -258,7 +259,7 @@ public abstract class CountryCodes {
         int min = Integer.MAX_VALUE;
         int max = 0;
         for (int countryIbanLength : COUNTRY_IBAN_LENGTHS) {
-            final int length = REMOVE_SEPA_MASK & countryIbanLength;
+            final int length = REMOVE_METADATA_MASK & countryIbanLength;
             if (length > max) {
                 max = length;
             }
@@ -288,7 +289,7 @@ public abstract class CountryCodes {
     public static int getLengthForCountryCode(String countryCode) {
         int index = indexOf(countryCode);
         if (index > -1) {
-            return CountryCodes.COUNTRY_IBAN_LENGTHS[index] & REMOVE_SEPA_MASK;
+            return CountryCodes.COUNTRY_IBAN_LENGTHS[index] & REMOVE_METADATA_MASK;
         }
         return -1;
     }
@@ -303,6 +304,20 @@ public abstract class CountryCodes {
         int index = indexOf(countryCode);
         if (index > -1) {
             return (CountryCodes.COUNTRY_IBAN_LENGTHS[index] & SEPA) == SEPA;
+        }
+        return false;
+    }
+
+    /**
+     * Returns whether the source for this IBAN's format and data is the SWIFT IBAN Registry.
+     * @param countryCode a non-null, uppercase, two-character country code.
+     * @return true if our data is from the SWIFT IBAN Registry, false if not.
+     * @throws NullPointerException if the input is null.
+     */
+    public static boolean isInSwiftRegistry(String countryCode) {
+        int index = indexOf(countryCode);
+        if (index > -1) {
+            return (CountryCodes.COUNTRY_IBAN_LENGTHS[index] & SWIFT) == SWIFT;
         }
         return false;
     }
