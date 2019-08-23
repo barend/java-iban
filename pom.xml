@@ -38,8 +38,8 @@
 
     <scm>
         <url>https://github.com/barend/java-iban.git</url>
-        <developerConnection>scm:git:ssh://github.com:barend/java-iban.git</developerConnection>
-        <connection>scm:git:git://github.com/barend/java-iban.git</connection>
+        <developerConnection>scm:git:git@github.com:barend/java-iban.git</developerConnection>
+        <connection>scm:git:git@github.com:barend/java-iban.git</connection>
         <tag>HEAD</tag>
     </scm>
 
