@@ -17,7 +17,7 @@ Grab a package [from Github][download] or get it from Maven Central:
     <dependency>
         <groupId>nl.garvelink.oss</groupId>
         <artifactId>iban</artifactId>
-        <version>1.5.1</version>
+        <version>1.6.0</version>
     </dependency>
 ```
 
@@ -25,7 +25,7 @@ Grab a package [from Github][download] or get it from Maven Central:
 
 ```groovy
     dependencies {
-        compile 'nl.garvelink.oss:iban:1.5.1'
+        compile 'nl.garvelink.oss:iban:1.6.0'
     }
 ```
 
@@ -227,7 +227,7 @@ If you're looking for a more comprehensive IBAN library, you may prefer [iban4j]
 
 ### Copyright and License
 
-Copyright 2015 Barend Garvelink
+Copyright 2019 Barend Garvelink
 
 ```none
    Licensed under the Apache License, Version 2.0 (the "License");
