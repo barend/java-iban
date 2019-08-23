@@ -36,12 +36,10 @@ import static org.junit.Assert.*;
 public class CountryCodesParameterizedTest {
 
     private final String plain;
-    private final String pretty;
 
     @SuppressWarnings("unused")
-    public CountryCodesParameterizedTest(String testName, String sepa, String plain, String bankIdentifier, String branchIdentfier, String pretty) {
+    public CountryCodesParameterizedTest(String testName, String sepa, String plain, String bankIdentifier, String branchIdentifier, String pretty) {
         this.plain = plain;
-        this.pretty = pretty;
     }
 
     /**
@@ -200,7 +198,7 @@ public class CountryCodesParameterizedTest {
     /**
      * Helps put the parameter data into readable formatting.
      */
-    private static final String[] str(String... strs) {
+    private static String[] str(String... strs) {
         return strs;
     }
 }
