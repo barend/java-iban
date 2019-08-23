@@ -1,0 +1,15 @@
+name: Automated checks
+on: push
+
+jobs:
+  unittests:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@master
+      - name: Run Tests
+        uses: docker://maven:3.6-jdk-8-slim
+        with:
+          entrypoint: /usr/bin/mvn
+          args: --quiet --strict-checksums verify
