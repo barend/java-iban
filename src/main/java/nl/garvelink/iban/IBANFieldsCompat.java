@@ -176,6 +176,7 @@ public class IBANFieldsCompat {
             4 |  6 << 8 |  6 << 16 |  9 << 24 /* TN */,
             4 |  9 << 8                       /* TR */,
             4 | 10 << 8                       /* UA */,
+            4 |  7 << 8                       /* VA */,
             4 |  8 << 8                       /* VG */,
             4 |  6 << 8 |  6 << 16 |  8 << 24 /* XK */, // The SWIFT spec mentions "1-4" as the bank ID and then "1-2" as the bank ID and "3-4" as the branch ID.
     };

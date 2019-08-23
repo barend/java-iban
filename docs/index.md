@@ -112,6 +112,11 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 
 ### Version history
 
+#### 1.6.0: xxx, 2019
+* Update to version 83 of the IBAN registry
+  * Adds Vatican City State (VA)
+  * (Ignores updated example IBAN for Sao Tome e Principe, because it fails checksum validation)
+
 #### 1.5.1: Sep 12th, 2017
 
 * Change project URL to github.io, because I can't offer HTTPS with the CNAME.
@@ -194,6 +199,7 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 ### References
 
  * https://www.swift.com/sites/default/files/resources/iban_registry.pdf
+ * https://www.europeanpaymentscouncil.eu/document-library/other/epc-list-sepa-scheme-countries
  * http://en.wikipedia.org/wiki/IBAN
  * http://www.ecbs.org/iban.htm
  * http://www.tbg5-finance.org/ibanabout.shtml

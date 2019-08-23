@@ -152,6 +152,7 @@ public class CountryCodesParameterizedTest {
             str( "Ukraine",                  "false", "UA213223130000026007233566001",   "322313"  , null      , "UA21 3223 1300 0002 6007 2335 6600 1"),    //SWIFT
             str( "United Arab Emirates (The)","false", "AE070331234567890123456",        "033"     , null      , "AE07 0331 2345 6789 0123 456"),            //SWIFT
             str( "United Kingdom",           "true" , "GB29NWBK60161331926819",          "NWBK"    , "601613"  , "GB29 NWBK 6016 1331 9268 19" ),            //SWIFT
+            str( "Vatican City State",       "true" , "VA59001123000012345678",          "001"     , null      , "VA59 0011 2300 0012 3456 78" ),            //SWIFT
             str( "Virgin Islands",           "false", "VG96VPVG0000012345678901",        "VPVG"    , null      , "VG96 VPVG 0000 0123 4567 8901")            //SWIFT
         );
 

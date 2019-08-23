@@ -120,6 +120,7 @@ public abstract class CountryCodes {
             "TN",
             "TR",
             "UA",
+            "VA",
             "VG",
             "XK",
         };
@@ -216,6 +217,7 @@ public abstract class CountryCodes {
             24        /* TN */,
             26        /* TR */,
             29        /* UA */,
+            22 | SEPA /* VA */,
             24        /* VG */,
             20        /* XK */,
         };
