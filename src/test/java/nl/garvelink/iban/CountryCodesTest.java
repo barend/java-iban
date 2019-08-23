@@ -1,5 +1,5 @@
 /*
-   Copyright 2015 Barend Garvelink
+   Copyright 2019 Barend Garvelink
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
  */
 package nl.garvelink.iban;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
@@ -34,16 +36,10 @@ public class CountryCodesTest {
 
     @Test
     public void getCountryCodesShouldBeInAscendingOrder() {
-        String s1, s2;
-        final Iterator<String> iterator = CountryCodes.getKnownCountryCodes().iterator();
-        assertTrue(iterator.hasNext());
-        s1 = iterator.next();
-        assertTrue(iterator.hasNext());
-        while (iterator.hasNext()) {
-            s2 = iterator.next();
-            assertThat(s1.compareTo(s2), is(lessThan(0)));
-            s1 = s2;
-        }
+        List<String> raw = new ArrayList<>(CountryCodes.getKnownCountryCodes());
+        List<String> sorted = new ArrayList<>(CountryCodes.getKnownCountryCodes());
+        sorted.sort(String::compareTo);
+        assertEquals(sorted, raw);
     }
 
     @Test

@@ -1,5 +1,5 @@
 /*
-   Copyright 2015 Barend Garvelink
+   Copyright 2019 Barend Garvelink
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
  */
 package nl.garvelink.iban;
 
+import java.util.Arrays;
+import java.util.List;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.*;
@@ -118,5 +120,13 @@ public class IBANTest {
         assertEquals("12345678", IBAN.toPlain("1234 5678"));
         assertEquals("123456789", IBAN.toPlain("123456789"));
         assertEquals("123456789", IBAN.toPlain("1234 5678 9"));
+    }
+
+    @Test
+    public void lexicalSort() {
+        List<IBAN> expected = Arrays.asList(IBAN.parse("DK3400000000000003"), IBAN.parse("NL41BANK0000000002"), IBAN.parse("NL68BANK0000000001"));
+        List<IBAN> actual = Arrays.asList(IBAN.parse("NL68BANK0000000001"), IBAN.parse("DK3400000000000003"), IBAN.parse("NL41BANK0000000002"));
+        actual.sort(IBAN.LEXICAL_ORDER);
+        assertEquals(expected, actual);
     }
 }

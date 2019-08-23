@@ -1,6 +1,6 @@
 /*
 
-    Copyright 2015 Barend Garvelink
+    Copyright 2019 Barend Garvelink
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -102,6 +102,7 @@ public class IBANFieldsCompat {
             0                                 /* BJ */,
             4 | 12 << 8 | 12 << 16 | 17 << 24 /* BR */,
             4 |  8 << 8                       /* BY */,
+            0                                 /* CF */,
             0                                 /* CG */,
             4 |  9 << 8                       /* CH */,
             0                                 /* CI */,
@@ -111,6 +112,7 @@ public class IBANFieldsCompat {
             4 |  7 << 8 |  7 << 16 | 12 << 24 /* CY */,
             4 |  8 << 8                       /* CZ */,
             4 | 12 << 8                       /* DE */,
+            0                                 /* DJ */,
             4 |  8 << 8                       /* DK */,
             4 |  8 << 8                       /* DO */,
             0                                 /* DZ */,
@@ -125,8 +127,11 @@ public class IBANFieldsCompat {
             4 |  6 << 8                       /* GE */,
             4 |  8 << 8                       /* GI */,
             4 |  8 << 8                       /* GL */,
+            0                                 /* GQ */,
             4 |  7 << 8 |  7 << 16 | 11 << 24 /* GR */,
             4 |  8 << 8                       /* GT */,
+            0                                 /* GW */,
+            0                                 /* HN */,
             4 | 11 << 8                       /* HR */,
             4 |  7 << 8 |  7 << 16 | 11 << 24 /* HU */,
             4 |  8 << 8 |  8 << 16 | 14 << 24 /* IE */,
@@ -136,6 +141,7 @@ public class IBANFieldsCompat {
             4 |  8 << 8                       /* IS */,
             5 | 10 << 8 | 10 << 16 | 15 << 24 /* IT */,
             4 |  8 << 8                       /* JO */,
+            0                                 /* KM */,
             4 |  8 << 8                       /* KW */,
             4 |  7 << 8                       /* KZ */,
             4 |  8 << 8                       /* LB */,
@@ -144,6 +150,7 @@ public class IBANFieldsCompat {
             4 |  9 << 8                       /* LT */,
             4 |  7 << 8                       /* LU */,
             4 |  8 << 8                       /* LV */,
+            0                                 /* MA */,
             4 |  9 << 8 |  9 << 16 | 14 << 24 /* MC */,
             4 |  6 << 8                       /* MD */,
             4 |  7 << 8                       /* ME */,
@@ -154,6 +161,8 @@ public class IBANFieldsCompat {
             4 |  8 << 8 |  8 << 16 | 13 << 24 /* MT */,
             4 | 10 << 8 | 10 << 16 | 12 << 24 /* MU */,
             0                                 /* MZ */,
+            0                                 /* NE */,
+            0                                 /* NI */,
             4 |  8 << 8                       /* NL */,
             4 |  8 << 8                       /* NO */,
             4 |  8 << 8                       /* PK */,
@@ -172,10 +181,13 @@ public class IBANFieldsCompat {
             0                                 /* SN */,
             4 |  8 << 8 |  8 << 16 | 12 << 24 /* ST */,
             4 |  8 << 8                       /* SV */,
+            0                                 /* TD */,
+            0                                 /* TG */,
             4 |  7 << 8                       /* TL */,
             4 |  6 << 8 |  6 << 16 |  9 << 24 /* TN */,
             4 |  9 << 8                       /* TR */,
             4 | 10 << 8                       /* UA */,
+            4 |  7 << 8                       /* VA */,
             4 |  8 << 8                       /* VG */,
             4 |  6 << 8 |  6 << 16 |  8 << 24 /* XK */, // The SWIFT spec mentions "1-4" as the bank ID and then "1-2" as the bank ID and "3-4" as the branch ID.
     };

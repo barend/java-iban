@@ -17,7 +17,7 @@ Grab a package [from Github][download] or get it from Maven Central:
     <dependency>
         <groupId>nl.garvelink.oss</groupId>
         <artifactId>iban</artifactId>
-        <version>1.5.1</version>
+        <version>1.6.0</version>
     </dependency>
 ```
 
@@ -25,7 +25,7 @@ Grab a package [from Github][download] or get it from Maven Central:
 
 ```groovy
     dependencies {
-        compile 'nl.garvelink.oss:iban:1.5.1'
+        compile 'nl.garvelink.oss:iban:1.6.0'
     }
 ```
 
@@ -67,6 +67,9 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
     // You can query whether an IBAN is of a SEPA-participating country
     boolean isSepa = candidate.isSEPA(); // true
+
+    // You can query whether an IBAN is in the SWIFT Registry
+    boolean isRegistered = candidate.isInSwiftRegistry(); // true
 
     // Modulo97 API methods take CharSequence, not just String.
     StringBuilder builder = new StringBuilder( "LU000019400644750000" );
@@ -111,6 +114,20 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 [wjij]: http://blog.joda.org/2009/11/why-jsr-310-isn-joda-time_4941.html
 
 ### Version history
+
+#### 1.6.0: xxx, 2019
+* Update to version 83 of the IBAN registry
+  * Adds Vatican City State (VA)
+  * (Ignores updated example IBAN for Sao Tome e Principe, because it fails checksum validation)
+* Imports IBANs from the Experimental IBANs List on iban.com, update of 12 July 2019 (Closes issue #9)
+  * IBAN length for Algeria (DZ) changed to 26
+  * IBAN length for Burkina Faso (BF) changed to 26
+  * Adds Central African Republic (CF), Chad (TD), Comoros (KM), Djibouti (DJ), Equatorial Guinea (GQ),
+    Guinea-Bissau (GW), Honduras (HN), Morocco (MA), Niger (NE), Nicaragua (NI), Togo (TG)
+* New method `IBAN.isInSwiftRegistry()` indicates whether the IBAN country is listed in the SWIFT IBAN Registry
+* Factory methods in `IBAN` accept `CharSequence` instead of `String`
+* Upgrades to Java bytecode level 1.8. The 1.6 target was there to offer legacy Android support in 2015. This is no
+  longer required in 2019.
 
 #### 1.5.1: Sep 12th, 2017
 
@@ -193,12 +210,14 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 
 ### References
 
- * https://www.swift.com/sites/default/files/resources/iban_registry.pdf
- * http://en.wikipedia.org/wiki/IBAN
- * http://www.ecbs.org/iban.htm
- * http://www.tbg5-finance.org/ibanabout.shtml
- * http://www.nordea.com/Our+services/International+products+and+services/Cash+Management/IBAN+countries/908462.html
- * http://www.europeanpaymentscouncil.eu/knowledge_bank_detail.cfm?documents_id=328
+ * **SWIFT IBAN Registry**
+   https://www.swift.com/sites/default/files/resources/iban_registry.pdf
+ * **SEPA Participants**
+   https://www.europeanpaymentscouncil.eu/document-library/other/epc-list-sepa-scheme-countries
+ * **Experimental IBANs**
+   https://www.iban.com/structure
+ * **General Information**
+   http://en.wikipedia.org/wiki/IBAN
 
 ### Alternatives
 
@@ -208,7 +227,7 @@ If you're looking for a more comprehensive IBAN library, you may prefer [iban4j]
 
 ### Copyright and License
 
-Copyright 2015 Barend Garvelink
+Copyright 2019 Barend Garvelink
 
 ```none
    Licensed under the Apache License, Version 2.0 (the "License");

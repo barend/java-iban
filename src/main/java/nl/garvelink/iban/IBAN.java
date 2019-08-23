@@ -1,5 +1,5 @@
 /*
-   Copyright 2015 Barend Garvelink
+   Copyright 2019 Barend Garvelink
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 package nl.garvelink.iban;
 
 import java.util.Comparator;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -51,6 +50,11 @@ public final class IBAN {
      * IBAN value, normalized form (no whitespace).
      */
     private final String value;
+
+    /**
+     * Whether or not this IBAN data is from the SWIFT IBAN Registry.
+     */
+    private final boolean inSwiftRegistry;
 
     /**
      * Whether or not this IBAN is of a SEPA participating country.
@@ -90,6 +94,7 @@ public final class IBAN {
             throw new WrongChecksumException(value);
         }
         this.value = value;
+        this.inSwiftRegistry = CountryCodes.isInSwiftRegistry(countryCode);
         this.sepa = CountryCodes.isSEPACountry(countryCode);
     }
 
@@ -98,9 +103,9 @@ public final class IBAN {
      * @param input the input, which can be either plain ("CC11ABCD123...") or formatted with (ASCII 0x20) space characters ("CC11 ABCD 123. ..").
      * @return the parsed and validated IBAN object, never null.
      * @throws IllegalArgumentException if the input is null, malformed or otherwise fails validation.
-     * @see #valueOf(String)
+     * @see #valueOf(CharSequence)
      */
-    public static IBAN parse(String input) {
+    public static IBAN parse(CharSequence input) {
         if (input == null || input.length() == 0) {
             throw new IllegalArgumentException("Input is null or empty string.");
         }
@@ -115,9 +120,9 @@ public final class IBAN {
      * @param input the input, which can be either plain ("CC11ABCD123...") or formatted ("CC11 ABCD 123. ..").
      * @return the parsed and validated IBAN object, or null.
      * @throws IllegalArgumentException if the input is malformed or otherwise fails validation.
-     * @see #parse(String)
+     * @see #parse(CharSequence)
      */
-    public static IBAN valueOf(String input) {
+    public static IBAN valueOf(CharSequence input) {
         if (input == null) {
             return null;
         }
@@ -156,6 +161,14 @@ public final class IBAN {
      */
     public boolean isSEPA() {
         return this.sepa;
+    }
+
+    /**
+     * Returns whether the source for this IBAN's format and data is the SWIFT IBAN Registry.
+     * @return true if from SWIFT IBAN Registry, false if from Experimental IBANs list.
+     */
+    public boolean isInSwiftRegistry() {
+        return this.inSwiftRegistry;
     }
 
     /**
@@ -211,13 +224,9 @@ public final class IBAN {
      *         possibly pretty printed IBAN
      * @return plain IBAN
      */
-    public static String toPlain(String input) {
-        Matcher matcher = SPACE_PATTERN.matcher(input);
-        if (matcher.find()) {
-            return matcher.replaceAll("");
-        } else {
-            return input;
-        }
+    public static String toPlain(CharSequence input) {
+        // if SPACE_PATTERN is not found this returns input.toString();
+        return SPACE_PATTERN.matcher(input).replaceAll("");
     }
 
     /**
@@ -228,7 +237,7 @@ public final class IBAN {
      *         plain or pretty printed IBAN
      * @return pretty printed IBAN
      */
-    public static String toPretty(String input) {
+    public static String toPretty(CharSequence input) {
         return addSpaces(toPlain(input));
     }
 
@@ -239,7 +248,7 @@ public final class IBAN {
      *         plain iban
      * @return pretty printed IBAN
      */
-    private static String addSpaces(String value) {
+    private static String addSpaces(CharSequence value) {
         final int length = value.length();
         final int lastPossibleBlock = length - 4;
         final StringBuilder sb = new StringBuilder(length + (length - 1) / 4);
