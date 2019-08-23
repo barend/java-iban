@@ -116,6 +116,7 @@ rules out some modern Java language constructs. I'm trying to keep the library a
 * Update to version 83 of the IBAN registry
   * Adds Vatican City State (VA)
   * (Ignores updated example IBAN for Sao Tome e Principe, because it fails checksum validation)
+* Factory methods in `IBAN` accept `CharSequence` instead of `String`
 
 #### 1.5.1: Sep 12th, 2017
 
