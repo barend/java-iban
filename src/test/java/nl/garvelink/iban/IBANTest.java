@@ -15,6 +15,8 @@
  */
 package nl.garvelink.iban;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.*;
@@ -118,5 +120,19 @@ public class IBANTest {
         assertEquals("12345678", IBAN.toPlain("1234 5678"));
         assertEquals("123456789", IBAN.toPlain("123456789"));
         assertEquals("123456789", IBAN.toPlain("1234 5678 9"));
+    }
+
+    @Test
+    public void lexicalSort() {
+        ArrayList expected = new ArrayList();
+        expected.add(IBAN.parse("DK3400000000000003"));
+        expected.add(IBAN.parse("NL41BANK0000000002"));
+        expected.add(IBAN.parse("NL68BANK0000000001"));
+        ArrayList actual = new ArrayList();
+        actual.add(IBAN.parse("NL68BANK0000000001"));
+        actual.add(IBAN.parse("DK3400000000000003"));
+        actual.add(IBAN.parse("NL41BANK0000000002"));
+        Collections.sort(actual, IBAN.LEXICAL_ORDER);
+        assertEquals(expected, actual);
     }
 }
