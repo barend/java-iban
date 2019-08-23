@@ -177,7 +177,7 @@ public class CountryCodesParameterizedTest {
      * @see #updateTestShouldBeExhaustive()
      * @see #finishTestShouldBeExhaustive()
      */
-    private static final Set<String> allCountryCodes = Collections.synchronizedSet(new HashSet<String>(PARAMETERS.size()));
+    private static final Set<String> allCountryCodes = Collections.synchronizedSet(new HashSet<>(PARAMETERS.size()));
 
     @BeforeClass
     public static void prepareTestShouldBeExhaustive() {

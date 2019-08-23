@@ -117,6 +117,8 @@ rules out some modern Java language constructs. I'm trying to keep the library a
   * Adds Vatican City State (VA)
   * (Ignores updated example IBAN for Sao Tome e Principe, because it fails checksum validation)
 * Factory methods in `IBAN` accept `CharSequence` instead of `String`
+* Upgrades to Java bytecode level 1.8. The 1.6 target was there to offer legacy Android support in 2015. This is no
+  longer required in 2019.
 
 #### 1.5.1: Sep 12th, 2017
 
