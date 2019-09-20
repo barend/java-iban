@@ -22,7 +22,7 @@ public class UnknownCountryCodeException extends IllegalArgumentException {
     private final String failedInput;
 
     UnknownCountryCodeException(String failedInput) {
-        super("Unknown country code in " + failedInput);
+        super("Unknown country code in input");
         this.failedInput = failedInput;
     }
 

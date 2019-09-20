@@ -24,7 +24,7 @@ public class WrongLengthException extends IllegalArgumentException {
     private final int expectedLength;
 
     WrongLengthException(String failedInput, int expectedLength) {
-        super("Input \"" + failedInput + "\" failed length validation: found " + failedInput.length() + ", but expect "
+        super("Input failed length validation: found " + failedInput.length() + ", but expect "
                 + expectedLength + " for country code.");
         this.failedInput = failedInput;
         this.actualLength = failedInput.length();

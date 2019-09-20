@@ -22,7 +22,7 @@ public class WrongChecksumException extends IllegalArgumentException {
     private final String failedInput;
 
     WrongChecksumException(String failedInput) {
-        super("Input \"" + failedInput + "\" failed checksum validation.");
+        super("Input failed checksum validation.");
         this.failedInput = failedInput;
     }
 
