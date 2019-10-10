@@ -46,18 +46,11 @@ public class CountryCodesParameterizedTest {
      * List of valid international IBAN's.
      * <p>References:</p>
      * <dl>
-     *     <dt>ECBS</dt>
-     *     <dd>http://www.ecbs.org/iban.htm</dd>
      *     <dt>SWIFT</dt>
-     *     <dd>http://www.swift.com/dsp/resources/documents/IBAN_Registry.pdf (release 58)</dd>
-     *     <dt>Nordea</dt>
-     *     <dd>http://www.nordea.com/Our+services/International+products+and+services/Cash+Management/IBAN+countries/908462.html (Oct 20, 2013)</dd>
+     *     <dd>https://www.swift.com/resource/iban-registry-pdf</dd>
+     *     <dt>IBAN.com Experimental List</dt>
+     *     <dd>https://www.iban.com/structure</dd>
      * </dl>
-     * <p>The Nordea link was obtained through Wikipedia.</p>
-     * <p>Political note: the SWIFT documentation uses "State of Palestine", as does this source file. The initial
-     * version of this source file was based on Wikipedia and used "Palistinian Territories" [sic], which has a typo and
-     * is wrong either way. The author chose to follow the name used by SWIFT, since they are the governing body of the
-     * IBAN standard. No statement of political preference either way is implied, or should be inferred.</p>
      */
     static final List<TestData> PARAMETERS = Arrays.asList(
             // Name                          SWIFT  SEPA   Plain                              Bank        Branch      Pretty
