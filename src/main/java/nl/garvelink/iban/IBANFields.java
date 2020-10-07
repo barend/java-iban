@@ -47,7 +47,7 @@ public class IBANFields {
      * @return the bank ID for this IBAN, or <code>EMPTY</code> if unknown.
      */
     public static Optional<String> getBankIdentifier(IBAN iban) {
-        return Optional.ofNullable(IBANFieldsCompat.getBankIdentifier(iban));
+        return Optional.ofNullable(CountryCodes.getBankIdentifier(iban));
     }
 
     /**
@@ -56,6 +56,6 @@ public class IBANFields {
      * @return the branch ID for this IBAN, or <code>EMPTY</code> if unknown.
      */
     public static Optional<String> getBranchIdentifier(IBAN iban) {
-        return Optional.ofNullable(IBANFieldsCompat.getBranchIdentifier(iban));
+        return Optional.ofNullable(CountryCodes.getBranchIdentifier(iban));
     }
 }

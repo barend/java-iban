@@ -99,6 +99,10 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
+#### 1.7.0: unreleased
+* Moved some private fields out of `IBANFieldsCompat` into `CountryCodes`. Any code that accesses these through
+  reflection will break.
+
 #### 1.6.1: 20 September 2019
 * "Bad input" exception messages no longer echo the input ([#14][i14]).
 * No changes to IBAN formats
