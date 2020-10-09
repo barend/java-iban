@@ -100,6 +100,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 ### Version History
 
 #### 1.7.0: unreleased
+* Add spotbugs:check to the build definition.
 * Moved some private fields out of `IBANFieldsCompat` into `CountryCodes`. Any code that accesses these through
   reflection will break.
 
