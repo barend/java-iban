@@ -25,7 +25,7 @@ Grab a package [from Github][download] or get it from Maven Central:
     <dependency>
         <groupId>nl.garvelink.oss</groupId>
         <artifactId>iban</artifactId>
-        <version>1.6.1</version>
+        <version>${iban_version}</version>
     </dependency>
 ```
 
@@ -33,7 +33,7 @@ Grab a package [from Github][download] or get it from Maven Central:
 
 ```groovy
     dependencies {
-        compile 'nl.garvelink.oss:iban:1.6.1'
+        compile 'nl.garvelink.oss:iban:${iban_version}'
     }
 ```
 
@@ -229,6 +229,8 @@ rules out some modern Java language constructs. I'm trying to keep the library a
   string, and there already exist data types for dealing with those.
 * Any feature that's not present in _all_ IBAN's is kept outside the `IBAN` class. Currently, that's the support for
   extracting Bank and Branch identifiers, which lives in the `IBANFields` and `IBANFieldsCompat` classes.
+* The library originally supported an SDK 14 (Ice Cream Sandwich) era Android app. This is why it relies on bit-packing
+  to reduce bytecode size and why there's a pre-JDK8 API.
 
 ### References
 
@@ -249,7 +251,7 @@ If you're looking for a more comprehensive IBAN library, you may prefer [iban4j]
 
 ### Copyright and License
 
-Copyright 2019 Barend Garvelink
+Copyright 2020 Barend Garvelink
 
 ```none
    Licensed under the Apache License, Version 2.0 (the "License");
