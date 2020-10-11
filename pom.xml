@@ -81,8 +81,59 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <!-- We inherit this as last one used, we want it to be the first one used. -->
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </pluginRepository>
+        <pluginRepository>
+            <!-- jinjava-maven-plugin is published (only) here -->
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <build>
         <plugins>
+            <plugin>
+                <artifactId>jinjava-maven-plugin</artifactId>
+                <groupId>com.github.terefang</groupId>
+                <version>2020.5.4</version>
+                <executions>
+                    <execution>
+                        <id>generate-code</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>jinjava</goal>
+                        </goals>
+                        <configuration>
+                            <additionalContext>src/main/resources/nl/garvelink/iban/IBAN.yml</additionalContext>
+                            <resourcesDirectory>src/main/jinjava/</resourcesDirectory>
+                            <resourcesOutput>${project.build.directory}/generated-sources/jinjava</resourcesOutput>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources/jinjava</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

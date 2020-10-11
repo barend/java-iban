@@ -56,4 +56,14 @@ public class CountryCodesTest {
     public void getLengthForUnknownCountryCodeReturnsMinusOne() {
         assertThat(CountryCodes.getLengthForCountryCode("XX"), is(-1));
     }
+
+    @Test
+    public void getLastUpdateDate() {
+        assertThat(CountryCodes.getLastUpdateDate(), is(notNullValue()));
+    }
+
+    @Test
+    public void getLastUpdateRevision() {
+        assertThat(CountryCodes.getLastUpdateRevision(), is(notNullValue()));
+    }
 }

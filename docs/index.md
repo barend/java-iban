@@ -100,9 +100,11 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 ### Version History
 
 #### 1.7.0: unreleased
+* Uses build-time code generation to construct the reference data. The input YAML file is included in the distribution
+  JAR for completeness, but it is not used at runtime.
+* Add `CountryCodes.getLastUpdateDate()` and `CountryCodes.getLastUpdateRevision()`.
 * Add spotbugs:check to the build definition.
-* Moved some private fields out of `IBANFieldsCompat` into `CountryCodes`. Any code that accesses these through
-  reflection will break.
+* Moved some private fields. Any code that accesses these through reflection will break.
 
 #### 1.6.1: 20 September 2019
 * "Bad input" exception messages no longer echo the input ([#14][i14]).
