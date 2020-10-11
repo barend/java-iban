@@ -100,6 +100,15 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 ### Version History
 
 #### 1.7.0: unreleased
+* Update to revision 88 of the SWIFT IBAN Registry
+    * Albania (AL): bank identifier extended to 8 chars
+    * Egypt (EG): now in SWIFT registry; add embedded bank and branch identifier
+    * Iceland (IS): bank and branch identifier split
+    * Libya (LY): added
+    * Poland (PL): bank identifier changed to branch identifier
+    * Seychelles (SC): bank and branch identifier split
+* Update to IBAN.com Experimental List
+    * No changes.
 * Exception classes define `serialVersionUID`.
 * Uses build-time code generation to construct the reference data. The input YAML file is included in the distribution
   JAR for completeness, but it is not used at runtime.
