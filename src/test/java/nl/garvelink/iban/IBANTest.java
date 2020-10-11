@@ -15,12 +15,16 @@
  */
 package nl.garvelink.iban;
 
-import java.util.Arrays;
-import java.util.List;
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Miscellaneous tests for the {@link IBAN} class.
@@ -85,41 +89,41 @@ public class IBANTest {
         IBAN y = IBAN.parse(VALID_IBAN);
         IBAN z = IBAN.parse(VALID_IBAN);
 
-        assertFalse("No object equals null", x.equals(null));
-        assertTrue("An object equals itself", x.equals(x));
-        assertTrue("Equality is symmetric", x.equals(y) && y.equals(x));
-        assertTrue("Equality is transitive", x.equals(y) && y.equals(z) && x.equals(z));
-        assertEquals("Equal objects have the same hash code", x.hashCode(), y.hashCode());
+        assertThat("No object equals null", x.equals(null), is(false));
+        assertThat("An object equals itself", x.equals(x), is(true));
+        assertThat("Equality is symmetric", x.equals(y) && y.equals(x), is(true));
+        assertThat("Equality is transitive", x.equals(y) && y.equals(z) && x.equals(z), is(true));
+        assertThat("Equal objects have the same hash code", x.hashCode(), is(equalTo(y.hashCode())));
     }
 
     @Test
     public void testToPretty() throws Exception {
-        assertEquals("", IBAN.toPretty(""));
-        assertEquals("12", IBAN.toPretty("12"));
-        assertEquals("12", IBAN.toPretty("1 2"));
-        assertEquals("1234", IBAN.toPretty("1234"));
-        assertEquals("1234", IBAN.toPretty("1 2 3 4"));
-        assertEquals("1234 5", IBAN.toPretty("12345"));
-        assertEquals("1234 5", IBAN.toPretty("1234 5"));
-        assertEquals("1234 5678", IBAN.toPretty("12345678"));
-        assertEquals("1234 5678", IBAN.toPretty("1234 5678"));
-        assertEquals("1234 5678 9", IBAN.toPretty("123456789"));
-        assertEquals("1234 5678 9", IBAN.toPretty("1234 5678 9"));
+        assertThat(IBAN.toPretty(""), is(equalTo("")));
+        assertThat(IBAN.toPretty("12"), is(equalTo("12")));
+        assertThat(IBAN.toPretty("1 2"), is(equalTo("12")));
+        assertThat(IBAN.toPretty("1234"), is(equalTo("1234")));
+        assertThat(IBAN.toPretty("1 2 3 4"), is(equalTo("1234")));
+        assertThat(IBAN.toPretty("12345"), is(equalTo("1234 5")));
+        assertThat(IBAN.toPretty("1234 5"), is(equalTo("1234 5")));
+        assertThat(IBAN.toPretty("12345678"), is(equalTo("1234 5678")));
+        assertThat(IBAN.toPretty("1234 5678"), is(equalTo("1234 5678")));
+        assertThat(IBAN.toPretty("123456789"), is(equalTo("1234 5678 9")));
+        assertThat(IBAN.toPretty("1234 5678 9"), is(equalTo("1234 5678 9")));
     }
 
     @Test
     public void testToPlain() throws Exception {
-        assertEquals("", IBAN.toPlain(""));
-        assertEquals("12", IBAN.toPlain("12"));
-        assertEquals("12", IBAN.toPlain("1 2"));
-        assertEquals("1234", IBAN.toPlain("1234"));
-        assertEquals("1234", IBAN.toPlain("1 2 3 4"));
-        assertEquals("12345", IBAN.toPlain("12345"));
-        assertEquals("12345", IBAN.toPlain("1234 5"));
-        assertEquals("12345678", IBAN.toPlain("12345678"));
-        assertEquals("12345678", IBAN.toPlain("1234 5678"));
-        assertEquals("123456789", IBAN.toPlain("123456789"));
-        assertEquals("123456789", IBAN.toPlain("1234 5678 9"));
+        assertThat(IBAN.toPlain(""), is(equalTo("")));
+        assertThat(IBAN.toPlain("12"), is(equalTo("12")));
+        assertThat(IBAN.toPlain("1 2"), is(equalTo("12")));
+        assertThat(IBAN.toPlain("1234"), is(equalTo("1234")));
+        assertThat(IBAN.toPlain("1 2 3 4"), is(equalTo("1234")));
+        assertThat(IBAN.toPlain("12345"), is(equalTo("12345")));
+        assertThat(IBAN.toPlain("1234 5"), is(equalTo("12345")));
+        assertThat(IBAN.toPlain("12345678"), is(equalTo("12345678")));
+        assertThat(IBAN.toPlain("1234 5678"), is(equalTo("12345678")));
+        assertThat(IBAN.toPlain("123456789"), is(equalTo("123456789")));
+        assertThat(IBAN.toPlain("1234 5678 9"), is(equalTo("123456789")));
     }
 
     @Test
@@ -127,6 +131,6 @@ public class IBANTest {
         List<IBAN> expected = Arrays.asList(IBAN.parse("DK3400000000000003"), IBAN.parse("NL41BANK0000000002"), IBAN.parse("NL68BANK0000000001"));
         List<IBAN> actual = Arrays.asList(IBAN.parse("NL68BANK0000000001"), IBAN.parse("DK3400000000000003"), IBAN.parse("NL41BANK0000000002"));
         actual.sort(IBAN.LEXICAL_ORDER);
-        assertEquals(expected, actual);
+        assertThat(actual, is(equalTo(expected)));
     }
 }

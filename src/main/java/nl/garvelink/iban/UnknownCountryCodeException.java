@@ -19,6 +19,7 @@ package nl.garvelink.iban;
  * Indicates that an IBAN failed validation because its embedded country code is unknown.
  */
 public class UnknownCountryCodeException extends IllegalArgumentException {
+    private static final long serialVersionUID = 1L;
     private final String failedInput;
 
     UnknownCountryCodeException(String failedInput) {

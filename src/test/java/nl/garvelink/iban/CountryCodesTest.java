@@ -15,13 +15,15 @@
  */
 package nl.garvelink.iban;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.*;
 
-import java.util.Iterator;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Some tests for {@link CountryCodes}.
@@ -39,17 +41,17 @@ public class CountryCodesTest {
         List<String> raw = new ArrayList<>(CountryCodes.getKnownCountryCodes());
         List<String> sorted = new ArrayList<>(CountryCodes.getKnownCountryCodes());
         sorted.sort(String::compareTo);
-        assertEquals(sorted, raw);
+        assertThat(sorted, is(equalTo(raw)));
     }
 
     @Test
     public void isKnownCountryCodeShouldReturnFalseForNull() {
-        assertFalse(CountryCodes.isKnownCountryCode(null));
+        assertThat(CountryCodes.isKnownCountryCode(null), is(false));
     }
 
     @Test
     public void isKnownCountryCodeShouldReturnFalseForLowercase() {
-        assertFalse(CountryCodes.isKnownCountryCode("nl"));
+        assertThat(CountryCodes.isKnownCountryCode("nl"), is(false));
     }
 
     @Test

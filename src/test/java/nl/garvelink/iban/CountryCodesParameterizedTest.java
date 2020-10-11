@@ -27,7 +27,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.collection.IsEmptyCollection.empty;
 
 /**
  * Ensures that the {@link nl.garvelink.iban.IBAN} class accepts IBAN numbers from every participating country (...known at the time the test was last updated).
@@ -166,12 +169,12 @@ public class CountryCodesParameterizedTest {
 
     @Test
     public void getLengthForCountryCodeShouldReturnCorrectValue() {
-        assertEquals(td.plain.length(), CountryCodes.getLengthForCountryCode(td.plain.substring(0, 2)));
+        assertThat(td.plain.length(), is(equalTo(CountryCodes.getLengthForCountryCode(td.plain.substring(0, 2)))));
     }
 
     @Test
     public void isKnownCountryCodeShouldReturnTrue() {
-        assertTrue(CountryCodes.isKnownCountryCode(td.plain.substring(0, 2)));
+        assertThat(CountryCodes.isKnownCountryCode(td.plain.substring(0, 2)), is(true));
     }
 
     /**
@@ -196,8 +199,8 @@ public class CountryCodesParameterizedTest {
 
     @AfterClass
     public static void finishTestShouldBeExhaustive() {
-        assertTrue("There are entries in CountryCodes.java that are not covered in test: " + allCountryCodes,
-                allCountryCodes.isEmpty());
+        assertThat("There are entries in CountryCodes.java that are not covered in test: " + allCountryCodes,
+                allCountryCodes, is(empty()));
     }
 
     private static TestData td(String name, boolean swift, boolean sepa, String plain, String bank, String branch, String pretty) {

@@ -100,6 +100,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 ### Version History
 
 #### 1.7.0: unreleased
+* Exception classes define `serialVersionUID`.
 * Uses build-time code generation to construct the reference data. The input YAML file is included in the distribution
   JAR for completeness, but it is not used at runtime.
 * Add `CountryCodes.getLastUpdateDate()` and `CountryCodes.getLastUpdateRevision()`.

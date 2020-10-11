@@ -23,10 +23,11 @@ import org.junit.runners.Parameterized;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Ensures that the {@link IBAN} class accepts IBAN numbers from every participating country (...known at the time the test was last updated).
@@ -49,7 +50,7 @@ public class IBANFieldsTest {
     @Test
     public void shouldExtractBankIdentifier() {
         IBAN iban = IBAN.parse(td.plain);
-        assertNotNull(iban);
+        assertThat(iban, is(notNullValue()));
         if (td.bank != null) {
             assertThat(IBANFields.getBankIdentifier(iban).get(), is(equalTo(td.bank)));
             assertThat(IBANFieldsCompat.getBankIdentifier(iban), is(equalTo(td.bank)));
@@ -62,7 +63,7 @@ public class IBANFieldsTest {
     @Test
     public void shouldExtractBranchIdentifier() {
         IBAN iban = IBAN.parse(td.plain);
-        assertNotNull(iban);
+        assertThat(iban, is(notNullValue()));
         if (td.branch != null) {
             assertThat(IBANFields.getBranchIdentifier(iban).get(), is(equalTo(td.branch)));
             assertThat(IBANFieldsCompat.getBranchIdentifier(iban), is(equalTo(td.branch)));
