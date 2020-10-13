@@ -25,7 +25,7 @@ Grab a package [from Github][download] or get it from Maven Central:
     <dependency>
         <groupId>nl.garvelink.oss</groupId>
         <artifactId>iban</artifactId>
-        <version>${iban_version}</version>
+        <version>1.7.0</version>
     </dependency>
 ```
 
@@ -33,7 +33,7 @@ Grab a package [from Github][download] or get it from Maven Central:
 
 ```groovy
     dependencies {
-        compile 'nl.garvelink.oss:iban:${iban_version}'
+        compile 'nl.garvelink.oss:iban:1.7.0'
     }
 ```
 
@@ -99,7 +99,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
-#### 1.7.0: unreleased
+#### 1.7.0: 13 October 2020
 * Packaging updated to support Java module system, see `docs/java-module.md`.
 * Update to revision 88 of the SWIFT IBAN Registry
     * Albania (AL): bank identifier extended to 8 chars
