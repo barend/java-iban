@@ -100,6 +100,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 ### Version History
 
 #### 1.7.0: unreleased
+* Packaging updated to support Java module system, see `docs/java-module.md`.
 * Update to revision 88 of the SWIFT IBAN Registry
     * Albania (AL): bank identifier extended to 8 chars
     * Egypt (EG): now in SWIFT registry; add embedded bank and branch identifier
