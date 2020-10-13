@@ -1,0 +1,1136 @@
+---
+# Copyright 2020 Barend Garvelink
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+meta:
+  iban_registry_version: 88
+  last_update: 2020-10-11
+ibans:
+  -
+    name: Andorra
+    country_code: AD
+    length: 24
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+      branch_code:
+        position: 8
+        length: 4
+  -
+    name: United Arab Emirates (The)
+    country_code: AE
+    length: 23
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+  -
+    name: Albania
+    country_code: AL
+    length: 28
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 8
+      branch_code:
+        position: 7
+        length: 4
+  -
+    name: Angola
+    country_code: AO
+    length: 25
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Austria
+    country_code: AT
+    length: 20
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 5
+  -
+    name: Azerbaijan
+    country_code: AZ
+    length: 28
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Bosnia and Herzegovinia
+    country_code: BA
+    length: 20
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+      branch_code:
+        position: 7
+        length: 3
+  -
+    name: Belgium
+    country_code: BE
+    length: 16
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+  -
+    name: Burkina Faso
+    country_code: BF
+    length: 28
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Bulgaria
+    country_code: BG
+    length: 22
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+      branch_code:
+        position: 8
+        length: 4
+  -
+    name: Bahrain
+    country_code: BH
+    length: 22
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Burundi
+    country_code: BI
+    length: 16
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Benin
+    country_code: BJ
+    length: 28
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Brazil
+    country_code: BR
+    length: 29
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 8
+      branch_code:
+        position: 12
+        length: 5
+  -
+    name: Republic of Belarus
+    country_code: BY
+    length: 28
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Central African Republic
+    country_code: CF
+    length: 27
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Congo
+    country_code: CG
+    length: 27
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Switzerland
+    country_code: CH
+    length: 21
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 5
+  -
+    name: Ivory Coast
+    country_code: CI
+    length: 28
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Cameroon
+    country_code: CM
+    length: 27
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Costa Rica
+    country_code: CR
+    length: 22
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Cape Verde
+    country_code: CV
+    length: 25
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Cyprus
+    country_code: CY
+    length: 28
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+      branch_code:
+        position: 7
+        length: 5
+  -
+    name: Czech Republic
+    country_code: CZ
+    length: 24
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Germany
+    country_code: DE
+    length: 22
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 8
+  -
+    name: Djibouti
+    country_code: DJ
+    length: 27
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Denmark
+    country_code: DK
+    length: 18
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Dominican Republic
+    country_code: DO
+    length: 28
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Algeria
+    country_code: DZ
+    length: 26
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Estonia
+    country_code: EE
+    length: 20
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 2
+  -
+    name: Egypt
+    country_code: EG
+    length: 29
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+      branch_code:
+        position: 8
+        length: 4
+  -
+    name: Spain
+    country_code: ES
+    length: 24
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+      branch_code:
+        position: 8
+        length: 4
+  -
+    name: Finland
+    country_code: FI
+    length: 18
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+  -
+    name: Faroe Islands
+    country_code: FO
+    length: 18
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: France
+    country_code: FR
+    length: 27
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 5
+  -
+    name: Gabon
+    country_code: GA
+    length: 27
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: United Kingdom
+    country_code: GB
+    length: 22
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+      branch_code:
+        position: 8
+        length: 6
+  -
+    name: Georgia
+    country_code: GE
+    length: 22
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 2
+  -
+    name: Gibraltar
+    country_code: GI
+    length: 23
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Greenland
+    country_code: GL
+    length: 18
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Equatorial Guinea
+    country_code: GQ
+    length: 27
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Greece
+    country_code: GR
+    length: 27
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+      branch_code:
+        position: 7
+        length: 4
+  -
+    name: Guatemala
+    country_code: GT
+    length: 28
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Guinea-Bissau
+    country_code: GW
+    length: 25
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Honduras
+    country_code: HN
+    length: 28
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Croatia
+    country_code: HR
+    length: 21
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 7
+  -
+    name: Hungary
+    country_code: HU
+    length: 28
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+      branch_code:
+        position: 7
+        length: 4
+  -
+    name: Ireland
+    country_code: IE
+    length: 22
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+      branch_code:
+        position: 8
+        length: 6
+  -
+    name: Israel
+    country_code: IL
+    length: 23
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+      branch_code:
+        position: 7
+        length: 3
+  -
+    name: Iraq
+    country_code: IQ
+    length: 23
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+      branch_code:
+        position: 8
+        length: 3
+  -
+    name: Iran
+    country_code: IR
+    length: 26
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Iceland
+    country_code: IS
+    length: 26
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 2
+      branch_code:
+        position: 6
+        length: 2
+  -
+    name: Italy
+    country_code: IT
+    length: 27
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 5
+        length: 5
+      branch_code:
+        position: 10
+        length: 5
+  -
+    name: Jordan
+    country_code: JO
+    length: 30
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Comoros
+    country_code: KM
+    length: 27
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Kuwait
+    country_code: KW
+    length: 30
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Kazakhstan
+    country_code: KZ
+    length: 20
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+  -
+    name: Lebanon
+    country_code: LB
+    length: 28
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Saint Lucia
+    country_code: LC
+    length: 32
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Liechtenstein
+    country_code: LI
+    length: 21
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 5
+  -
+    name: Lithuania
+    country_code: LT
+    length: 20
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 5
+  -
+    name: Luxembourg
+    country_code: LU
+    length: 20
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+  -
+    name: Latvia
+    country_code: LV
+    length: 21
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Libya
+    country_code: LY
+    length: 25
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+      branch_code:
+        position: 7
+        length: 3
+  -
+    name: Morocco
+    country_code: MA
+    length: 28
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Monaco
+    country_code: MC
+    length: 27
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 5
+      branch_code:
+        position: 9
+        length: 5
+  -
+    name: Moldova
+    country_code: MD
+    length: 24
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 2
+  -
+    name: Montenegro
+    country_code: ME
+    length: 22
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+  -
+    name: Madagascar
+    country_code: MG
+    length: 27
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Macedonia
+    country_code: MK
+    length: 19
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+  -
+    name: Mali
+    country_code: ML
+    length: 28
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Mauritania
+    country_code: MR
+    length: 27
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 5
+      branch_code:
+        position: 9
+        length: 5
+  -
+    name: Malta
+    country_code: MT
+    length: 31
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+      branch_code:
+        position: 8
+        length: 5
+  -
+    name: Mauritius
+    country_code: MU
+    length: 30
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 6
+      branch_code:
+        position: 10
+        length: 2
+  -
+    name: Mozambique
+    country_code: MZ
+    length: 25
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Niger
+    country_code: NE
+    length: 28
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Nicaragua
+    country_code: NI
+    length: 32
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Netherlands (The)
+    country_code: NL
+    length: 18
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Norway
+    country_code: "NO"
+    length: 15
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Pakistan
+    country_code: PK
+    length: 24
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Poland
+    country_code: PL
+    length: 28
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      branch_code:
+        position: 4
+        length: 8
+  -
+    name: Palestine, State of
+    country_code: PS
+    length: 29
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Portugal
+    country_code: PT
+    length: 25
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Qatar
+    country_code: QA
+    length: 29
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Romania
+    country_code: RO
+    length: 24
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Serbia
+    country_code: RS
+    length: 22
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+  -
+    name: Saudi Arabia
+    country_code: SA
+    length: 24
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 2
+  -
+    name: Seychelles
+    country_code: SC
+    length: 31
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 6
+      branch_code:
+        position: 10
+        length: 2
+  -
+    name: Sweden
+    country_code: SE
+    length: 24
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+  -
+    name: Slovenia
+    country_code: SI
+    length: 19
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 5
+  -
+    name: Slovakia
+    country_code: SK
+    length: 24
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: San Marino
+    country_code: SM
+    length: 27
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 5
+        length: 5
+      branch_code:
+        position: 10
+        length: 5
+  -
+    name: Senegal
+    country_code: SN
+    length: 28
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Sao Tome e Principe
+    country_code: ST
+    length: 25
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+      branch_code:
+        position: 8
+        length: 4
+  -
+    name: El Salvador
+    country_code: SV
+    length: 28
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Chad
+    country_code: TD
+    length: 27
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Togo
+    country_code: TG
+    length: 28
+    flags:
+      sepa_country: no
+      in_swift_registry: no
+  -
+    name: Timor-Leste
+    country_code: TL
+    length: 23
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+  -
+    name: Tunisia
+    country_code: TN
+    length: 24
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 2
+      branch_code:
+        position: 6
+        length: 3
+  -
+    name: Turkey
+    country_code: TR
+    length: 26
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 5
+  -
+    name: Ukraine
+    country_code: UA
+    length: 29
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 6
+  -
+    name: Vatican City State
+    country_code: VA
+    length: 22
+    flags:
+      sepa_country: yes
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
+  -
+    name: Virgin Islands
+    country_code: VG
+    length: 24
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
+    name: Kosovo
+    country_code: XK
+    length: 20
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 2
+      branch_code:
+        position: 6
+        length: 2

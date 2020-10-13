@@ -21,8 +21,11 @@ import org.junit.runners.Parameterized;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Ensures that the {@link IBAN} class accepts IBAN numbers from every participating country (...known at the time the test was last updated).
@@ -45,7 +48,7 @@ public class IBANInternationalTest {
     @Test
     public void parseShouldAcceptPlainForm() {
         IBAN iban = IBAN.parse(td.plain);
-        assertNotNull(iban);
+        assertThat(iban, is(notNullValue()));
         assertThat(iban.toPlainString(), is(equalTo(td.plain)));
         assertThat(iban.toString(), is(equalTo(td.pretty)));
     }
@@ -53,7 +56,7 @@ public class IBANInternationalTest {
     @Test
     public void parseShouldAcceptPrettyPrintedForm() {
         IBAN iban = IBAN.parse(td.pretty);
-        assertNotNull(iban);
+        assertThat(iban, is(notNullValue()));
         assertThat(iban.toPlainString(), is(equalTo(td.plain)));
         assertThat(iban.toString(), is(equalTo(td.pretty)));
     }
@@ -72,17 +75,17 @@ public class IBANInternationalTest {
 
     @Test
     public void isRegisteredIBAN() {
-        assertEquals(td.swift, IBAN.parse(td.plain).isInSwiftRegistry());
+        assertThat(td.swift, is(equalTo(IBAN.parse(td.plain).isInSwiftRegistry())));
     }
 
     @Test
     public void isSEPACountry() {
-        assertEquals(td.sepa, IBAN.parse(td.plain).isSEPA());
+        assertThat(td.sepa, is(equalTo(IBAN.parse(td.plain).isSEPA())));
     }
 
     @Test
     @SuppressWarnings("deprecation")
     public void getLengthForCountryCodeShouldReturnCorrectValue() {
-        assertEquals(td.plain.length(), IBAN.getLengthForCountryCode(td.plain.substring(0, 2)));
+        assertThat(td.plain.length(), is(equalTo(IBAN.getLengthForCountryCode(td.plain.substring(0, 2)))));
     }
 }

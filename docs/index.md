@@ -25,7 +25,7 @@ Grab a package [from Github][download] or get it from Maven Central:
     <dependency>
         <groupId>nl.garvelink.oss</groupId>
         <artifactId>iban</artifactId>
-        <version>1.6.1</version>
+        <version>${iban_version}</version>
     </dependency>
 ```
 
@@ -33,7 +33,7 @@ Grab a package [from Github][download] or get it from Maven Central:
 
 ```groovy
     dependencies {
-        compile 'nl.garvelink.oss:iban:1.6.1'
+        compile 'nl.garvelink.oss:iban:${iban_version}'
     }
 ```
 
@@ -98,6 +98,24 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 [wjij]: http://blog.joda.org/2009/11/why-jsr-310-isn-joda-time_4941.html
 
 ### Version History
+
+#### 1.7.0: unreleased
+* Packaging updated to support Java module system, see `docs/java-module.md`.
+* Update to revision 88 of the SWIFT IBAN Registry
+    * Albania (AL): bank identifier extended to 8 chars
+    * Egypt (EG): now in SWIFT registry; add embedded bank and branch identifier
+    * Iceland (IS): bank and branch identifier split
+    * Libya (LY): added
+    * Poland (PL): bank identifier changed to branch identifier
+    * Seychelles (SC): bank and branch identifier split
+* Update to IBAN.com Experimental List
+    * No changes.
+* Exception classes define `serialVersionUID`.
+* Uses build-time code generation to construct the reference data. The input YAML file is included in the distribution
+  JAR for completeness, but it is not used at runtime.
+* Add `CountryCodes.getLastUpdateDate()` and `CountryCodes.getLastUpdateRevision()`.
+* Add spotbugs:check to the build definition.
+* Moved some private fields. Any code that accesses these through reflection will break.
 
 #### 1.6.1: 20 September 2019
 * "Bad input" exception messages no longer echo the input ([#14][i14]).
@@ -222,6 +240,8 @@ rules out some modern Java language constructs. I'm trying to keep the library a
   string, and there already exist data types for dealing with those.
 * Any feature that's not present in _all_ IBAN's is kept outside the `IBAN` class. Currently, that's the support for
   extracting Bank and Branch identifiers, which lives in the `IBANFields` and `IBANFieldsCompat` classes.
+* The library originally supported an SDK 14 (Ice Cream Sandwich) era Android app. This is why it relies on bit-packing
+  to reduce bytecode size and why there's a pre-JDK8 API.
 
 ### References
 
@@ -242,7 +262,7 @@ If you're looking for a more comprehensive IBAN library, you may prefer [iban4j]
 
 ### Copyright and License
 
-Copyright 2019 Barend Garvelink
+Copyright 2020 Barend Garvelink
 
 ```none
    Licensed under the Apache License, Version 2.0 (the "License");

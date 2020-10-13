@@ -1,5 +1,5 @@
 /*
-   Copyright 2019 Barend Garvelink
+   Copyright 2020 Barend Garvelink
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -13,21 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-package nl.garvelink.iban;
 
-/**
- * Indicates that an IBAN failed validation because its embedded country code is unknown.
- */
-public class UnknownCountryCodeException extends IllegalArgumentException {
-    private static final long serialVersionUID = 1L;
-    private final String failedInput;
-
-    UnknownCountryCodeException(String failedInput) {
-        super("Unknown country code in input");
-        this.failedInput = failedInput;
-    }
-
-    public String getFailedInput() {
-        return failedInput;
-    }
+open module nl.garvelink.iban {
+    exports nl.garvelink.iban;
 }

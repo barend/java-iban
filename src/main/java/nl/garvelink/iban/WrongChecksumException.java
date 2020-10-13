@@ -19,6 +19,7 @@ package nl.garvelink.iban;
  * Indicates that a candate IBAN failed validation because its stated check digits didn't match the calculated expectation.
  */
 public class WrongChecksumException extends IllegalArgumentException {
+    private static final long serialVersionUID = 1L;
     private final String failedInput;
 
     WrongChecksumException(String failedInput) {
