@@ -109,7 +109,7 @@ public final class IBAN {
         if (input == null || input.length() == 0) {
             throw new IllegalArgumentException("Input is null or empty string.");
         }
-        if (!isLetterOrDigit(input.charAt(0)) || !isLetterOrDigit(input.charAt(input.length() - 1))) {
+        if (!(isLetterOrDigit(input.charAt(0)) && isLetterOrDigit(input.charAt(input.length() - 1)))) {
             throw new IllegalArgumentException("Input begins or ends in an invalid character.");
         }
         return new IBAN(toPlain(input));

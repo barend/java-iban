@@ -68,9 +68,14 @@ public class IBANTest {
         IBAN.parse(VALID_IBAN + ' ');
     }
 
-    @Test(expected = UnknownCountryCodeException.class)
+    @Test
     public void parseShouldRejectUnknownCountryCode() {
-        IBAN.parse("UU345678345543234");
+        try {
+            IBAN.parse("UU345678345543234");
+            fail("Invalid input should have been rejected for unknown country code.");
+        } catch (UnknownCountryCodeException e) {
+            assertThat(e.getFailedInput(), is("UU345678345543234"));
+        }
     }
 
     @Test

@@ -91,6 +91,12 @@ public class Modulo97Test {
     }
 
     @Test
+    public void itShouldIgnoreCase() {
+        assertThat(Modulo97.checksum("MO00T"), is(83));
+        assertThat(Modulo97.checksum("mo00t"), is(83));
+    }
+
+    @Test
     public void itShouldCalculateAnExpectedCheckDigits() {
         assertThat(Modulo97.calculateCheckDigits("MO00T"), is(15));
     }
