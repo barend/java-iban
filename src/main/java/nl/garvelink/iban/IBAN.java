@@ -15,6 +15,10 @@
  */
 package nl.garvelink.iban;
 
+import java.io.IOException;
+import java.io.InvalidObjectException;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.regex.Pattern;
 
@@ -24,7 +28,9 @@ import java.util.regex.Pattern;
  * matching the length of the IBAN to its country code. Unknown country codes are not supported.
  * @author Barend Garvelink (barend@garvelink.nl) https://github.com/barend
  */
-public final class IBAN {
+public final class IBAN implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * A comparator that puts IBAN's into lexicographic ordering, per {@link String#compareTo(String)}.
@@ -259,5 +265,75 @@ public final class IBAN {
         }
         sb.append(value, i, length);
         return sb.toString();
+    }
+
+    /**
+     * When serializing this object, substitute a {@link Memento} object.
+     * @return a memento containing {@link #value}.
+     * @throws ObjectStreamException never.
+     */
+    private Object writeReplace() throws ObjectStreamException {
+        return new Memento(this.toPlainString());
+    }
+
+    /**
+     * Prevents deserialization of this type. Instances of IBAN are never deserialized (only {@link Memento}s are), so
+     * if we ever encounter a serialized object of IBAN type, we don't want it.
+     * @param stream ignored.
+     * @throws IOException always.
+     * @throws ClassNotFoundException never.
+     */
+    private void readObject(java.io.ObjectInputStream stream)
+            throws IOException, ClassNotFoundException {
+        throw new InvalidObjectException("This type can only be deserialised from its memento type.");
+    }
+
+    /**
+     * Prevents deserialization of this type. Instances of IBAN are never deserialized (only {@link Memento}s are), so
+     * if we ever encounter a serialized object of IBAN type, we don't want it.
+     * @throws ObjectStreamException always.
+     */
+    private void readObjectNoData()
+            throws ObjectStreamException {
+        throw new InvalidObjectException("This type can only be deserialised from its memento type.");
+    }
+
+    /**
+     * Serialization helper for {@link IBAN}.
+     *
+     * This works as a "memento pattern" implementation of the serialized form. This gets us a number of benefits:
+     * <ul>
+     *     <li>No need to add a public, no-arg constructor to the IBAN class, nor to make its <code>value</code>
+     *     non-final. Doing either would invalidate the main design goal of the library.</li>
+     *     <li>The validity constraint is checked upon deserialization.</li>
+     *     <li>Smaller serialized form (still 101 bytes for an 18-byte IBAN).</li>
+     *     <li>Easier to maintain binary compatibility even as the IBAN class evolves.</li>
+     * </ul>
+     *
+     * There should be no need to ever use IBAN.Memento in your code.
+     */
+    static final class Memento implements Serializable {
+        private static final long serialVersionUID = 1L;
+        private String value;
+
+        public Memento() {
+            super();
+        }
+
+        Memento(String value) {
+            this();
+            this.value = value;
+        }
+
+        private Object readResolve() throws ObjectStreamException {
+            try {
+                return IBAN.parse(this.value);
+            } catch (IllegalArgumentException e) {
+                InvalidObjectException ioe = new InvalidObjectException(
+                        "Cannot decode serialized form: " + e.getMessage());
+                ioe.initCause(e);
+                throw ioe;
+            }
+        }
     }
 }

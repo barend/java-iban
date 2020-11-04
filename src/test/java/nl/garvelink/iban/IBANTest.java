@@ -17,10 +17,18 @@ package nl.garvelink.iban;
 
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InvalidObjectException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -46,6 +54,14 @@ public class IBANTest {
     @Test
     public void valueOfNullIsNull() {
         assertThat(IBAN.valueOf(null), is(nullValue()));
+    }
+
+    @Test
+    public void valueOfShouldAcceptToString() {
+        // The valueOf(String) should accept IBAN's own toString() output as input.
+        IBAN original = IBAN.parse(VALID_IBAN);
+        IBAN copy = IBAN.valueOf(original.toString());
+        assertThat(copy, is(equalTo(original)));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -129,6 +145,44 @@ public class IBANTest {
         assertThat(IBAN.toPlain("1234 5678"), is(equalTo("12345678")));
         assertThat(IBAN.toPlain("123456789"), is(equalTo("123456789")));
         assertThat(IBAN.toPlain("1234 5678 9"), is(equalTo("123456789")));
+    }
+
+    @Test
+    public void testSerializationRoundTrip() throws IOException, ClassNotFoundException {
+        IBAN original = IBAN.parse(VALID_IBAN);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream(2048);
+        new ObjectOutputStream(baos).writeObject(original);
+
+        byte[] bytes = baos.toByteArray();
+//        System.out.println(Base64.getEncoder().encodeToString(bytes)); // for the tests below
+        ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
+        IBAN copy = (IBAN) ois.readObject();
+        assertThat(copy, is(equalTo(original)));
+    }
+
+    @Test
+    public void testSerializedFormCompatibility() throws IOException, ClassNotFoundException {
+        // This was manually sampled from the preceding test. This test is to ensure that the serialised form remains
+        // stable as the library evolves.
+        String serializedForm = "rO0ABXNyAB5ubC5nYXJ2ZWxpbmsuaWJhbi5JQkFOJE1lbWVudG8AAAAAAAAAAQIAAUwABXZhbHVldAASTGphdmEvbGFuZy9TdHJpbmc7eHB0ABJOTDkxQUJOQTA0MTcxNjQzMDA=";
+        ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(Base64.getDecoder().decode(serializedForm)));
+        IBAN copy = (IBAN) ois.readObject();
+        assertThat(copy.toPlainString(), is(equalTo(VALID_IBAN)));
+    }
+
+    @Test
+    public void testDeserializationPerformsValidation() throws IOException, ClassNotFoundException {
+        // This is the same base64 blob as above, altered to put in a garbage IBAN value.
+        String serializedForm = "rO0ABXNyAB5ubC5nYXJ2ZWxpbmsuaWJhbi5JQkFOJE1lbWVudG8AAAAAAAAAAQIAAUwABXZhbHVldAASTGphdmEvbGFuZy9TdHJpbmc7eHB0ABJOTDkxQUJORTA0MTcxNjQzMDA=";
+        ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(Base64.getDecoder().decode(serializedForm)));
+        try {
+            IBAN copy = (IBAN) ois.readObject();
+            fail("IBAN should not have deserialized successfully: " + copy);
+        } catch (InvalidObjectException e) {
+            // Ensure that the right exception type is inside the IOE, to make sure we're testing a bad IBAN and not
+            // just a bad serialized blob.
+            assertThat(e.getCause(), is(instanceOf(WrongChecksumException.class)));
+        }
     }
 
     @Test

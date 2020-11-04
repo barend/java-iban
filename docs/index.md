@@ -95,9 +95,14 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
     String branchId = IBANFieldsCompat.getBranchIdentifier( iban );
 ```
 
-[wjij]: http://blog.joda.org/2009/11/why-jsr-310-isn-joda-time_4941.html
-
 ### Version History
+
+#### 1.8.0: unreleased
+* The `IBAN` class implements `java.io.Serializable` ([#23][i23]). The serialized form should stay valid across library
+  version updates. There is one obvious backwards-incompatibility: deserializing after a version downgrade, of an IBAN
+  whose country only exists in the newer version, will fail.
+
+[i23]:https://github.com/barend/java-iban/issues/23
 
 #### 1.7.0: 13 October 2020
 * Packaging updated to support Java module system, see `docs/java-module.md`.
@@ -242,6 +247,12 @@ rules out some modern Java language constructs. I'm trying to keep the library a
   extracting Bank and Branch identifiers, which lives in the `IBANFields` and `IBANFieldsCompat` classes.
 * The library originally supported an SDK 14 (Ice Cream Sandwich) era Android app. This is why it relies on bit-packing
   to reduce bytecode size and why there's a pre-JDK8 API.
+* IBAN instances implement `java.io.Serializable`. When deserializing, they do the same validity checks as during
+  construction. This means that any object that goes in valid, should come out valid, but it doesn't protect against
+  willful tampering. **Caution:** an IBAN encoded by Java serialization is about five times the size (in bytes) of its
+  cleartext form in UTF-8. The canonical string format is the preferred way to transmit an IBAN object.
+
+[wjij]: https://blog.joda.org/2009/11/why-jsr-310-isn-joda-time_4941.html
 
 ### References
 
