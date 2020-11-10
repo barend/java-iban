@@ -285,7 +285,7 @@ public final class IBAN implements Serializable {
      */
     private void readObject(java.io.ObjectInputStream stream)
             throws IOException, ClassNotFoundException {
-        throw new InvalidObjectException("This type can only be deserialised from its memento type.");
+        throw new InvalidObjectException("This type can only be deserialized from its memento type.");
     }
 
     /**
@@ -295,7 +295,7 @@ public final class IBAN implements Serializable {
      */
     private void readObjectNoData()
             throws ObjectStreamException {
-        throw new InvalidObjectException("This type can only be deserialised from its memento type.");
+        throw new InvalidObjectException("This type can only be deserialized from its memento type.");
     }
 
     /**
