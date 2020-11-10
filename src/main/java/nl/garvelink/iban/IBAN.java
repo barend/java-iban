@@ -15,8 +15,11 @@
  */
 package nl.garvelink.iban;
 
+import java.io.Externalizable;
 import java.io.IOException;
 import java.io.InvalidObjectException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.util.Comparator;
@@ -312,7 +315,7 @@ public final class IBAN implements Serializable {
      *
      * There should be no need to ever use IBAN.Memento in your code.
      */
-    static final class Memento implements Serializable {
+    static final class Memento implements Externalizable {
         private static final long serialVersionUID = 1L;
         private String value;
 
@@ -323,6 +326,22 @@ public final class IBAN implements Serializable {
         Memento(String value) {
             this();
             this.value = value;
+        }
+
+        @Override
+        public void writeExternal(ObjectOutput out) throws IOException {
+            out.writeLong(serialVersionUID);
+            out.writeUTF(this.value);
+        }
+
+        @Override
+        public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+            long serialUID = in.readLong();
+            if (serialUID == 1L) {
+                this.value = in.readUTF();
+            } else {
+                throw new InvalidObjectException("Unsupported serial version: " + serialUID);
+            }
         }
 
         private Object readResolve() throws ObjectStreamException {

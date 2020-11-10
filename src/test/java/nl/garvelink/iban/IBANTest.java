@@ -164,7 +164,7 @@ public class IBANTest {
     public void testSerializedFormCompatibility() throws IOException, ClassNotFoundException {
         // This was manually sampled from the preceding test. This test is to ensure that the serialised form remains
         // stable as the library evolves.
-        String serializedForm = "rO0ABXNyAB5ubC5nYXJ2ZWxpbmsuaWJhbi5JQkFOJE1lbWVudG8AAAAAAAAAAQIAAUwABXZhbHVldAASTGphdmEvbGFuZy9TdHJpbmc7eHB0ABJOTDkxQUJOQTA0MTcxNjQzMDA=";
+        String serializedForm = "rO0ABXNyAB5ubC5nYXJ2ZWxpbmsuaWJhbi5JQkFOJE1lbWVudG8AAAAAAAAAAQwAAHhwdxwAAAAAAAAAAQASTkw5MUFCTkEwNDE3MTY0MzAweA==";
         ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(Base64.getDecoder().decode(serializedForm)));
         IBAN copy = (IBAN) ois.readObject();
         assertThat(copy.toPlainString(), is(equalTo(VALID_IBAN)));
@@ -173,7 +173,7 @@ public class IBANTest {
     @Test
     public void testDeserializationPerformsValidation() throws IOException, ClassNotFoundException {
         // This is the same base64 blob as above, altered to put in a garbage IBAN value.
-        String serializedForm = "rO0ABXNyAB5ubC5nYXJ2ZWxpbmsuaWJhbi5JQkFOJE1lbWVudG8AAAAAAAAAAQIAAUwABXZhbHVldAASTGphdmEvbGFuZy9TdHJpbmc7eHB0ABJOTDkxQUJORTA0MTcxNjQzMDA=";
+        String serializedForm = "rO0ABXNyAB5ubC5nYXJ2ZWxpbmsuaWJhbi5JQkFOJE1lbWVudG8AAAAAAAAAAQwAAHhwdxwAAAAAAAAAAQASTkw5MUFCTkEwNEE3MTY0MzAweA==";
         ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(Base64.getDecoder().decode(serializedForm)));
         try {
             IBAN copy = (IBAN) ois.readObject();
