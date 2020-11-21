@@ -25,7 +25,7 @@ Grab a package [from Github][download] or get it from Maven Central:
     <dependency>
         <groupId>nl.garvelink.oss</groupId>
         <artifactId>iban</artifactId>
-        <version>1.7.0</version>
+        <version>1.8.0</version>
     </dependency>
 ```
 
@@ -33,7 +33,7 @@ Grab a package [from Github][download] or get it from Maven Central:
 
 ```groovy
     dependencies {
-        compile 'nl.garvelink.oss:iban:1.7.0'
+        compile 'nl.garvelink.oss:iban:1.8.0'
     }
 ```
 
@@ -97,10 +97,11 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
-#### 1.8.0: unreleased
+#### 1.8.0: 21 November 2020
 * The `IBAN` class implements `java.io.Serializable` ([#23][i23]). The serialized form should stay valid across library
   version updates. There is one obvious backwards-incompatibility: deserializing after a version downgrade, of an IBAN
   whose country only exists in the newer version, will fail.
+* No updates to reference data.
 
 [i23]:https://github.com/barend/java-iban/issues/23
 
