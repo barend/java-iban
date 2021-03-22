@@ -97,6 +97,9 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
+#### Unreleased
+* Removes `@Generated` annotation from `CountryCodesData` class to avoid having a runtime dependency on newer JDK's.
+
 #### 1.8.0: 21 November 2020
 * The `IBAN` class implements `java.io.Serializable` ([#23][i23]). The serialized form should stay valid across library
   version updates. There is one obvious backwards-incompatibility: deserializing after a version downgrade, of an IBAN
