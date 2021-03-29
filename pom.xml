@@ -100,7 +100,7 @@
             <plugin>
                 <artifactId>template-maven-plugin</artifactId>
                 <groupId>com.github.terefang.template</groupId>
-                <version>2021.4.19</version>
+                <version>202012.5</version>
                 <executions>
                     <execution>
                         <id>generate-code</id>
