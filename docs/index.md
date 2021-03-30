@@ -73,6 +73,9 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
     String candidate = "GB29 NWBK 6016 1331 9268 19";
     boolean valid = Modulo97.verifyCheckDigits( candidate ); // true
 
+    // Compose the IBAN for a country and BBAN
+    IBAN.compose( "BI", "201011067444" ); // BI43201011067444
+
     // You can query whether an IBAN is of a SEPA-participating country
     boolean isSepa = IBAN.parse(candidate).isSEPA(); // true
 
@@ -99,6 +102,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 #### 1.9.0: unreleased
 * Compatible change: utility functions in `CountryCodes` now accept `java.lang.CharSequence` (was String).
+* New API: `IBAN.compose(CharSequence, CharSequence)`.
 * France (FR): add branch identifier ([#30][i30])
 * Update to revision 89 of the SWIFT IBAN Registry
     * Andorra (AD): is now SEPA

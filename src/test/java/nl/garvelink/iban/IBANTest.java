@@ -105,6 +105,42 @@ public class IBANTest {
     }
 
     @Test
+    public void composeShouldHandleCorrectInput() {
+        IBAN composed = IBAN.compose(VALID_IBAN.subSequence(0, 2), VALID_IBAN.substring(4));
+        assertThat(composed, is(equalTo(IBAN.parse(VALID_IBAN))));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void composeShouldRejectNullCountryCode() {
+        IBAN.compose(null, VALID_IBAN.substring(4));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void composeShouldRejectBlankCountryCode() {
+        IBAN.compose("  ", VALID_IBAN.substring(4));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void composeShouldRejectMalformedCountryCode() {
+        IBAN.compose("potato", VALID_IBAN.substring(4));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void composeShouldRejectUnknownCountryCode() {
+        IBAN.compose("XX", VALID_IBAN.substring(4));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void composeShouldRejectNullBBAN() {
+        IBAN.compose(VALID_IBAN.substring(0, 2), null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void composeShouldRejectWrongLengthBBAN() {
+        IBAN.compose(VALID_IBAN.substring(0, 2), VALID_IBAN.substring(5));
+    }
+
+    @Test
     public void testEqualsContract() {
         IBAN x = IBAN.parse(VALID_IBAN);
         IBAN y = IBAN.parse(VALID_IBAN);

@@ -139,6 +139,21 @@ public final class IBAN implements Serializable {
     }
 
     /**
+     * Composes an IBAN from the given country code and basic bank account number.
+     * @param countryCode the country code.
+     * @param bban the BBAN.
+     * @return an IBAN object composed from the given parts, if valid.
+     * @throws IllegalArgumentException if either input is null, if the composed IBAN fails validation.
+     */
+    public static IBAN compose(CharSequence countryCode, CharSequence bban) {
+        StringBuilder sb =
+            new StringBuilder(CountryCodes.LONGEST_IBAN_LENGTH).append(countryCode).append("00").append(bban);
+        int checkDigits = Modulo97.calculateCheckDigits(sb);
+        sb.replace(2, 4, Integer.toString(checkDigits));
+        return parse(sb);
+    }
+
+    /**
      * @deprecated invoke {@link CountryCodes#getLengthForCountryCode(CharSequence)} instead.
      * @param countryCode the country code for which to return the length.
      * @return the length of the IBAN for the given country code, or -1 if unknown.
