@@ -60,7 +60,7 @@ public class CountryCodesParameterizedTest {
     static final List<TestData> PARAMETERS = Stream.of(
             // Name                          SWIFT  SEPA   Plain                              Bank        Branch      Pretty
             // Countries in the SWIFT reference, sorted by Country Code
-            td( "Andorra",                    true , false, "AD1200012030200359100100",        "0001"    , "2030"    , "AD12 0001 2030 2003 5910 0100" ),          //SWIFT
+            td( "Andorra",                    true , true , "AD1200012030200359100100",        "0001"    , "2030"    , "AD12 0001 2030 2003 5910 0100" ),          //SWIFT
             td( "United Arab Emirates (The)", true , false, "AE070331234567890123456",         "033"     , null      , "AE07 0331 2345 6789 0123 456"),            //SWIFT
             td( "Albania",                    true , false, "AL47212110090000000235698741",    "21211009", "1100"    , "AL47 2121 1009 0000 0002 3569 8741"),      //SWIFT
             td( "Austria",                    true , true , "AT611904300234573201",            "19043"   , null      , "AT61 1904 3002 3457 3201" ),               //SWIFT

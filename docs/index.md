@@ -97,8 +97,15 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
-#### Unreleased
-* Removes `@Generated` annotation from `CountryCodesData` class to avoid having a runtime dependency on newer JDK's.
+#### 1.9.0: unreleased
+* Update to revision 89 of the SWIFT IBAN Registry
+    * Andorra (AD): is now SEPA
+* Update to IBAN.com Experimental List
+    * No changes
+* The project can now be compilead on Adopt-OpenJDK 11 HS. An outdated library used in the code generation step
+  prevented this.
+* The `@javax.annotation.Generated` annotation has been removed from the `CountryCodesData` class. This annotation moved
+  into a library package in newer Java versions, and does not justify taking on a library dependency.
 
 #### 1.8.0: 21 November 2020
 * The `IBAN` class implements `java.io.Serializable` ([#23][i23]). The serialized form should stay valid across library
@@ -229,8 +236,9 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 ### Design Choices
 
 I like the Joda-Time library and I try to follow the same design principles. I'm explicitly targetting Android, which
-rules out some modern Java language constructs. I'm trying to keep the library as simple as I can.
+at the time this library started was still on Java 1.6. I'm trying to keep the library as simple as I can.
 
+* Easy to integrate: don't bring transitive dependencies.
 * The `IBAN` objects are immutable and the IBAN therein is non-empty and valid. There is no support for partial or
   invalid IBANs. Note that "valid" isn't as strict as it could be:
   * It checks that the length is correct (varies per country) and that the check digits are correct.
