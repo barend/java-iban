@@ -139,7 +139,7 @@ public final class IBAN implements Serializable {
     }
 
     /**
-     * @deprecated invoke {@link CountryCodes#getLengthForCountryCode(String)} instead.
+     * @deprecated invoke {@link CountryCodes#getLengthForCountryCode(CharSequence)} instead.
      * @param countryCode the country code for which to return the length.
      * @return the length of the IBAN for the given country code, or -1 if unknown.
      */

@@ -98,6 +98,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 ### Version History
 
 #### 1.9.0: unreleased
+* Compatible change: utility functions in `CountryCodes` now accept `java.lang.CharSequence` (was String).
 * France (FR): add branch identifier ([#30][i30])
 * Update to revision 89 of the SWIFT IBAN Registry
     * Andorra (AD): is now SEPA
