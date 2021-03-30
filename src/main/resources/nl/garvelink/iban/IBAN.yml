@@ -381,6 +381,9 @@ ibans:
       bank_code:
         position: 4
         length: 5
+      branch_code:
+        position: 9
+        length: 5
   -
     name: Gabon
     country_code: GA

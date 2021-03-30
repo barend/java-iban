@@ -98,6 +98,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 ### Version History
 
 #### 1.9.0: unreleased
+* France (FR): add branch identifier ([#30][i30])
 * Update to revision 89 of the SWIFT IBAN Registry
     * Andorra (AD): is now SEPA
 * Update to IBAN.com Experimental List
@@ -106,6 +107,8 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
   prevented this.
 * The `@javax.annotation.Generated` annotation has been removed from the `CountryCodesData` class. This annotation moved
   into a library package in newer Java versions, and does not justify taking on a library dependency.
+
+[i30]: https://github.com/barend/java-iban/issues/30
 
 #### 1.8.0: 21 November 2020
 * The `IBAN` class implements `java.io.Serializable` ([#23][i23]). The serialized form should stay valid across library

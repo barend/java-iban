@@ -83,7 +83,7 @@ public class CountryCodesParameterizedTest {
             td( "Spain",                      true , true , "ES9121000418450200051332",        "2100"    , "0418"    , "ES91 2100 0418 4502 0005 1332" ),          //SWIFT
             td( "Finland",                    true , true , "FI2112345600000785",              "123"     , null      , "FI21 1234 5600 0007 85" ),                 //SWIFT
             td( "Faroe Islands",              true , false, "FO6264600001631634",              "6460"    , null      , "FO62 6460 0001 6316 34" ),                 //SWIFT
-            td( "France",                     true , true , "FR1420041010050500013M02606",     "20041"   , null      , "FR14 2004 1010 0505 0001 3M02 606" ),      //SWIFT
+            td( "France",                     true , true , "FR1420041010050500013M02606",     "20041"   , "01005"   , "FR14 2004 1010 0505 0001 3M02 606" ),      //SWIFT
             td( "United Kingdom",             true , true , "GB29NWBK60161331926819",          "NWBK"    , "601613"  , "GB29 NWBK 6016 1331 9268 19" ),            //SWIFT
             td( "Georgia",                    true , false, "GE29NB0000000101904917",          "NB"      , null      , "GE29 NB00 0000 0101 9049 17"),             //SWIFT
             td( "Gibraltar",                  true , true , "GI75NWBK000000007099453",         "NWBK"    , null      , "GI75 NWBK 0000 0000 7099 453" ),           //SWIFT
