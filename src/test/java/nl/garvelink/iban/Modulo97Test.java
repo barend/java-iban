@@ -17,6 +17,7 @@ package nl.garvelink.iban;
 
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -125,5 +126,46 @@ public class Modulo97Test {
     @Test(expected = IllegalArgumentException.class)
     public void itShouldRefuseToCalculateCheckDigitsIfIndex3IsNot0() {
         Modulo97.calculateCheckDigits("MO02A");
+    }
+
+    private static final String VALID_COUNTRY = "NL";
+    private static final String VALID_BBAN = "ABNA0417164300";
+
+    @Test
+    public void composeShouldHandleIBANValidInput() {
+        int checkDigits = Modulo97.calculateCheckDigits(VALID_COUNTRY, VALID_BBAN);
+        assertThat(checkDigits, is(equalTo(91)));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void composeShouldRejectNullCountryCode() {
+        Modulo97.calculateCheckDigits(null, VALID_BBAN);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void composeShouldRejectBlankCountryCode() {
+        Modulo97.calculateCheckDigits("  ", VALID_BBAN);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void composeShouldRejectMalformedCountryCode() {
+        Modulo97.calculateCheckDigits("potato", VALID_BBAN);
+    }
+
+    @Test
+    public void composeShouldAcceptUnknownCountryCode() {
+        int checkDigits = Modulo97.calculateCheckDigits("XX", "X");
+        assertThat(checkDigits, is(equalTo(72)));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void composeShouldRejectNullBBAN() {
+        Modulo97.calculateCheckDigits(VALID_COUNTRY, null);
+    }
+
+    @Test
+    public void composeShouldAcceptWrongLengthBBAN() {
+        int checkDigits = Modulo97.calculateCheckDigits(VALID_COUNTRY, VALID_BBAN.substring(1));
+        assertThat(checkDigits, is(equalTo(50)));
     }
 }

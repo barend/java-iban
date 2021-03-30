@@ -86,6 +86,11 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
     StringBuilder builder = new StringBuilder( "LU000019400644750000" );
     int checkDigits = Modulo97.calculateCheckDigits( builder ); // 28
 
+    // Modulo97 API can calculate check digits, also for non-iban inputs.
+    // It does assume/require that the check digits are on indices 2 and 3.
+    Modulo97.calculateCheckDigits( "GB", "NWBK60161331926819" ); // 29
+    Modulo97.calculateCheckDigits( "XX", "X" ); // 50
+
     // Get the expected IBAN length for a country code:
     int length = CountryCodes.getLengthForCountryCode( "DK" );
 
@@ -103,6 +108,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 #### 1.9.0: unreleased
 * Compatible change: utility functions in `CountryCodes` now accept `java.lang.CharSequence` (was String).
 * New API: `IBAN.compose(CharSequence, CharSequence)`.
+* New API: `Modulo97.calculateCheckDigits(CharSequence, CharSequence)`.
 * France (FR): add branch identifier ([#30][i30])
 * Update to revision 89 of the SWIFT IBAN Registry
     * Andorra (AD): is now SEPA
