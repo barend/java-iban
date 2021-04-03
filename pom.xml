@@ -124,6 +124,7 @@
                 <version>3.2.0</version>
                 <executions>
                     <execution>
+                        <id>include-extra-sources-dir</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>add-source</goal>
@@ -194,6 +195,57 @@
 
     <profiles>
         <profile>
+            <!-- This profile adds the src/main/java11 directory to the build. -->
+            <id>java11-module</id>
+            <activation>
+                <!-- We cannot use the <jdk> activation rule, because that looks at the
+                     host JVM, not at the compiler target version. We can compile for
+                     Java 8 while running on JDK 11, and if we do, the module-info file
+                     causes a compiler error.
+
+                     So instead we evaluate the maven.compiler.target property. The
+                     downside here is that we cannot compare against a version range.
+                     There's no or-operator either. The result is that we only evaluate
+                     the module-info file when targeting exactly version 11; not "any
+                     version with module support".
+
+                     This is not ideal, but at least it ensures that the CI build covers
+                     the module-info file, so it's good enough.
+
+                     Note that the compiled module-info that we ship in the JAR file
+                     lives in src/main/resources; we don't compile the module info
+                     as part of the release build.-->
+                <property>
+                    <name>maven.compiler.target</name>
+                    <value>11</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <executions>
+                            <execution>
+                                <id>include-extra-sources-dir</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>${project.basedir}/src/main/java11</source>
+                                        <source>${project.build.directory}/generated-sources/jinjava</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
             <id>release</id>
             <build>
                 <plugins>
@@ -242,3 +294,4 @@
         </profile>
     </profiles>
 </project>
+<!-- vim: set et sw=4: -->
