@@ -240,15 +240,5 @@
                 </plugins>
             </build>
         </profile>
-        <profile>
-            <id>github</id>
-            <distributionManagement>
-                <repository>
-                    <id>github</id>
-                    <name>GitHub Apache Maven Packages</name>
-                    <url>https://maven.pkg.github.com/barend/java-iban</url>
-                </repository>
-            </distributionManagement>
-        </profile>
     </profiles>
 </project>
