@@ -1,16 +1,30 @@
+---
 name: Automated checks
-on: push
+"on": push
 
 jobs:
   unittests:
     name: Run Unit Tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java:
+          - 1.8  # LTS
+          - 11   # LTS
+          - 16   # Current
     steps:
       - name: Checkout Source
         uses: actions/checkout@v2
-      - name: Set up JDK 1.8
+      - name: Set up JDK ${{ matrix.java }}
         uses: actions/setup-java@v1
         with:
-          java-version: 1.8
+          java-version: ${{ matrix.java }}
       - name: Maven Build
-        run: mvn --batch-mode --strict-checksums --show-version verify
+        run: >
+             mvn
+             --batch-mode
+             --strict-checksums
+             --show-version
+             -Dmaven.compiler.source=${{ matrix.java }}
+             -Dmaven.compiler.target=${{ matrix.java }}
+             verify
