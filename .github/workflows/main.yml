@@ -1,5 +1,5 @@
 ---
-name: Automated checks
+name: Build
 "on": push
 
 jobs:

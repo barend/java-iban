@@ -15,6 +15,8 @@ version of the IBAN registry, but I don't plan on developing any new features.
 * [Alternatives](#Alternatives)
 * [Copyright and License](#Copyright-and-License)
 
+[![Build](https://github.com/barend/java-iban/actions/workflows/main.yml/badge.svg)](https://github.com/barend/java-iban/actions/workflows/main.yml) [![CodeQL](https://github.com/barend/java-iban/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/barend/java-iban/actions/workflows/codeql-analysis.yml)
+
 ### Installation
 
 Grab a package [from Github][download] or get it from Maven Central:
