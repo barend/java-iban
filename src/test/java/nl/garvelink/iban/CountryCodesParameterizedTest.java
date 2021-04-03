@@ -60,7 +60,7 @@ public class CountryCodesParameterizedTest {
     static final List<TestData> PARAMETERS = Stream.of(
             // Name                          SWIFT  SEPA   Plain                              Bank        Branch      Pretty
             // Countries in the SWIFT reference, sorted by Country Code
-            td( "Andorra",                    true , false, "AD1200012030200359100100",        "0001"    , "2030"    , "AD12 0001 2030 2003 5910 0100" ),          //SWIFT
+            td( "Andorra",                    true , true , "AD1200012030200359100100",        "0001"    , "2030"    , "AD12 0001 2030 2003 5910 0100" ),          //SWIFT
             td( "United Arab Emirates (The)", true , false, "AE070331234567890123456",         "033"     , null      , "AE07 0331 2345 6789 0123 456"),            //SWIFT
             td( "Albania",                    true , false, "AL47212110090000000235698741",    "21211009", "1100"    , "AL47 2121 1009 0000 0002 3569 8741"),      //SWIFT
             td( "Austria",                    true , true , "AT611904300234573201",            "19043"   , null      , "AT61 1904 3002 3457 3201" ),               //SWIFT
@@ -83,7 +83,7 @@ public class CountryCodesParameterizedTest {
             td( "Spain",                      true , true , "ES9121000418450200051332",        "2100"    , "0418"    , "ES91 2100 0418 4502 0005 1332" ),          //SWIFT
             td( "Finland",                    true , true , "FI2112345600000785",              "123"     , null      , "FI21 1234 5600 0007 85" ),                 //SWIFT
             td( "Faroe Islands",              true , false, "FO6264600001631634",              "6460"    , null      , "FO62 6460 0001 6316 34" ),                 //SWIFT
-            td( "France",                     true , true , "FR1420041010050500013M02606",     "20041"   , null      , "FR14 2004 1010 0505 0001 3M02 606" ),      //SWIFT
+            td( "France",                     true , true , "FR1420041010050500013M02606",     "20041"   , "01005"   , "FR14 2004 1010 0505 0001 3M02 606" ),      //SWIFT
             td( "United Kingdom",             true , true , "GB29NWBK60161331926819",          "NWBK"    , "601613"  , "GB29 NWBK 6016 1331 9268 19" ),            //SWIFT
             td( "Georgia",                    true , false, "GE29NB0000000101904917",          "NB"      , null      , "GE29 NB00 0000 0101 9049 17"),             //SWIFT
             td( "Gibraltar",                  true , true , "GI75NWBK000000007099453",         "NWBK"    , null      , "GI75 NWBK 0000 0000 7099 453" ),           //SWIFT

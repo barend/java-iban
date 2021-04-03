@@ -75,6 +75,31 @@ public abstract class Modulo97 {
     }
 
     /**
+     * Calculates the check digits for a given country code and BBAN.
+     * @param countryCode the country code. Not validated to be a known country.
+     * @param bban the country-specific BBAN. Not validated to required length.
+     * @return the check digits to be used at indices 2 and 3 to make the input MOD97 verifiable.
+     * @throws IllegalArgumentException if either input is null, or the country code is not two characters.
+     */
+    public static int calculateCheckDigits(CharSequence countryCode, CharSequence bban) {
+        if (countryCode == null) {
+            throw new IllegalArgumentException("countryCode is required but is null.");
+        }
+        if (bban == null) {
+            throw new IllegalArgumentException("bban is required but is null.");
+        }
+        if (countryCode.length() != 2) {
+            throw new IllegalArgumentException(
+                String.format("countryCode should be length 2 but is %d", countryCode.length()));
+        }
+        if (countryCode.charAt(0) == ' ' || countryCode.charAt(1) == ' ') {
+            throw new IllegalArgumentException("countryCode contains space character (0x20).");
+        }
+        StringBuilder sb = new StringBuilder(countryCode).append("00").append(bban);
+        return calculateCheckDigits(sb);
+    }
+
+    /**
      * Determines whether the given input has a valid MOD97 checksum.
      * @param input the input to verify, it must meet the criteria defined in {@link #checksum(CharSequence)}.
      * @return {@code true} if the input passes checksum verification, {@code false} otherwise.

@@ -13,15 +13,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 meta:
-  iban_registry_version: 88
-  last_update: 2020-11-21
+  iban_registry_version: 89
+  last_update: 2021-03-30
 ibans:
   -
     name: Andorra
     country_code: AD
     length: 24
     flags:
-      sepa_country: no
+      sepa_country: yes
       in_swift_registry: yes
     embeds:
       bank_code:
@@ -380,6 +380,9 @@ ibans:
     embeds:
       bank_code:
         position: 4
+        length: 5
+      branch_code:
+        position: 9
         length: 5
   -
     name: Gabon

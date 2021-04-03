@@ -53,4 +53,7 @@ public class IBANFieldsCompat {
     public static String getBranchIdentifier(IBAN iban) {
         return CountryCodes.getBranchIdentifier(iban);
     }
+
+    /** Prevent instantiation of static utility class. */
+    private IBANFieldsCompat() { }
 }

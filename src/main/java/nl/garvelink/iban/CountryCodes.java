@@ -100,8 +100,8 @@ public abstract class CountryCodes {
      * @return the IBAN length for the given country, or -1 if the input is not a known, two-character country code.
      * @throws NullPointerException if the input is null.
      */
-    public static int getLengthForCountryCode(String countryCode) {
-        int index = indexOf(countryCode);
+    public static int getLengthForCountryCode(CharSequence countryCode) {
+        int index = indexOf(countryCode.toString());
         if (index > -1) {
             return COUNTRY_IBAN_LENGTHS[index] & REMOVE_METADATA_MASK;
         }
@@ -114,8 +114,8 @@ public abstract class CountryCodes {
      * @return true if SEPA, false if not.
      * @throws NullPointerException if the input is null.
      */
-    public static boolean isSEPACountry(String countryCode) {
-        int index = indexOf(countryCode);
+    public static boolean isSEPACountry(CharSequence countryCode) {
+        int index = indexOf(countryCode.toString());
         if (index > -1) {
             return (COUNTRY_IBAN_LENGTHS[index] & SEPA) == SEPA;
         }
@@ -128,8 +128,8 @@ public abstract class CountryCodes {
      * @return true if our data is from the SWIFT IBAN Registry, false if not.
      * @throws NullPointerException if the input is null.
      */
-    public static boolean isInSwiftRegistry(String countryCode) {
-        int index = indexOf(countryCode);
+    public static boolean isInSwiftRegistry(CharSequence countryCode) {
+        int index = indexOf(countryCode.toString());
         if (index > -1) {
             return (COUNTRY_IBAN_LENGTHS[index] & SWIFT) == SWIFT;
         }
@@ -149,11 +149,11 @@ public abstract class CountryCodes {
      * @param aCountryCode the string to evaluate.
      * @return {@code true} if {@code aCountryCode} is a two-letter, uppercase String present in {@link #getKnownCountryCodes()}.
      */
-    public static boolean isKnownCountryCode(String aCountryCode) {
+    public static boolean isKnownCountryCode(CharSequence aCountryCode) {
         if (aCountryCode == null || aCountryCode.length() != 2) {
             return false;
         }
-        return indexOf(aCountryCode) >= 0;
+        return indexOf(aCountryCode.toString()) >= 0;
     }
 
     /**

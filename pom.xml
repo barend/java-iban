@@ -19,7 +19,7 @@
 
     <groupId>nl.garvelink.oss</groupId>
     <artifactId>iban</artifactId>
-    <version>1.8.1-SNAPSHOT</version>
+    <version>1.9.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Java IBAN</name>
@@ -79,6 +79,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <pluginRepositories>
@@ -100,7 +102,7 @@
             <plugin>
                 <artifactId>template-maven-plugin</artifactId>
                 <groupId>com.github.terefang.template</groupId>
-                <version>2021.4.19</version>
+                <version>2021.4.28</version>
                 <executions>
                     <execution>
                         <id>generate-code</id>
@@ -115,13 +117,6 @@
                         </configuration>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.hubspot.jinjava</groupId>
-                        <artifactId>jinjava</artifactId>
-                        <version>2.5.6</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -129,6 +124,7 @@
                 <version>3.2.0</version>
                 <executions>
                     <execution>
+                        <id>include-extra-sources-dir</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>add-source</goal>
@@ -146,8 +142,6 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
                     <encoding>UTF-8</encoding>
                     <showWarnings>true</showWarnings>
                     <compilerArgs>
@@ -187,6 +181,7 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.5.3</version>
                 <configuration>
+                    <arguments>--strict-checksums</arguments>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <goals>deploy</goals>
                     <pushChanges>false</pushChanges>
@@ -199,6 +194,57 @@
     </build>
 
     <profiles>
+        <profile>
+            <!-- This profile adds the src/main/java11 directory to the build. -->
+            <id>java11-module</id>
+            <activation>
+                <!-- We cannot use the <jdk> activation rule, because that looks at the
+                     host JVM, not at the compiler target version. We can compile for
+                     Java 8 while running on JDK 11, and if we do, the module-info file
+                     causes a compiler error.
+
+                     So instead we evaluate the maven.compiler.target property. The
+                     downside here is that we cannot compare against a version range.
+                     There's no or-operator either. The result is that we only evaluate
+                     the module-info file when targeting exactly version 11; not "any
+                     version with module support".
+
+                     This is not ideal, but at least it ensures that the CI build covers
+                     the module-info file, so it's good enough.
+
+                     Note that the compiled module-info that we ship in the JAR file
+                     lives in src/main/resources; we don't compile the module info
+                     as part of the release build.-->
+                <property>
+                    <name>maven.compiler.target</name>
+                    <value>11</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <executions>
+                            <execution>
+                                <id>include-extra-sources-dir</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>${project.basedir}/src/main/java11</source>
+                                        <source>${project.build.directory}/generated-sources/jinjava</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
         <profile>
             <id>release</id>
             <build>
@@ -246,15 +292,6 @@
                 </plugins>
             </build>
         </profile>
-        <profile>
-            <id>github</id>
-            <distributionManagement>
-                <repository>
-                    <id>github</id>
-                    <name>GitHub Apache Maven Packages</name>
-                    <url>https://maven.pkg.github.com/barend/java-iban</url>
-                </repository>
-            </distributionManagement>
-        </profile>
     </profiles>
 </project>
+<!-- vim: set et sw=4: -->

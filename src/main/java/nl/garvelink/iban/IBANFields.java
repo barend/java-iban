@@ -58,4 +58,7 @@ public class IBANFields {
     public static Optional<String> getBranchIdentifier(IBAN iban) {
         return Optional.ofNullable(CountryCodes.getBranchIdentifier(iban));
     }
+
+    /** Prevent instantiation of static utility class. */
+    private IBANFields() { }
 }
