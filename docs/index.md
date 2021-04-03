@@ -107,10 +107,10 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
-#### 1.9.0: unreleased
+#### 1.9.0: 3 April 2021
 * Compatible change: utility functions in `CountryCodes` now accept `java.lang.CharSequence` (was String).
-* New API: `IBAN.compose(CharSequence, CharSequence)`.
-* New API: `Modulo97.calculateCheckDigits(CharSequence, CharSequence)`.
+* New API method: `IBAN.compose(CharSequence, CharSequence)`.
+* New API method: `Modulo97.calculateCheckDigits(CharSequence, CharSequence)`.
 * France (FR): add branch identifier ([#30][i30])
 * Update to revision 89 of the SWIFT IBAN Registry
     * Andorra (AD): is now SEPA
