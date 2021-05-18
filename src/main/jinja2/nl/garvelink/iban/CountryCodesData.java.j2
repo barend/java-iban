@@ -21,17 +21,17 @@ import java.util.Collections;
 
 /**
  * Contains information about IBAN country codes. This is a generated file.
- * Updated to SWIFT IBAN Registry version {{ context.meta.iban_registry_version | escape }} on {{ context.meta.last_update | datetimeformat("%Y-%m-%d") | escape }}.
+ * Updated to SWIFT IBAN Registry version {{ meta.iban_registry_version | escape }} on {{ meta.last_update | date_time_format("%Y-%m-%d") | escape }}.
  */
 abstract class CountryCodesData {
     /**
      * The "yyyy-MM-dd" datestamp that the embedded IBAN data was updated.
      */
-    static final String LAST_UPDATE_DATE = "{{ context.meta.last_update | datetimeformat("%Y-%m-%d") | escapejson }}";
+    static final String LAST_UPDATE_DATE = "{{ meta.last_update | date_time_format("%Y-%m-%d") | escape_java_string }}";
     /**
      * The revision of the SWIFT IBAN Registry to which the embedded IBAN data was updated.
      */
-    static final String LAST_UPDATE_REV = "{{ context.meta.iban_registry_version | escapejson }}";
+    static final String LAST_UPDATE_REV = "{{ meta.iban_registry_version | escape_java_string }}";
 
     static final int SEPA = 1 << 8;
     static final int SWIFT = 1 << 9;
@@ -44,12 +44,12 @@ abstract class CountryCodesData {
     static final int BRANCH_IDENTIFIER_END_SHIFT = 24;
     static final int BRANCH_IDENTIFIER_END_MASK = 0xFF << BRANCH_IDENTIFIER_END_SHIFT;
 
-/**
+    /**
      * Known country codes, this list must be sorted to allow binary search. All other lists in this file must use the
      * same indices for the same countries.
      */
     static final String[] COUNTRY_CODES = {
-{%- for iban in context.ibans %}
+{%- for iban in ibans %}
         "{{ iban.country_code }}"{% if not loop.last %},{% endif %}{#
 #}{% endfor %}
     };
@@ -60,7 +60,7 @@ abstract class CountryCodesData {
      * whether the record is listed in the SWIFT IBAN Registry.
      */
     static final int[] COUNTRY_IBAN_LENGTHS = {
-{%- for iban in context.ibans %}
+{%- for iban in ibans %}
         /* {{ iban.country_code }} */ {{ iban.length }}{% if iban.flags.in_swift_registry %} | SWIFT{% endif %}{% if iban.flags.sepa_country %} | SEPA{% endif %}{#
 #}{% if not loop.last %},{% endif %}{#
 #}{% endfor %}
@@ -78,12 +78,12 @@ abstract class CountryCodesData {
      * </pre>
      */
     static final int[] BANK_CODE_BRANCH_CODE = {
-{%- for iban in context.ibans %}
+{%- for iban in ibans %}
         /* {{ iban.country_code }} */
-        {{ iban.embeds.bank_code.position | default(0) }}
-        | ({{ iban.embeds.bank_code.position | default(0) }} + {{ iban.embeds.bank_code.length | default(0) }}) << BANK_IDENTIFIER_END_SHIFT
-        | {{ iban.embeds.branch_code.position | default(0) }} << BRANCH_IDENTIFIER_BEGIN_SHIFT
-        | ({{ iban.embeds.branch_code.position | default(0) }} + {{ iban.embeds.branch_code.length | default(0) }}) << BRANCH_IDENTIFIER_END_SHIFT{#
+        {{ iban | flat_get("embeds.bank_code.position", 0) }}
+        | ({{ iban | flat_get("embeds.bank_code.position", 0) }} + {{ iban | flat_get("embeds.bank_code.length", 0) }}) << BANK_IDENTIFIER_END_SHIFT
+        | {{ iban | flat_get("embeds.branch_code.position", 0) }} << BRANCH_IDENTIFIER_BEGIN_SHIFT
+        | ({{ iban | flat_get("embeds.branch_code.position", 0) }} + {{ iban | flat_get("embeds.branch_code.length", 0) }}) << BRANCH_IDENTIFIER_END_SHIFT{#
 #}{% if not loop.last %},{% endif %}
 {% endfor %}
     };

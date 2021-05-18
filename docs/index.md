@@ -107,6 +107,11 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
+#### 1.9.1: Unreleased
+* Drop `template-maven-plugin`. It has proven to make the CI build very flaky. This also removes the build-time
+  dependency on a third-party artifact repository. The downside is that the build now requires Python 3 and a bourne
+  shell. It builds on WSL2 just fine, but I have no idea how to build this natively on Windows.
+
 #### 1.9.0: 3 April 2021
 * Compatible change: utility functions in `CountryCodes` now accept `java.lang.CharSequence` (was String).
 * New API method: `IBAN.compose(CharSequence, CharSequence)`.
