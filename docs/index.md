@@ -108,9 +108,12 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 ### Version History
 
 #### 1.9.1: Unreleased
-* Drop `template-maven-plugin`. It has proven to make the CI build very flaky. This also removes the build-time
-  dependency on a third-party artifact repository. The downside is that the build now requires Python 3 and a bourne
-  shell. It builds on WSL2 just fine, but I have no idea how to build this natively on Windows.
+* Drop `template-maven-plugin`. It has proven to make the CI build very flaky. Removing this also lets us remove the
+  third-party artifact repository from the pom ([#33][i33]), simplifying the supply chain. It also makes the build a
+  little quicker. The downside is that the build now requires Python 3 and a bourne shell. It should build on WSL2 just
+  fine, but there is no pom profile to support Windows native builds.
+
+[i33]: https://github.com/barend/java-iban/issues/33
 
 #### 1.9.0: 3 April 2021
 * Compatible change: utility functions in `CountryCodes` now accept `java.lang.CharSequence` (was String).
@@ -306,7 +309,7 @@ If you're looking for a more comprehensive IBAN library, you may prefer [iban4j]
 
 ### Copyright and License
 
-Copyright 2020 Barend Garvelink
+Copyright 2021 Barend Garvelink
 
 ```none
    Licensed under the Apache License, Version 2.0 (the "License");

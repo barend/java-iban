@@ -1,5 +1,5 @@
 /*
-   Copyright 2019 Barend Garvelink
+   Copyright 2021 Barend Garvelink
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@
  * int length = CountryCodes.getLengthForCountryCode( "DK" );
  * </pre>
  *
- * <p>Copyright 2019 Barend Garvelink. This code can be used under the terms of the Apache License, Version 2.0.
+ * <p>Copyright 2021 Barend Garvelink. This code can be used under the terms of the Apache License, Version 2.0.
  * Attribution is appreciated, but not required.</p>
  */
 package nl.garvelink.iban;

@@ -1,5 +1,5 @@
 /*
-   Copyright 2019 Barend Garvelink
+   Copyright 2021 Barend Garvelink
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -80,6 +80,7 @@ public abstract class Modulo97 {
      * @param bban the country-specific BBAN. Not validated to required length.
      * @return the check digits to be used at indices 2 and 3 to make the input MOD97 verifiable.
      * @throws IllegalArgumentException if either input is null, or the country code is not two characters.
+     * @since 1.9.0
      */
     public static int calculateCheckDigits(CharSequence countryCode, CharSequence bban) {
         if (countryCode == null) {
