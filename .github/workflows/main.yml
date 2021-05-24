@@ -28,3 +28,4 @@ jobs:
              -Dmaven.compiler.source=${{ matrix.java }}
              -Dmaven.compiler.target=${{ matrix.java }}
              verify
+             javadoc:javadoc
