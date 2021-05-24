@@ -25,6 +25,7 @@
     <name>Java IBAN</name>
     <description>A Java package for handling International Bank Account Numbers (IBANs).</description>
     <url>https://barend.github.io/java-iban/</url>
+    <inceptionYear>2013</inceptionYear>
 
     <licenses>
         <license>

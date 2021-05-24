@@ -159,6 +159,7 @@ public abstract class CountryCodes {
     /**
      * Returns the date that the IBAN reference data was last updated.
      * @return last update date of the reference data in this library.
+     * @since 1.7.0
      */
     public static LocalDate getLastUpdateDate() {
         return LocalDate.parse(LAST_UPDATE_DATE);
@@ -167,6 +168,7 @@ public abstract class CountryCodes {
     /**
      * Returns the version information of the SWIFT IBAN Registry used on {@link #getLastUpdateDate()}.
      * @return revision information of the SWIFT IBAN Registry.
+     * @since 1.7.0
      */
     public static String getLastUpdateRevision() {
         return LAST_UPDATE_REV;

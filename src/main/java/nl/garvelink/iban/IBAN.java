@@ -144,6 +144,7 @@ public final class IBAN implements Serializable {
      * @param bban the BBAN.
      * @return an IBAN object composed from the given parts, if valid.
      * @throws IllegalArgumentException if either input is null, if the composed IBAN fails validation.
+     * @since 1.9.0
      */
     public static IBAN compose(CharSequence countryCode, CharSequence bban) {
         StringBuilder sb =
@@ -190,6 +191,7 @@ public final class IBAN implements Serializable {
     /**
      * Returns whether the source for this IBAN's format and data is the SWIFT IBAN Registry.
      * @return true if from SWIFT IBAN Registry, false if from Experimental IBANs list.
+     * @since 1.6.0
      */
     public boolean isInSwiftRegistry() {
         return this.inSwiftRegistry;
@@ -289,6 +291,7 @@ public final class IBAN implements Serializable {
      * When serializing this object, substitute a {@link Memento} object.
      * @return a memento containing {@link #value}.
      * @throws ObjectStreamException never.
+     * @since 1.8.0
      */
     private Object writeReplace() throws ObjectStreamException {
         return new Memento(this.toPlainString());
@@ -300,6 +303,7 @@ public final class IBAN implements Serializable {
      * @param stream ignored.
      * @throws IOException always.
      * @throws ClassNotFoundException never.
+     * @since 1.8.0
      */
     private void readObject(java.io.ObjectInputStream stream)
             throws IOException, ClassNotFoundException {
@@ -310,6 +314,7 @@ public final class IBAN implements Serializable {
      * Prevents deserialization of this type. Instances of IBAN are never deserialized (only {@link Memento}s are), so
      * if we ever encounter a serialized object of IBAN type, we don't want it.
      * @throws ObjectStreamException always.
+     * @since 1.8.0
      */
     private void readObjectNoData()
             throws ObjectStreamException {
@@ -329,6 +334,8 @@ public final class IBAN implements Serializable {
      * </ul>
      *
      * There should be no need to ever use IBAN.Memento in your code.
+     *
+     * @since 1.8.0
      */
     static final class Memento implements Externalizable {
         private static final long serialVersionUID = 1L;
