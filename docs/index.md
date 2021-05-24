@@ -306,7 +306,7 @@ If you're looking for a more comprehensive IBAN library, you may prefer [iban4j]
 
 ### Copyright and License
 
-Copyright 2020 Barend Garvelink
+Copyright 2021 Barend Garvelink
 
 ```none
    Licensed under the Apache License, Version 2.0 (the "License");
