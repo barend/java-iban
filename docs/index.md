@@ -112,6 +112,10 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
   third-party artifact repository from the pom ([#33][i33]), simplifying the supply chain. It also makes the build a
   little quicker. The downside is that the build now requires Python 3 and a bourne shell. It should build on WSL2 just
   fine, but there is no pom profile to support Windows native builds.
+* Update to revision 90 of the SWIFT IBAN Registry
+    * Sudan (SD): added.
+* Update to IBAN.com Experimental List
+    * No changes
 
 [i33]: https://github.com/barend/java-iban/issues/33
 
