@@ -125,6 +125,7 @@ public class CountryCodesParameterizedTest {
             td( "Serbia",                     true , false, "RS35260005601001611379",          "260"     , null      , "RS35 2600 0560 1001 6113 79" ),            //SWIFT
             td( "Saudi Arabia",               true , false, "SA0380000000608010167519",        "80"      , null      , "SA03 8000 0000 6080 1016 7519"),           //SWIFT
             td( "Seychelles",                 true , false, "SC18SSCB11010000000000001497USD", "SSCB11"  , "01"      , "SC18 SSCB 1101 0000 0000 0000 1497 USD" ), //SWIFT
+            td( "Sudan",                      true , false, "SD2129010501234001",              "29"      , "010501234001", "SD21 2901 0501 2340 01"),              //SWIFT
             td( "Sweden",                     true , true , "SE4550000000058398257466",        "500"     , null      , "SE45 5000 0000 0583 9825 7466" ),          //SWIFT
             td( "Slovenia",                   true , true , "SI56263300012039086",             "26330"   , null      , "SI56 2633 0001 2039 086" ),                //SWIFT
             td( "Slovakia",                   true , true , "SK3112000000198742637541",        "1200"    , null      , "SK31 1200 0000 1987 4263 7541" ),          //SWIFT

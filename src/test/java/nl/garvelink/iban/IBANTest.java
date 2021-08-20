@@ -154,7 +154,7 @@ public class IBANTest {
     }
 
     @Test
-    public void testToPretty() throws Exception {
+    public void testToPretty() {
         assertThat(IBAN.toPretty(""), is(equalTo("")));
         assertThat(IBAN.toPretty("12"), is(equalTo("12")));
         assertThat(IBAN.toPretty("1 2"), is(equalTo("12")));
@@ -169,7 +169,7 @@ public class IBANTest {
     }
 
     @Test
-    public void testToPlain() throws Exception {
+    public void testToPlain() {
         assertThat(IBAN.toPlain(""), is(equalTo("")));
         assertThat(IBAN.toPlain("12"), is(equalTo("12")));
         assertThat(IBAN.toPlain("1 2"), is(equalTo("12")));

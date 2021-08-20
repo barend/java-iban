@@ -962,6 +962,20 @@ ibans:
         position: 10
         length: 2
   -
+    name: Sudan
+    country_code: SD
+    length: 18
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 2
+      branch_code:
+        position: 6
+        length: 12
+  -
     name: Sweden
     country_code: SE
     length: 24
