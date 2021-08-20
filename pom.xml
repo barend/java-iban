@@ -170,7 +170,7 @@
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <goals>deploy</goals>
                     <pushChanges>false</pushChanges>
-                    <releaseProfiles>release,github</releaseProfiles>
+                    <releaseProfiles>release</releaseProfiles>
                     <tagNameFormat>release-@{project.version}</tagNameFormat>
                     <useReleaseProfile>false</useReleaseProfile>
                 </configuration>

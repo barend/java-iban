@@ -107,7 +107,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
-#### 1.10.0: 20 August 2021
+#### 1.10.1: 20 August 2021
 
 * Update to revision 90 of the SWIFT IBAN Registry
     * Sudan (SD): added ([#42][i42]).
@@ -117,6 +117,8 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
   third-party artifact repository from the pom ([#33][i33]), simplifying the supply chain. It also makes the build a
   little quicker. The downside is that the build now requires Python 3 and a bourne shell. It should build on WSL2 just
   fine, but there is no pom profile to support Windows native builds.
+
+(1.10.0 unreleased; packaging mistake)
 
 [i33]: https://github.com/barend/java-iban/issues/33
 [i42]: https://github.com/barend/java-iban/issues/42
