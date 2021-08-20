@@ -107,19 +107,22 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
-#### 1.9.1: Unreleased
+#### 1.10.0: 20 August 2021
+
+* Update to revision 90 of the SWIFT IBAN Registry
+    * Sudan (SD): added ([#42][i42]).
+* Update to IBAN.com Experimental List
+    * No changes
 * Drop `template-maven-plugin`. It has proven to make the CI build very flaky. Removing this also lets us remove the
   third-party artifact repository from the pom ([#33][i33]), simplifying the supply chain. It also makes the build a
   little quicker. The downside is that the build now requires Python 3 and a bourne shell. It should build on WSL2 just
   fine, but there is no pom profile to support Windows native builds.
-* Update to revision 90 of the SWIFT IBAN Registry
-    * Sudan (SD): added.
-* Update to IBAN.com Experimental List
-    * No changes
 
 [i33]: https://github.com/barend/java-iban/issues/33
+[i42]: https://github.com/barend/java-iban/issues/42
 
 #### 1.9.0: 3 April 2021
+
 * Compatible change: utility functions in `CountryCodes` now accept `java.lang.CharSequence` (was String).
 * New API method: `IBAN.compose(CharSequence, CharSequence)`.
 * New API method: `Modulo97.calculateCheckDigits(CharSequence, CharSequence)`.
@@ -136,6 +139,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 [i30]: https://github.com/barend/java-iban/issues/30
 
 #### 1.8.0: 21 November 2020
+
 * The `IBAN` class implements `java.io.Serializable` ([#23][i23]). The serialized form should stay valid across library
   version updates. There is one obvious backwards-incompatibility: deserializing after a version downgrade, of an IBAN
   whose country only exists in the newer version, will fail.
@@ -144,6 +148,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 [i23]:https://github.com/barend/java-iban/issues/23
 
 #### 1.7.0: 13 October 2020
+
 * Packaging updated to support Java module system, see `docs/java-module.md`.
 * Update to revision 88 of the SWIFT IBAN Registry
     * Albania (AL): bank identifier extended to 8 chars
@@ -162,12 +167,14 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 * Moved some private fields. Any code that accesses these through reflection will break.
 
 #### 1.6.1: 20 September 2019
+
 * "Bad input" exception messages no longer echo the input ([#14][i14]).
 * No changes to IBAN formats
 
 [i14]:https://github.com/barend/java-iban/issues/14
 
 #### 1.6.0: 23 August 2019
+
 * Update to version 83 of the IBAN registry
   * Adds Vatican City State (VA)
   * (Ignores updated example IBAN for Sao Tome e Principe, because it fails checksum validation)
