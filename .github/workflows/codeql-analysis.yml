@@ -8,6 +8,9 @@ name: "CodeQL"
 on:
   push:
     branches: [main]
+    paths-ignore:
+      # Workaround for CodeQL+Dependabot permissions issue.
+      - pom.xml
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [main]
