@@ -69,6 +69,7 @@ public class CountryCodesParameterizedTest {
             td( "Belgium",                    true , true , "BE68539007547034",                "539"     , null      , "BE68 5390 0754 7034" ),                    //SWIFT
             td( "Bulgaria",                   true , true , "BG80BNBG96611020345678",          "BNBG"    , "9661"    , "BG80 BNBG 9661 1020 3456 78" ),            //SWIFT
             td( "Bahrain",                    true , false, "BH67BMAG00001299123456",          "BMAG"    , null      , "BH67 BMAG 0000 1299 1234 56"),             //SWIFT
+            td( "Burundi",                    true , false, "BI4210000100010000332045181",     "10000"   , "10001"   , "BI42 1000 0100 0100 0033 2045 181"),       //SWIFT
             td( "Brazil",                     true , false, "BR1800360305000010009795493C1",   "00360305", "00001"   , "BR18 0036 0305 0000 1000 9795 493C 1"),    //SWIFT
             td( "Republic of Belarus",        true , false, "BY13NBRB3600900000002Z00AB00",    "NBRB"    , null      , "BY13 NBRB 3600 9000 0000 2Z00 AB00"),      //SWIFT
             td( "Switzerland",                true , true , "CH9300762011623852957",           "00762"   , null      , "CH93 0076 2011 6238 5295 7" ),             //SWIFT
@@ -144,7 +145,6 @@ public class CountryCodesParameterizedTest {
             td( "Angola",                     false, false, "AO06004400006729503010102",       null      , null      , "AO06 0044 0000 6729 5030 1010 2"),         //IBAN.com Experimental List
             td( "Benin",                      false, false, "BJ66BJ0610100100144390000769",    null      , null      , "BJ66 BJ06 1010 0100 1443 9000 0769"),      //IBAN.com Experimental List
             td( "Burkina Faso",               false, false, "BF42BF0840101300463574000390",    null      , null      , "BF42 BF08 4010 1300 4635 7400 0390"),      //IBAN.com Experimental List
-            td( "Burundi",                    false, false, "BI43201011067444",                null      , null      , "BI43 2010 1106 7444"),                     //IBAN.com Experimental List
             td( "Cameroon",                   false, false, "CM2110002000300277976315008",     null      , null      , "CM21 1000 2000 3002 7797 6315 008"),       //IBAN.com Experimental List
             td( "Cape Verde",                 false, false, "CV64000500000020108215144",       null      , null      , "CV64 0005 0000 0020 1082 1514 4"),         //IBAN.com Experimental List
             td( "Central African Republic",   false, false, "CF4220001000010120069700160",     null      , null      , "CF42 2000 1000 0101 2006 9700 160"),       //IBAN.com Experimental List

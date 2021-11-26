@@ -107,6 +107,13 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
+#### 1.11.0: unreleased
+
+* Update to revision 91 of the SWIFT IBAN Registry
+    * Burundi (BI): added
+* Update to IBAN.com Experimental List
+    * Burundi (BI): removed
+
 #### 1.10.1: 20 August 2021
 
 * Update to revision 90 of the SWIFT IBAN Registry
