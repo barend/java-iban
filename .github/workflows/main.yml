@@ -11,7 +11,8 @@ jobs:
         java:
           - 1.8  # LTS
           - 11   # LTS
-          - 16   # Current
+          - 17   # LTS
+          # - 18   # Current --requires update of spotbugs-maven-plugin past 4.7.0.0
     steps:
       - name: Checkout Source
         uses: actions/checkout@v2

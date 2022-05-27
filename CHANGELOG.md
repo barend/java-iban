@@ -1,6 +1,15 @@
 # Version History
 
-## 1.11.0: unreleased
+## 1.12.0: unreleased
+
+* Update to revision 92 of the SWIFT IBAN Registry
+    * Djibouti (DJ): added
+    * Russia (RU): added
+    * Sudan (SU): remove incorrect branch identifier field
+* Update to IBAN.com Experimental List
+    * Djibouti (DJ): removed
+
+## 1.11.0: 26 November 2021
 
 * Update to revision 91 of the SWIFT IBAN Registry
     * Burundi (BI): added
