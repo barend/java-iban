@@ -107,28 +107,21 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
+## 1.12.0: unreleased
+
+* Update to revision 92 of the SWIFT IBAN Registry
+    * Djibouti (DJ): added
+    * Russia (RU): added
+    * Sudan (SU): remove incorrect branch identifier field
+* Update to IBAN.com Experimental List
+    * Djibouti (DJ): removed
+
 #### 1.11.0: 26 November 2021
 
 * Update to revision 91 of the SWIFT IBAN Registry
     * Burundi (BI): added
 * Update to IBAN.com Experimental List
     * Burundi (BI): removed
-
-#### 1.10.1: 20 August 2021
-
-* Update to revision 90 of the SWIFT IBAN Registry
-    * Sudan (SD): added ([#42][i42]).
-* Update to IBAN.com Experimental List
-    * No changes
-* Drop `template-maven-plugin`. It has proven to make the CI build very flaky. Removing this also lets us remove the
-  third-party artifact repository from the pom ([#33][i33]), simplifying the supply chain. It also makes the build a
-  little quicker. The downside is that the build now requires Python 3 and a bourne shell. It should build on WSL2 just
-  fine, but there is no pom profile to support Windows native builds.
-
-(1.10.0 unreleased; packaging mistake)
-
-[i33]: https://github.com/barend/java-iban/issues/33
-[i42]: https://github.com/barend/java-iban/issues/42
 
 #### Earlier versions
 
