@@ -1,6 +1,6 @@
 # Version History
 
-## 1.12.0: unreleased
+## 1.12.0: 27 May 2022
 
 * Update to revision 92 of the SWIFT IBAN Registry
     * Djibouti (DJ): added
