@@ -1,5 +1,10 @@
 # Version History
 
+## 1.13.0: 16 September 2022
+
+* All exceptions thrown now extend `IBANException` (#17)
+* No changes to country data
+
 ## 1.12.0: 27 May 2022
 
 * Update to revision 92 of the SWIFT IBAN Registry

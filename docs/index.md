@@ -107,7 +107,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
-## 1.13.0: unreleased
+## 1.13.0: 16 September 2022
 
 * All exceptions thrown now extend `IBANException` (#17)
 * No changes to country data
