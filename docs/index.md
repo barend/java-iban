@@ -19,7 +19,7 @@ version of the IBAN registry, but I don't plan on developing any new features.
 
 ### Installation
 
-Grab a package [from Github][download] or get it from Maven Central:
+Grab a package [from GitHub][download] or get it from Maven Central:
 
 #### Maven
 
@@ -27,7 +27,7 @@ Grab a package [from Github][download] or get it from Maven Central:
     <dependency>
         <groupId>nl.garvelink.oss</groupId>
         <artifactId>iban</artifactId>
-        <version>1.12.0</version>
+        <version>1.13.0</version>
     </dependency>
 ```
 
@@ -35,8 +35,14 @@ Grab a package [from Github][download] or get it from Maven Central:
 
 ```groovy
     dependencies {
-        compile 'nl.garvelink.oss:iban:1.12.0'
+        compile 'nl.garvelink.oss:iban:1.13.0'
     }
+```
+
+#### Sbt
+
+```scala
+libraryDependencies += "nl.garvelink.oss" % "iban" % "1.13.0"
 ```
 
 [download]: https://github.com/barend/java-iban/releases
