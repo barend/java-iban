@@ -2,8 +2,10 @@
 
 ## 1.13.0: 16 September 2022
 
-* All exceptions thrown now extend `IBANException` (#17)
+* All exceptions thrown now extend `IBANException` ([#17][i17])
 * No changes to country data
+
+[i17]: https://github.com/barend/java-iban/issues/17
 
 ## 1.12.0: 27 May 2022
 
