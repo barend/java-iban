@@ -64,22 +64,22 @@ public class IBANTest {
         assertThat(copy, is(equalTo(original)));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANException.class)
     public void parseShouldRejectNull() {
         IBAN.parse(null);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANException.class)
     public void parseShouldRejectInvalidInput() {
         IBAN.parse("Shenanigans!");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANException.class)
     public void parseShouldRejectLeadingWhitespace() {
         IBAN.parse(" " + VALID_IBAN);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANException.class)
     public void parseShouldRejectTrailingWhitespace() {
         IBAN.parse(VALID_IBAN + ' ');
     }
@@ -110,32 +110,32 @@ public class IBANTest {
         assertThat(composed, is(equalTo(IBAN.parse(VALID_IBAN))));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANException.class)
     public void composeShouldRejectNullCountryCode() {
         IBAN.compose(null, VALID_IBAN.substring(4));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANException.class)
     public void composeShouldRejectBlankCountryCode() {
         IBAN.compose("  ", VALID_IBAN.substring(4));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANException.class)
     public void composeShouldRejectMalformedCountryCode() {
         IBAN.compose("potato", VALID_IBAN.substring(4));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANException.class)
     public void composeShouldRejectUnknownCountryCode() {
         IBAN.compose("XX", VALID_IBAN.substring(4));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANException.class)
     public void composeShouldRejectNullBBAN() {
         IBAN.compose(VALID_IBAN.substring(0, 2), null);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANException.class)
     public void composeShouldRejectWrongLengthBBAN() {
         IBAN.compose(VALID_IBAN.substring(0, 2), VALID_IBAN.substring(5));
     }

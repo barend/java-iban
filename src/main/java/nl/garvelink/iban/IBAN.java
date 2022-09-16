@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
  * An immutable value type representing an International Bank Account Number. Instances of this class have correct
  * check digits and a valid length for their country code. No country-specific validation is performed, other than
  * matching the length of the IBAN to its country code. Unknown country codes are not supported.
- * @author Barend Garvelink (barend@garvelink.nl) https://github.com/barend
+ * @author Barend Garvelink https://github.com/barend
  */
 public final class IBAN implements Serializable {
 
@@ -82,13 +82,13 @@ public final class IBAN implements Serializable {
      */
     private IBAN(String value) {
         if (value == null) {
-            throw new IllegalArgumentException("Input is null");
+            throw new IBANParseException("Input is null", null);
         }
         if (value.length() < SHORTEST_POSSIBLE_IBAN) {
-            throw new IllegalArgumentException("Length is too short to be an IBAN");
+            throw new IBANParseException("Length is too short to be an IBAN", value);
         }
         if (value.charAt(2) < '0' || value.charAt(2) > '9' || value.charAt(3) < '0' || value.charAt(3) > '9') {
-            throw new IllegalArgumentException("Characters at index 2 and 3 not both numeric.");
+            throw new IBANParseException("Characters at index 2 and 3 not both numeric.", value);
         }
         final String countryCode = value.substring(0, 2);
         final int expectedLength = CountryCodes.getLengthForCountryCode(countryCode);
@@ -116,10 +116,10 @@ public final class IBAN implements Serializable {
      */
     public static IBAN parse(CharSequence input) {
         if (input == null || input.length() == 0) {
-            throw new IllegalArgumentException("Input is null or empty string.");
+            throw new IBANParseException("Input is null or empty string.", input);
         }
         if (!(isLetterOrDigit(input.charAt(0)) && isLetterOrDigit(input.charAt(input.length() - 1)))) {
-            throw new IllegalArgumentException("Input begins or ends in an invalid character.");
+            throw new IBANParseException("Input begins or ends in an invalid character.", input);
         }
         return new IBAN(toPlain(input));
     }

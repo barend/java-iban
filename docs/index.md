@@ -107,6 +107,11 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
+## 1.13.0: unreleased
+
+* All exceptions thrown now extend `IBANException` (#17)
+* No changes to country data
+
 ## 1.12.0: 27 May 2022
 
 * Update to revision 92 of the SWIFT IBAN Registry

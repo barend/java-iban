@@ -18,22 +18,16 @@ package nl.garvelink.iban;
 /**
  * Indicates that a candate IBAN failed validation because it's the wrong length for its country code.
  */
-public class WrongLengthException extends IllegalArgumentException {
-    private static final long serialVersionUID = 1L;
-    private final String failedInput;
+public class WrongLengthException extends IBANException {
+    private static final long serialVersionUID = 2L;
     private final int actualLength;
     private final int expectedLength;
 
     WrongLengthException(String failedInput, int expectedLength) {
         super("Input failed length validation: found " + failedInput.length() + ", but expect "
-                + expectedLength + " for country code.");
-        this.failedInput = failedInput;
+                + expectedLength + " for country code.", failedInput);
         this.actualLength = failedInput.length();
         this.expectedLength = expectedLength;
-    }
-
-    public String getFailedInput() {
-        return failedInput;
     }
 
     public int getExpectedLength() {

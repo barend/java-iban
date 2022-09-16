@@ -14,7 +14,7 @@
 # limitations under the License.
 meta:
   iban_registry_version: 92
-  last_update: 2022-05-27
+  last_update: 2022-09-16
 ibans:
   -
     name: Andorra

@@ -26,62 +26,62 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class Modulo97Test {
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void itShouldRejectNull() {
         Modulo97.checksum(null);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void itShouldRejectLength0() {
         Modulo97.checksum("");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void itShouldRejectLength1() {
         Modulo97.checksum("M");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void itShouldRejectLength2() {
         Modulo97.checksum("MO");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void itShouldRejectLength3() {
         Modulo97.checksum("MO9");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void itShouldRejectLength4() {
         Modulo97.checksum("MO97");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void itShouldRejectLength1PaddedTo5() {
         Modulo97.checksum("M    ");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void itShouldRejectLength2PaddedTo5() {
         Modulo97.checksum("   MO");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void itShouldRejectLength3PaddedTo5() {
         Modulo97.checksum("M O 9");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void itShouldRejectLength4PaddedTo5() {
         Modulo97.checksum(" MO97");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void itShouldRejectInvalidNonWhitespace() {
         Modulo97.checksum("TS00☠");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void itShouldRejectInvalidWhitespace() {
         Modulo97.checksum("MO97\tA");
     }
@@ -118,12 +118,12 @@ public class Modulo97Test {
         }
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void itShouldRefuseToCalculateCheckDigitsIfIndex2IsNot0() {
         Modulo97.calculateCheckDigits("MO10A");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void itShouldRefuseToCalculateCheckDigitsIfIndex3IsNot0() {
         Modulo97.calculateCheckDigits("MO02A");
     }
@@ -137,17 +137,17 @@ public class Modulo97Test {
         assertThat(checkDigits, is(equalTo(91)));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void composeShouldRejectNullCountryCode() {
         Modulo97.calculateCheckDigits(null, VALID_BBAN);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void composeShouldRejectBlankCountryCode() {
         Modulo97.calculateCheckDigits("  ", VALID_BBAN);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void composeShouldRejectMalformedCountryCode() {
         Modulo97.calculateCheckDigits("potato", VALID_BBAN);
     }
@@ -158,7 +158,7 @@ public class Modulo97Test {
         assertThat(checkDigits, is(equalTo(72)));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IBANParseException.class)
     public void composeShouldRejectNullBBAN() {
         Modulo97.calculateCheckDigits(VALID_COUNTRY, null);
     }
