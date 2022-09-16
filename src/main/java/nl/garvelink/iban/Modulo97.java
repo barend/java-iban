@@ -31,8 +31,8 @@ public abstract class Modulo97 {
      * Calculates the raw MOD97 checksum for a given input.
      * <p>
      * The input is allowed to contain space characters. Any character outside the range {@code [A-Za-z0-9 ]} will cause
-     * an IllegalArgumentException to be thrown. This method allocates a temporary buffer of twice the input length, so
-     * it will fail for unreasonably large inputs.</p>
+     * an {@link IBANParseException} to be thrown. This method allocates a temporary buffer of twice the input
+     * length, so it will fail for unreasonably large inputs.</p>
      * <p>
      * It is expected, but not enforced, that the characters at index 2 and 3 are numeric. If the existing check digits
      * are {@code 00} then this method will return the value that, after subtracting it from 98, gives you the check
@@ -44,13 +44,14 @@ public abstract class Modulo97 {
      *
      * @param input the input, which should be at least five characters excluding spaces.
      * @return the check digits calculated for the given IBAN.
-     * @throws IllegalArgumentException if the input is in some way invalid.
+     * @throws IBANParseException if the input is in some way invalid.
      * @see #calculateCheckDigits(CharSequence)
      * @see #verifyCheckDigits(CharSequence)
      */
     public static int checksum(CharSequence input) {
         if (input == null || !atLeastFiveNonSpaceCharacters(input)) {
-            throw new IllegalArgumentException("The input must be non-null and contain at least five non-space characters.");
+            throw new IBANParseException(
+                "The input must be non-null and contain at least five non-space characters.", input);
         }
         final char[] buffer = new char[input.length() * 2];
         int offset = transform(input, 4, input.length(), buffer, 0);
@@ -65,11 +66,14 @@ public abstract class Modulo97 {
      * @param input the input; the characters at indices 2 and 3 <strong>must</strong> be {@code '0'}. The input must
      *              also satisfy the criteria defined in {@link #checksum(CharSequence)}.
      * @return the check digits to be used at indices 2 and 3 to make the input MOD97 verifiable.
-     * @throws IllegalArgumentException if the input is in some way invalid.
+     * @throws IBANParseException if the input is in some way invalid.
      */
     public static int calculateCheckDigits(CharSequence input) {
         if (input == null || input.length() < 5 || input.charAt(2) != '0' || input.charAt(3) != '0') {
-            throw new IllegalArgumentException("The input must be non-null, have a minimum length of five characters, and the characters at indices 2 and 3 must be '0'.");
+            throw new IBANParseException(
+                "The input must be non-null, have a minimum length of five characters, and the characters at indices 2 and 3 must be '0'.",
+                input
+            );
         }
         return 98 - checksum(input);
     }
@@ -79,22 +83,22 @@ public abstract class Modulo97 {
      * @param countryCode the country code. Not validated to be a known country.
      * @param bban the country-specific BBAN. Not validated to required length.
      * @return the check digits to be used at indices 2 and 3 to make the input MOD97 verifiable.
-     * @throws IllegalArgumentException if either input is null, or the country code is not two characters.
+     * @throws IBANParseException if either input is null, or the country code is not two characters.
      * @since 1.9.0
      */
     public static int calculateCheckDigits(CharSequence countryCode, CharSequence bban) {
         if (countryCode == null) {
-            throw new IllegalArgumentException("countryCode is required but is null.");
+            throw new IBANParseException("countryCode is required but is null.", null);
         }
         if (bban == null) {
-            throw new IllegalArgumentException("bban is required but is null.");
+            throw new IBANParseException("bban is required but is null.", null);
         }
         if (countryCode.length() != 2) {
-            throw new IllegalArgumentException(
-                String.format("countryCode should be length 2 but is %d", countryCode.length()));
+            throw new IBANParseException(
+                String.format("countryCode should be length 2 but is %d", countryCode.length()), countryCode);
         }
         if (countryCode.charAt(0) == ' ' || countryCode.charAt(1) == ' ') {
-            throw new IllegalArgumentException("countryCode contains space character (0x20).");
+            throw new IBANParseException("countryCode contains space character (0x20).", countryCode);
         }
         StringBuilder sb = new StringBuilder(countryCode).append("00").append(bban);
         return calculateCheckDigits(sb);
@@ -104,7 +108,7 @@ public abstract class Modulo97 {
      * Determines whether the given input has a valid MOD97 checksum.
      * @param input the input to verify, it must meet the criteria defined in {@link #checksum(CharSequence)}.
      * @return {@code true} if the input passes checksum verification, {@code false} otherwise.
-     * @throws IllegalArgumentException if the input is in some way invalid.
+     * @throws IBANParseException if the input is in some way invalid.
      */
     public static boolean verifyCheckDigits(CharSequence input) {
         return checksum(input) == 1;
@@ -118,7 +122,7 @@ public abstract class Modulo97 {
      * @param dest the buffer to write transformed characters into.
      * @param destPos the index in {@code dest} to begin writing.
      * @return the value of {@code destPos} incremented by the number of characters that were added, i.e. the next unused index in {@code dest}.
-     * @throws IllegalArgumentException if {@code src} contains an unsupported character.
+     * @throws IBANParseException if {@code src} contains an unsupported character.
      * @throws ArrayIndexOutOfBoundsException if {@code dest} does not have enough capacity to store the transformed result (keep in mind that a single character from {@code src} can expand to two characters in {@code dest}).
      */
     private static int transform(final CharSequence src, final int srcPos, final int srcLen, final char[] dest, final int destPos) {
@@ -136,7 +140,7 @@ public abstract class Modulo97 {
                 dest[offset++] = (char)('0' + tmp / 10);
                 dest[offset++] = (char)('0' + tmp % 10);
             } else if (c != ' ') {
-                throw new IllegalArgumentException("Invalid character '" + c + "'.");
+                throw new IBANParseException("Invalid character '" + c + "'.", src.subSequence(srcPos, srcLen));
             }
         }
         return offset;

@@ -1,5 +1,5 @@
 /*
-   Copyright 2021 Barend Garvelink
+   Copyright 2022 Barend Garvelink
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -16,12 +16,12 @@
 package nl.garvelink.iban;
 
 /**
- * Indicates that an IBAN failed validation because its embedded country code is unknown.
+ * Indicates that some given input could not be successfully parsed into an IBAN.
  */
-public class UnknownCountryCodeException extends IBANException {
-    private static final long serialVersionUID = 2L;
+public class IBANParseException extends IBANException {
+    private static final long serialVersionUID = 1L;
 
-    UnknownCountryCodeException(String failedInput) {
-        super("Unknown country code in input", failedInput);
+    public IBANParseException(String message, CharSequence failedInput) {
+        super(message, failedInput);
     }
 }
