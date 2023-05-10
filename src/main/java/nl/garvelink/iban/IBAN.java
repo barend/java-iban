@@ -150,7 +150,7 @@ public final class IBAN implements Serializable {
         StringBuilder sb =
             new StringBuilder(CountryCodes.LONGEST_IBAN_LENGTH).append(countryCode).append("00").append(bban);
         int checkDigits = Modulo97.calculateCheckDigits(sb);
-        sb.replace(2, 4, Integer.toString(checkDigits));
+        sb.replace(2, 4, String.format("%02d", checkDigits));
         return parse(sb);
     }
 
