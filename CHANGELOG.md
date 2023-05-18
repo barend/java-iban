@@ -1,5 +1,18 @@
 # Version History
 
+## 1.14.0: unreleased
+
+* Fixes exception when composing IBAN with check digit under 10 ([#92][i92]).
+* Update to revision 94 of the SWIFT IBAN Registry
+    * Mongolia (MN): added
+    * Nicaragua (NI): added, note that this entry was previously in the
+      experimental list, and the IBAN length has changed.
+    * Somalia (SO): added
+* Update to IBAN.com Experimental List
+    * Nicaragua (NI): removed
+
+[i92]: https://github.com/barend/java-iban/issues/92
+
 ## 1.13.0: 16 September 2022
 
 * All exceptions thrown now extend `IBANException` ([#17][i17])

@@ -1,5 +1,5 @@
 ---
-# Copyright 2021 Barend Garvelink
+# Copyright 2023 Barend Garvelink
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,8 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 meta:
-  iban_registry_version: 92
-  last_update: 2022-09-16
+  iban_registry_version: 94
+  last_update: 2023-05-18
 ibans:
   -
     name: Andorra
@@ -789,6 +789,17 @@ ibans:
       sepa_country: no
       in_swift_registry: no
   -
+    name: Mongolia
+    country_code: MN
+    length: 20
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+  -
     name: Mauritania
     country_code: MR
     length: 27
@@ -847,10 +858,14 @@ ibans:
   -
     name: Nicaragua
     country_code: NI
-    length: 32
+    length: 28
     flags:
       sepa_country: no
-      in_swift_registry: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
   -
     name: Netherlands (The)
     country_code: NL
@@ -1054,6 +1069,20 @@ ibans:
     flags:
       sepa_country: no
       in_swift_registry: no
+  -
+    name: Somalia
+    country_code: SO
+    length: 23
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+      branch_code:
+        position: 8
+        length: 3
   -
     name: Sao Tome e Principe
     country_code: ST
