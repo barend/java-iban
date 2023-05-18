@@ -140,7 +140,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <fork>false</fork>
+                    <fork>true</fork>
                 </configuration>
             </plugin>
             <plugin>
