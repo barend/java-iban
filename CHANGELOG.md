@@ -1,6 +1,6 @@
 # Version History
 
-## 1.14.0: unreleased
+## 1.14.0: 18 May 2023
 
 * Fixes exception when composing IBAN with check digit under 10 ([#92][i92]).
 * Update to revision 94 of the SWIFT IBAN Registry

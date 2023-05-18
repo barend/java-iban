@@ -27,7 +27,7 @@ Grab a package [from GitHub][download] or get it from Maven Central:
     <dependency>
         <groupId>nl.garvelink.oss</groupId>
         <artifactId>iban</artifactId>
-        <version>1.13.0</version>
+        <version>1.14.0</version>
     </dependency>
 ```
 
@@ -35,14 +35,14 @@ Grab a package [from GitHub][download] or get it from Maven Central:
 
 ```groovy
     dependencies {
-        compile 'nl.garvelink.oss:iban:1.13.0'
+        compile 'nl.garvelink.oss:iban:1.14.0'
     }
 ```
 
 #### Sbt
 
 ```scala
-libraryDependencies += "nl.garvelink.oss" % "iban" % "1.13.0"
+libraryDependencies += "nl.garvelink.oss" % "iban" % "1.14.0"
 ```
 
 [download]: https://github.com/barend/java-iban/releases
@@ -113,7 +113,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
-## 1.14.0: unreleased
+## 1.14.0: 18 May 2023
 
 * Fixes exception when composing IBAN with check digit under 10 ([#92][i92]).
 * Update to revision 94 of the SWIFT IBAN Registry
