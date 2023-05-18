@@ -113,6 +113,12 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
+## 1.x.y: unreleased
+
+* Fixes exception when composing IBAN with check digit under 10 ([#92][i92]).
+
+[i92]: https://github.com/barend/java-iban/issues/92
+
 ## 1.13.0: 16 September 2022
 
 * All exceptions thrown now extend `IBANException` ([#17][i17])

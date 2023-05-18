@@ -45,12 +45,15 @@
     <developers>
         <developer>
             <name>Barend Garvelink</name>
-            <email>barend@garvelink.nl</email>
             <url>https://github.com/barend</url>
         </developer>
     </developers>
 
     <contributors>
+        <contributor>
+            <name>Daniel Holm</name>
+            <url>https://github.com/trustlydaniel</url>
+        </contributor>
         <contributor>
             <name>Matthias Vill</name>
             <url>https://github.com/TheConstructor</url>
