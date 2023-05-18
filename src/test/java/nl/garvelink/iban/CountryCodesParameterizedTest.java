@@ -1,5 +1,5 @@
 /*
-   Copyright 2021 Barend Garvelink
+   Copyright 2023 Barend Garvelink
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -113,9 +113,11 @@ public class CountryCodesParameterizedTest {
             td( "Moldova",                    true , false, "MD24AG000225100013104168",             "AG"       , null      , "MD24 AG00 0225 1000 1310 4168"),                //SWIFT
             td( "Montenegro",                 true , false, "ME25505000012345678951",               "505"      , null      , "ME25 5050 0001 2345 6789 51" ),                 //SWIFT
             td( "Macedonia",                  true , false, "MK07250120000058984",                  "250"      , null      , "MK07 2501 2000 0058 984" ),                     //SWIFT
+            td( "Mongolia",                   true , false, "MN121234123456789123",                 "1234"     , null      , "MN12 1234 1234 5678 9123" ),                    //SWIFT
             td( "Mauritania",                 true , false, "MR1300020001010000123456753",          "00020"    , "00101"   , "MR13 0002 0001 0100 0012 3456 753"),            //SWIFT
             td( "Malta",                      true , true , "MT84MALT011000012345MTLCAST001S",      "MALT"     , "01100"   , "MT84 MALT 0110 0001 2345 MTLC AST0 01S" ),      //SWIFT
             td( "Mauritius",                  true , false, "MU17BOMM0101101030300200000MUR",       "BOMM01"   , "01"      , "MU17 BOMM 0101 1010 3030 0200 000M UR" ),       //SWIFT
+            td( "Nicaragua",                  true , false, "NI45BAPR00000013000003558124",         "BAPR"     , null      , "NI45 BAPR 0000 0013 0000 0355 8124" ),          //SWIFT
             td( "Netherlands (The)",          true , true , "NL91ABNA0417164300",                   "ABNA"     , null      , "NL91 ABNA 0417 1643 00" ),                      //SWIFT
             td( "Norway",                     true , true , "NO9386011117947",                      "8601"     , null      , "NO93 8601 1117 947" ),                          //SWIFT
             td( "Pakistan",                   true , false, "PK36SCBL0000001123456702",             "SCBL"     , null      , "PK36 SCBL 0000 0011 2345 6702"),                //SWIFT
@@ -133,6 +135,7 @@ public class CountryCodesParameterizedTest {
             td( "Slovenia",                   true , true , "SI56263300012039086",                  "26330"    , null      , "SI56 2633 0001 2039 086" ),                     //SWIFT
             td( "Slovakia",                   true , true , "SK3112000000198742637541",             "1200"     , null      , "SK31 1200 0000 1987 4263 7541" ),               //SWIFT
             td( "San Marino",                 true , true , "SM86U0322509800000000270100",          "03225"    , "09800"   , "SM86 U032 2509 8000 0000 0270 100" ),           //SWIFT
+            td( "Somalia",                    true , false, "SO211000001001000100141",              "1000"     , "001"     , "SO21 1000 0010 0100 0100 141" ),                //SWIFT
             td( "Sao Tome e Principe",        true , false, "ST23000100010051845310146",            "0001"     , "0001"    , "ST23 0001 0001 0051 8453 1014 6" ),             //SWIFT
             td( "El Salvador",                true , false, "SV62CENR00000000000000700025",         "CENR"     , null      , "SV62 CENR 0000 0000 0000 0070 0025"),           //SWIFT
             td( "Timor-Leste",                true , false, "TL380080012345678910157",              "008"      , null      , "TL38 0080 0123 4567 8910 157"),                 //SWIFT
@@ -163,7 +166,6 @@ public class CountryCodesParameterizedTest {
             td( "Mali",                       false, false, "ML13ML0160120102600100668497",         null       , null      , "ML13 ML01 6012 0102 6001 0066 8497"),           //IBAN.com Experimental List
             td( "Morocco",                    false, false, "MA64011519000001205000534921",         null       , null      , "MA64 0115 1900 0001 2050 0053 4921"),           //IBAN.com Experimental List
             td( "Mozambique",                 false, false, "MZ59000301080016367102371",            null       , null      , "MZ59 0003 0108 0016 3671 0237 1"),              //IBAN.com Experimental List
-            td( "Nicaragua",                  false, false, "NI92BAMC000000000000000003123123",     null       , null      , "NI92 BAMC 0000 0000 0000 0000 0312 3123"),      //IBAN.com Experimental List
             td( "Niger",                      false, false, "NE58NE0380100100130305000268",         null       , null      , "NE58 NE03 8010 0100 1303 0500 0268"),           //IBAN.com Experimental List
             td( "Senegal",                    false, false, "SN08SN0100152000048500003035",         null       , null      , "SN08 SN01 0015 2000 0485 0000 3035"),           //IBAN.com Experimental List
             td( "Togo",                       false, false, "TG53TG0090604310346500400070",         null       , null      , "TG53 TG00 9060 4310 3465 0040 0070")            //IBAN.com Experimental List

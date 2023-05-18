@@ -113,9 +113,16 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
-## 1.x.y: unreleased
+## 1.14.0: unreleased
 
 * Fixes exception when composing IBAN with check digit under 10 ([#92][i92]).
+* Update to revision 94 of the SWIFT IBAN Registry
+    * Mongolia (MN): added
+    * Nicaragua (NI): added, note that this entry was previously in the
+      experimental list, and the IBAN length has changed.
+    * Somalia (SO): added
+* Update to IBAN.com Experimental List
+    * Nicaragua (NI): removed
 
 [i92]: https://github.com/barend/java-iban/issues/92
 
@@ -198,7 +205,7 @@ If you're looking for a more comprehensive IBAN library, you may prefer [iban4j]
 
 ### Copyright and License
 
-Copyright 2013–2022 Barend Garvelink
+Copyright 2013 Barend Garvelink
 
 ```none
    Licensed under the Apache License, Version 2.0 (the "License");
