@@ -38,8 +38,8 @@ import static org.junit.jupiter.api.Assertions.fail;
  * Miscellaneous tests for the {@link IBAN} class.
  */
 public class IBANTest {
-    private static final String VALID_IBAN = "NL91ABNA0417164300";
-    private static final String INVALID_IBAN = "NL12ABNA0417164300";
+    private static final String VALID_IBAN = "NL03ABNA0143267469";
+    private static final String INVALID_IBAN = "NL13ABNA0143267469";
 
     @Test
     public void getCountryCodeShouldReturnTheCountryCode() {
@@ -48,7 +48,7 @@ public class IBANTest {
 
     @Test
     public void getCheckDigitsShouldReturnTheCheckDigits() {
-        assertThat(IBAN.parse(VALID_IBAN).getCheckDigits(), is("91"));
+        assertThat(IBAN.parse(VALID_IBAN).getCheckDigits(), is("03"));
     }
 
     @Test
@@ -200,7 +200,7 @@ public class IBANTest {
     public void testSerializedFormCompatibility() throws IOException, ClassNotFoundException {
         // This was manually sampled from the preceding test. This test is to ensure that the serialised form remains
         // stable as the library evolves.
-        String serializedForm = "rO0ABXNyAB5ubC5nYXJ2ZWxpbmsuaWJhbi5JQkFOJE1lbWVudG8AAAAAAAAAAQwAAHhwdxwAAAAAAAAAAQASTkw5MUFCTkEwNDE3MTY0MzAweA==";
+        String serializedForm = "rO0ABXNyAB5ubC5nYXJ2ZWxpbmsuaWJhbi5JQkFOJE1lbWVudG8AAAAAAAAAAQwAAHhwdxwAAAAAAAAAAQASTkwwM0FCTkEwMTQzMjY3NDY5eA==";
         ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(Base64.getDecoder().decode(serializedForm)));
         IBAN copy = (IBAN) ois.readObject();
         assertThat(copy.toPlainString(), is(equalTo(VALID_IBAN)));
