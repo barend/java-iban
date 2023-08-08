@@ -27,11 +27,6 @@ public abstract class IBANException extends IllegalArgumentException {
         this.failedInput = failedInput;
     }
 
-    public IBANException(String message, Throwable cause, String failedInput) {
-        super(message, cause);
-        this.failedInput = failedInput;
-    }
-
     /**
      * Returns the input that triggered the exception, which can be null.
      * @return the unparsed input.
