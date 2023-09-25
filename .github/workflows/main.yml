@@ -11,13 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # No longer building on JDK 8, the maven settings to make that work have
-        # gotten too complicated. Target bytecode version is still Java 1.8.
         java:
-          # - 8    # LTS
           - 11   # LTS
           - 17   # LTS
-          - 20   # Current
+          - 21   # Current
     steps:
       - name: Checkout Source
         uses: actions/checkout@v3
