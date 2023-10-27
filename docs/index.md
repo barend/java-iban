@@ -113,6 +113,11 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
+## 1.15.0: Unreleased
+
+* Updates to IBAN Registry revision 95
+    * Falkland Islands (FK): added
+
 ## 1.14.0: 18 May 2023
 
 * Fixes exception when composing IBAN with check digit under 10 ([#92][i92]).
