@@ -84,6 +84,7 @@ public class CountryCodesParameterizedTest {
             td( "Egypt",                      true , false, "EG380019000500000000263180002",        "0019"     , "0005"    , "EG38 0019 0005 0000 0000 2631 8000 2" ),        //SWIFT
             td( "Spain",                      true , true , "ES9121000418450200051332",             "2100"     , "0418"    , "ES91 2100 0418 4502 0005 1332" ),               //SWIFT
             td( "Finland",                    true , true , "FI2112345600000785",                   "123"      , null      , "FI21 1234 5600 0007 85" ),                      //SWIFT
+            td( "Falkland Islands",           true , false, "FK88SC123456789012",                   "SC"       , null      , "FK88 SC12 3456 7890 12" ),                      //SWIFT
             td( "Faroe Islands",              true , false, "FO6264600001631634",                   "6460"     , null      , "FO62 6460 0001 6316 34" ),                      //SWIFT
             td( "France",                     true , true , "FR1420041010050500013M02606",          "20041"    , "01005"   , "FR14 2004 1010 0505 0001 3M02 606" ),           //SWIFT
             td( "United Kingdom",             true , true , "GB29NWBK60161331926819",               "NWBK"     , "601613"  , "GB29 NWBK 6016 1331 9268 19" ),                 //SWIFT
@@ -120,6 +121,7 @@ public class CountryCodesParameterizedTest {
             td( "Nicaragua",                  true , false, "NI45BAPR00000013000003558124",         "BAPR"     , null      , "NI45 BAPR 0000 0013 0000 0355 8124" ),          //SWIFT
             td( "Netherlands (The)",          true , true , "NL91ABNA0417164300",                   "ABNA"     , null      , "NL91 ABNA 0417 1643 00" ),                      //SWIFT
             td( "Norway",                     true , true , "NO9386011117947",                      "8601"     , null      , "NO93 8601 1117 947" ),                          //SWIFT
+            td( "Oman",                       true , false, "OM810180000001299123456",              "018"      , null      , "OM81 0180 0000 0129 9123 456"),                 //SWIFT
             td( "Pakistan",                   true , false, "PK36SCBL0000001123456702",             "SCBL"     , null      , "PK36 SCBL 0000 0011 2345 6702"),                //SWIFT
             td( "Poland",                     true , true , "PL61109010140000071219812874",         null       , "10901014", "PL61 1090 1014 0000 0712 1981 2874" ),          //SWIFT
             td( "Palestine, State of",        true , false, "PS92PALS000000000400123456702",        "PALS"     , null      , "PS92 PALS 0000 0000 0400 1234 5670 2"),         //SWIFT

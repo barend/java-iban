@@ -1,5 +1,11 @@
 # Version History
 
+## 1.15.0: Unreleased
+
+* Updates to IBAN Registry revision 97
+    * Falkland Islands (FK): added
+    * Oman (OM): added
+
 ## 1.14.0: 18 May 2023
 
 * Fixes exception when composing IBAN with check digit under 10 ([#92][i92]).
