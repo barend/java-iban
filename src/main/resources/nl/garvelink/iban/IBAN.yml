@@ -13,8 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 meta:
-  iban_registry_version: 94
-  last_update: 2023-05-18
+  iban_registry_version: 97
+  last_update: 2024-05-25
 ibans:
   -
     name: Andorra
@@ -373,6 +373,17 @@ ibans:
       bank_code:
         position: 4
         length: 3
+  -
+    name: Falkland Islands
+    country_code: FK
+    length: 18
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 2
   -
     name: Faroe Islands
     country_code: FO
@@ -888,6 +899,17 @@ ibans:
       bank_code:
         position: 4
         length: 4
+  -
+    name: Oman
+    country_code: "OM"
+    length: 23
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 3
   -
     name: Pakistan
     country_code: PK
