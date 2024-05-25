@@ -13,4 +13,4 @@ Only the most recent version is supported.
 ## Reporting a Vulnerability
 
 My preferred means of reporting any issues is using the GitHub Issues for this project. Confidential disclosure can be
-done through Keybase at [keybase.io/barend](https://keybase.io/barend).
+done through GitHub's private reporting mechanism. Expect a response within 30 days.
