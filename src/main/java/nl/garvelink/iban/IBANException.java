@@ -20,9 +20,10 @@ package nl.garvelink.iban;
  */
 public abstract class IBANException extends IllegalArgumentException {
     private static final long serialVersionUID = 1L;
+    /** The erroneous input. */
     private final String failedInput;
 
-    public IBANException(String message, CharSequence failedInput) {
+    IBANException(String message, CharSequence failedInput) {
         super(message);
         this.failedInput = failedInput == null ? null : failedInput.toString();
     }

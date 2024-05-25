@@ -21,7 +21,7 @@ package nl.garvelink.iban;
 public class IBANParseException extends IBANException {
     private static final long serialVersionUID = 1L;
 
-    public IBANParseException(String message, CharSequence failedInput) {
+    IBANParseException(String message, CharSequence failedInput) {
         super(message, failedInput);
     }
 }
