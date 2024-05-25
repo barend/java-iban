@@ -20,7 +20,9 @@ package nl.garvelink.iban;
  */
 public class WrongLengthException extends IBANException {
     private static final long serialVersionUID = 2L;
+    /** Actual length of input. */
     private final int actualLength;
+    /** Expected length of input. */
     private final int expectedLength;
 
     WrongLengthException(String failedInput, int expectedLength) {
@@ -30,10 +32,18 @@ public class WrongLengthException extends IBANException {
         this.expectedLength = expectedLength;
     }
 
+    /**
+     * The expected length for the input, given its country code.
+     * @return expected length of country IBAN.
+     */
     public int getExpectedLength() {
         return expectedLength;
     }
 
+    /**
+     * The actual length of the input IBAN.
+     * @return length of {@link #getFailedInput()}.
+     */
     public int getActualLength() {
         return actualLength;
     }

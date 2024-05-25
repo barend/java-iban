@@ -118,6 +118,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 * Updates to IBAN Registry revision 97
     * Falkland Islands (FK): added
     * Oman (OM): added
+* Bug fix: non-serializable instance field in `IBANException`.
 
 ## 1.14.0: 18 May 2023
 
