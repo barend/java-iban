@@ -20,11 +20,11 @@ package nl.garvelink.iban;
  */
 public abstract class IBANException extends IllegalArgumentException {
     private static final long serialVersionUID = 1L;
-    private final CharSequence failedInput;
+    private final String failedInput;
 
     public IBANException(String message, CharSequence failedInput) {
         super(message);
-        this.failedInput = failedInput;
+        this.failedInput = failedInput == null ? null : failedInput.toString();
     }
 
     /**
