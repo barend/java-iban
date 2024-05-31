@@ -119,6 +119,8 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
     * Falkland Islands (FK): added
     * Oman (OM): added
 * Bug fix: non-serializable instance field in `IBANException`.
+* Maintenance: switch from `nexus-staging-maven-plugin` to `central-publishing-maven-plugin`.
+* Signing GPG key ID `1573BDA099E1C39C631B2D8B5240D7B0FDC662CC`.
 
 ## 1.14.0: 18 May 2023
 
