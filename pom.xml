@@ -170,6 +170,7 @@
                     <goals>deploy</goals>
                     <pushChanges>false</pushChanges>
                     <releaseProfiles>release</releaseProfiles>
+                    <signTag>true</signTag>
                     <tagNameFormat>release-@{project.version}</tagNameFormat>
                     <useReleaseProfile>false</useReleaseProfile>
                 </configuration>
