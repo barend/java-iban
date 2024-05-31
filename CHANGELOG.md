@@ -1,6 +1,6 @@
 # Version History
 
-## 1.15.0: Unreleased
+## 1.15.0: 31 May 2024
 
 * Updates to IBAN Registry revision 97
     * Falkland Islands (FK): added
