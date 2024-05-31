@@ -13,4 +13,6 @@ Only the most recent version is supported.
 ## Reporting a Vulnerability
 
 My preferred means of reporting any issues is using the GitHub Issues for this project. Confidential disclosure can be
-done through GitHub's private reporting mechanism. Expect a response within 30 days.
+done through GitHub's [private reporting][disclosure] mechanism. Expect a response within 30 days.
+
+[disclosure]: https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability
