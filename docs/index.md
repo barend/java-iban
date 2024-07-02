@@ -113,7 +113,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
-## 1.15.0: 31 May 2024
+#### 1.15.0: 31 May 2024
 
 * Updates to IBAN Registry revision 97
     * Falkland Islands (FK): added
@@ -122,7 +122,7 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 * Maintenance: switch from `nexus-staging-maven-plugin` to `central-publishing-maven-plugin`.
 * Signing GPG key ID `1573BDA099E1C39C631B2D8B5240D7B0FDC662CC`.
 
-## 1.14.0: 18 May 2023
+#### 1.14.0: 18 May 2023
 
 * Fixes exception when composing IBAN with check digit under 10 ([#92][i92]).
 * Update to revision 94 of the SWIFT IBAN Registry
@@ -135,14 +135,14 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 [i92]: https://github.com/barend/java-iban/issues/92
 
-## 1.13.0: 16 September 2022
+#### 1.13.0: 16 September 2022
 
 * All exceptions thrown now extend `IBANException` ([#17][i17])
 * No changes to country data
 
 [i17]: https://github.com/barend/java-iban/issues/17
 
-## 1.12.0: 27 May 2022
+#### 1.12.0: 27 May 2022
 
 * Update to revision 92 of the SWIFT IBAN Registry
     * Djibouti (DJ): added
