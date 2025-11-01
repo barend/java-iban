@@ -13,8 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 meta:
-  iban_registry_version: 97
-  last_update: 2024-05-25
+  iban_registry_version: 99
+  last_update: 2025-11-01
 ibans:
   -
     name: Andorra
@@ -508,7 +508,11 @@ ibans:
     length: 28
     flags:
       sepa_country: no
-      in_swift_registry: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
   -
     name: Croatia
     country_code: HR
@@ -954,6 +958,9 @@ ibans:
       bank_code:
         position: 4
         length: 4
+      branch_code:
+        position: 8
+        length: 4
   -
     name: Qatar
     country_code: QA
@@ -1227,3 +1234,17 @@ ibans:
       branch_code:
         position: 6
         length: 2
+  -
+    name: Yemen
+    country_code: YE
+    length: 30
+    flags:
+      sepa_country: no
+      in_swift_registry: yes
+    embeds:
+      bank_code:
+        position: 4
+        length: 4
+      branch_code:
+        position: 8
+        length: 4

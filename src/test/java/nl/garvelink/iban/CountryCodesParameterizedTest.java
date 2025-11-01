@@ -93,6 +93,7 @@ public class CountryCodesParameterizedTest {
             td( "Greenland",                  true , false, "GL8964710001000206",                   "6471"     , null      , "GL89 6471 0001 0002 06"),                       //SWIFT
             td( "Greece",                     true , true , "GR1601101250000000012300695",          "011"      , "0125"    , "GR16 0110 1250 0000 0001 2300 695" ),           //SWIFT
             td( "Guatemala",                  true , false, "GT82TRAJ01020000001210029690",         "TRAJ"     , null      , "GT82 TRAJ 0102 0000 0012 1002 9690"),           //SWIFT
+            td( "Honduras",                   true , false, "HN88CABF00000000000250005469",         "CABF"     , null      , "HN88 CABF 0000 0000 0002 5000 5469"),           //SWIFT
             td( "Croatia",                    true , true , "HR1210010051863000160",                "1001005"  , null      , "HR12 1001 0051 8630 0016 0" ),                  //SWIFT
             td( "Hungary",                    true , true , "HU42117730161111101800000000",         "117"      , "7301"    , "HU42 1177 3016 1111 1018 0000 0000" ),          //SWIFT
             td( "Ireland",                    true , true , "IE29AIBK93115212345678",               "AIBK"     , "931152"  , "IE29 AIBK 9311 5212 3456 78" ),                 //SWIFT
@@ -125,7 +126,7 @@ public class CountryCodesParameterizedTest {
             td( "Pakistan",                   true , false, "PK36SCBL0000001123456702",             "SCBL"     , null      , "PK36 SCBL 0000 0011 2345 6702"),                //SWIFT
             td( "Poland",                     true , true , "PL61109010140000071219812874",         null       , "10901014", "PL61 1090 1014 0000 0712 1981 2874" ),          //SWIFT
             td( "Palestine, State of",        true , false, "PS92PALS000000000400123456702",        "PALS"     , null      , "PS92 PALS 0000 0000 0400 1234 5670 2"),         //SWIFT
-            td( "Portugal",                   true , true , "PT50000201231234567890154",            "0002"     , null      , "PT50 0002 0123 1234 5678 9015 4" ),             //SWIFT
+            td( "Portugal",                   true , true , "PT50000201231234567890154",            "0002"     , "0123"    , "PT50 0002 0123 1234 5678 9015 4" ),             //SWIFT
             td( "Qatar",                      true , false, "QA58DOHB00001234567890ABCDEFG",        "DOHB"     , null      , "QA58 DOHB 0000 1234 5678 90AB CDEF G"),         //SWIFT
             td( "Romania",                    true , true , "RO49AAAA1B31007593840000",             "AAAA"     , null      , "RO49 AAAA 1B31 0075 9384 0000" ),               //SWIFT
             td( "Serbia",                     true , false, "RS35260005601001611379",               "260"      , null      , "RS35 2600 0560 1001 6113 79" ),                 //SWIFT
@@ -147,6 +148,7 @@ public class CountryCodesParameterizedTest {
             td( "Vatican City State",         true , true , "VA59001123000012345678",               "001"      , null      , "VA59 0011 2300 0012 3456 78" ),                 //SWIFT
             td( "Virgin Islands",             true , false, "VG96VPVG0000012345678901",             "VPVG"     , null      , "VG96 VPVG 0000 0123 4567 8901"),                //SWIFT
             td( "Kosovo",                     true , false, "XK051212012345678906",                 "12"       , "12"      , "XK05 1212 0123 4567 8906"),                     //SWIFT
+            td( "Yemen",                      true , false, "YE15CBYE0001018861234567891234",       "CBYE"     , "0001"    , "YE15 CBYE 0001 0188 6123 4567 8912 34"),        //SWIFT
             // Countries in the IBAN.com Experimental List, sorted by Name
             td( "Algeria",                    false, false, "DZ580002100001113000000570",           null       , null      , "DZ58 0002 1000 0111 3000 0005 70"),             //IBAN.com Experimental List
             td( "Angola",                     false, false, "AO06004400006729503010102",            null       , null      , "AO06 0044 0000 6729 5030 1010 2"),              //IBAN.com Experimental List
@@ -161,7 +163,6 @@ public class CountryCodesParameterizedTest {
             td( "Equatorial Guinea",          false, false, "GQ7050002001003715228190196",          null       , null      , "GQ70 5000 2001 0037 1522 8190 196" ),           //IBAN.com Experimental List
             td( "Gabon",                      false, false, "GA2140021010032001890020126",          null       , null      , "GA21 4002 1010 0320 0189 0020 126"),            //IBAN.com Experimental List
             td( "Guinea-Bissau",              false, false, "GW04GW1430010181800637601",            null       , null      , "GW04 GW14 3001 0181 8006 3760 1"),              //IBAN.com Experimental List
-            td( "Honduras",                   false, false, "HN54PISA00000000000000123124",         null       , null      , "HN54 PISA 0000 0000 0000 0012 3124"),           //IBAN.com Experimental List
             td( "Iran",                       false, false, "IR710570029971601460641001",           null       , null      , "IR71 0570 0299 7160 1460 6410 01"),             //IBAN.com Experimental List
             td( "Ivory Coast",                false, false, "CI93CI0080111301134291200589",         null       , null      , "CI93 CI00 8011 1301 1342 9120 0589"),           //IBAN.com Experimental List
             td( "Madagascar",                 false, false, "MG4600005030071289421016045",          null       , null      , "MG46 0000 5030 0712 8942 1016 045"),            //IBAN.com Experimental List
