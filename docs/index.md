@@ -217,9 +217,12 @@ at the time this library started was still on Java 1.6. I'm trying to keep the l
 
 ### Alternatives
 
+Kotlin users should consider Eugen Martynov's Kiban library at [BijdorpStudio/kiban][kiban].
+
 If you're looking for a more comprehensive IBAN library, you may prefer [iban4j][iban4j].
 
 [iban4j]:https://github.com/arturmkrtchyan/iban4j
+[kiban]: https://github.com/BijdorpStudio/kiban
 
 ### Copyright and License
 
