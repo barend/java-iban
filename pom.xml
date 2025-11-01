@@ -72,13 +72,13 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.12.0</version>
+            <version>5.12.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
-            <version>5.12.0</version>
+            <version>5.12.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -98,7 +98,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>3.6.2</version>
                 <executions>
                     <execution>
                         <id>generate-code</id>
@@ -130,7 +130,7 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>4.9.1.0</version>
+                <version>4.9.8.1</version>
                 <executions>
                     <execution>
                         <phase>verify</phase>
@@ -210,7 +210,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>build-helper-maven-plugin</artifactId>
-                        <version>3.6.0</version>
+                        <version>3.6.1</version>
                         <executions>
                             <execution>
                                 <id>include-extra-sources-dir</id>
@@ -277,7 +277,7 @@
                     <plugin>
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
-                        <version>0.7.0</version>
+                        <version>0.9.0</version>
                         <extensions>true</extensions>
                         <configuration>
                             <deploymentName>Release ${project.version} (Maven)</deploymentName>
