@@ -1,5 +1,14 @@
 # Version History
 
+## 1.16.0: 22 December 2025
+
+* Updates to IBAN Registry revision 99
+    * Honduras (HN): added
+    * Portugal (PT): add branch identifier
+    * Yemen (YE): added
+* Update to IBAN.com Experimental List
+    * Honduras (HN): removed
+
 ## 1.15.0: 31 May 2024
 
 * Updates to IBAN Registry revision 97
