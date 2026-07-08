@@ -62,7 +62,7 @@ public class CountryCodesParameterizedTest {
             // Countries in the SWIFT reference, sorted by Country Code
             td( "Andorra",                    true , true , "AD1200012030200359100100",             "0001"     , "2030"    , "AD12 0001 2030 2003 5910 0100" ),               //SWIFT
             td( "United Arab Emirates (The)", true , false, "AE070331234567890123456",              "033"      , null      , "AE07 0331 2345 6789 0123 456"),                 //SWIFT
-            td( "Albania",                    true , false, "AL47212110090000000235698741",         "21211009" , "1100"    , "AL47 2121 1009 0000 0002 3569 8741"),           //SWIFT
+            td( "Albania",                    true , true , "AL47212110090000000235698741",         "21211009" , "1100"    , "AL47 2121 1009 0000 0002 3569 8741"),           //SWIFT
             td( "Austria",                    true , true , "AT611904300234573201",                 "19043"    , null      , "AT61 1904 3002 3457 3201" ),                    //SWIFT
             td( "Azerbaijan",                 true , false, "AZ21NABZ00000000137010001944",         "NABZ"     , null      , "AZ21 NABZ 0000 0000 1370 1000 1944"),           //SWIFT
             td( "Bosnia and Herzegovinia",    true , false, "BA391290079401028494",                 "129"      , "007"     , "BA39 1290 0794 0102 8494" ),                    //SWIFT
@@ -112,9 +112,9 @@ public class CountryCodesParameterizedTest {
             td( "Latvia",                     true , true , "LV80BANK0000435195001",                "BANK"     , null      , "LV80 BANK 0000 4351 9500 1" ),                  //SWIFT
             td( "Libya",                      true , false, "LY83002048000020100120361",            "002"      , "048"     , "LY83 0020 4800 0020 1001 2036 1"),              //SWIFT
             td( "Monaco",                     true , true , "MC5811222000010123456789030",          "11222"    , "00001"   , "MC58 1122 2000 0101 2345 6789 030" ),           //SWIFT
-            td( "Moldova",                    true , false, "MD24AG000225100013104168",             "AG"       , null      , "MD24 AG00 0225 1000 1310 4168"),                //SWIFT
-            td( "Montenegro",                 true , false, "ME25505000012345678951",               "505"      , null      , "ME25 5050 0001 2345 6789 51" ),                 //SWIFT
-            td( "Macedonia",                  true , false, "MK07250120000058984",                  "250"      , null      , "MK07 2501 2000 0058 984" ),                     //SWIFT
+            td( "Moldova",                    true , true , "MD24AG000225100013104168",             "AG"       , null      , "MD24 AG00 0225 1000 1310 4168"),                //SWIFT
+            td( "Montenegro",                 true , true , "ME25505000012345678951",               "505"      , null      , "ME25 5050 0001 2345 6789 51" ),                 //SWIFT
+            td( "Macedonia",                  true , true , "MK07250120000058984",                  "250"      , null      , "MK07 2501 2000 0058 984" ),                     //SWIFT
             td( "Mongolia",                   true , false, "MN121234123456789123",                 "1234"     , null      , "MN12 1234 1234 5678 9123" ),                    //SWIFT
             td( "Mauritania",                 true , false, "MR1300020001010000123456753",          "00020"    , "00101"   , "MR13 0002 0001 0100 0012 3456 753"),            //SWIFT
             td( "Malta",                      true , true , "MT84MALT011000012345MTLCAST001S",      "MALT"     , "01100"   , "MT84 MALT 0110 0001 2345 MTLC AST0 01S" ),      //SWIFT
@@ -129,7 +129,7 @@ public class CountryCodesParameterizedTest {
             td( "Portugal",                   true , true , "PT50000201231234567890154",            "0002"     , "0123"    , "PT50 0002 0123 1234 5678 9015 4" ),             //SWIFT
             td( "Qatar",                      true , false, "QA58DOHB00001234567890ABCDEFG",        "DOHB"     , null      , "QA58 DOHB 0000 1234 5678 90AB CDEF G"),         //SWIFT
             td( "Romania",                    true , true , "RO49AAAA1B31007593840000",             "AAAA"     , null      , "RO49 AAAA 1B31 0075 9384 0000" ),               //SWIFT
-            td( "Serbia",                     true , false, "RS35260005601001611379",               "260"      , null      , "RS35 2600 0560 1001 6113 79" ),                 //SWIFT
+            td( "Serbia",                     true , true , "RS35260005601001611379",               "260"      , null      , "RS35 2600 0560 1001 6113 79" ),                 //SWIFT
             td( "Russia",                     true,  false, "RU0304452522540817810538091310419",    "044525225", "40817"   , "RU03 0445 2522 5408 1781 0538 0913 1041 9"),    //SWIFT
             td( "Saudi Arabia",               true , false, "SA0380000000608010167519",             "80"       , null      , "SA03 8000 0000 6080 1016 7519"),                //SWIFT
             td( "Seychelles",                 true , false, "SC18SSCB11010000000000001497USD",      "SSCB11"   , "01"      , "SC18 SSCB 1101 0000 0000 0000 1497 USD" ),      //SWIFT
