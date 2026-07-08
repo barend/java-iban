@@ -46,7 +46,7 @@ ibans:
     country_code: AL
     length: 28
     flags:
-      sepa_country: no
+      sepa_country: yes
       in_swift_registry: yes
     embeds:
       bank_code:
@@ -761,7 +761,7 @@ ibans:
     country_code: MD
     length: 24
     flags:
-      sepa_country: no
+      sepa_country: yes
       in_swift_registry: yes
     embeds:
       bank_code:
@@ -772,7 +772,7 @@ ibans:
     country_code: ME
     length: 22
     flags:
-      sepa_country: no
+      sepa_country: yes
       in_swift_registry: yes
     embeds:
       bank_code:
@@ -790,7 +790,7 @@ ibans:
     country_code: MK
     length: 19
     flags:
-      sepa_country: no
+      sepa_country: yes
       in_swift_registry: yes
     embeds:
       bank_code:
@@ -988,7 +988,7 @@ ibans:
     country_code: RS
     length: 22
     flags:
-      sepa_country: no
+      sepa_country: yes
       in_swift_registry: yes
     embeds:
       bank_code:

@@ -1,5 +1,15 @@
 # Version History
 
+## 1.17.0: xx xx 2026
+
+* Update to IBAN.com Experimental List
+  * Albania (AL): is now SEPA
+  * Moldova (MB): is now SEPA
+  * Montenegro (ME): is now SEPA
+  * Macedonia (MK): is now SEPA
+  * Serbia (RS): is now SEPA
+
+
 ## 1.16.0: 22 December 2025
 
 * Updates to IBAN Registry revision 99
