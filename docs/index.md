@@ -27,7 +27,7 @@ Grab a package [from GitHub][download] or get it from Maven Central:
     <dependency>
         <groupId>nl.garvelink.oss</groupId>
         <artifactId>iban</artifactId>
-        <version>1.16.0</version>
+        <version>1.17.0</version>
     </dependency>
 ```
 
@@ -35,14 +35,14 @@ Grab a package [from GitHub][download] or get it from Maven Central:
 
 ```groovy
     dependencies {
-        compile 'nl.garvelink.oss:iban:1.16.0'
+        compile 'nl.garvelink.oss:iban:1.17.0'
     }
 ```
 
 #### Sbt
 
 ```scala
-libraryDependencies += "nl.garvelink.oss" % "iban" % "1.16.0"
+libraryDependencies += "nl.garvelink.oss" % "iban" % "1.17.0"
 ```
 
 [download]: https://github.com/barend/java-iban/releases
