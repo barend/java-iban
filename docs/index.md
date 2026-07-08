@@ -113,6 +113,17 @@ Obtain an `IBAN` instance using one of the static factory methods: `valueOf( )` 
 
 ### Version History
 
+## 1.17.0: 8 July 2026
+
+* Update to IBAN.com Experimental List, contributed by @legopiraat [#229][pr229]
+    * Albania (AL): is now SEPA
+    * Moldova (MB): is now SEPA
+    * Montenegro (ME): is now SEPA
+    * Macedonia (MK): is now SEPA
+    * Serbia (RS): is now SEPA
+
+[pr229]: https://github.com/barend/java-iban/pull/229
+
 ## 1.16.0: 22 December 2025
 
 * Updates to IBAN Registry revision 99
